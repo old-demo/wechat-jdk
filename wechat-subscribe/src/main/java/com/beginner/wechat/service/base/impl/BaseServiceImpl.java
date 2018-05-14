@@ -4,8 +4,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.common.HttpGetUtil;
 import com.beginner.wechat.constant.BaseApi;
 import com.beginner.wechat.model.base.AccessToken;
+import com.beginner.wechat.model.base.CallBack;
 import com.beginner.wechat.service.base.BaseService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 公共方法实现类
@@ -28,5 +31,18 @@ public class BaseServiceImpl implements BaseService {
         accessToken.setAccessToken(jsonObject.getString("access_token"));
         accessToken.setExpiresIn(jsonObject.getString("expires_in"));
         return accessToken;
+    }
+
+    @Override
+    public CallBack listCallBackIP(String accessToken) {
+        String url = BaseApi.GET_CALLBACK_IP;
+        String param = "access_token="+accessToken;
+        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
+
+        CallBack callBack = new CallBack();
+        callBack.setErrcode(jsonObject.getInteger("errcode"));
+        callBack.setErrmsg(jsonObject.getString("errmsg"));
+        callBack.setCallBackId(jsonObject.getJSONArray("ip_list").toJavaList(String.class));
+        return callBack;
     }
 }

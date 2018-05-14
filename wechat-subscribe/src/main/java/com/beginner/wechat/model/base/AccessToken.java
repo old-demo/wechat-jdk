@@ -3,7 +3,7 @@ package com.beginner.wechat.model.base;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * accessToken 实体类
+ * accessToken
  *
  * @author heqing
  * @date 2018/5/14
