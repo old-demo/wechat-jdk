@@ -24,17 +24,7 @@ public class BaseServiceImpl implements BaseService {
         String url = BaseApi.GET_TOKEN;
         String param = "grant_type=client_credential&appid="+appid+"&secret="+secret;
         JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
-
-        Result result = new Result();
-        Integer code = jsonObject.getInteger("errcode");
-        if(code == null || code == 0){
-            code = 0;
-            result.setData(JSON.parseObject(jsonObject.toJSONString(), AccessToken.class));
-        } else {
-            result.setErrmsg(jsonObject.getString("errmsg"));
-        }
-        result.setErrcode(code);
-        return result;
+        return new Result(jsonObject, AccessToken.class);
     }
 
     @Override
@@ -42,16 +32,6 @@ public class BaseServiceImpl implements BaseService {
         String url = BaseApi.GET_CALLBACK_IP;
         String param = "access_token="+accessToken;
         JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
-
-        Result result = new Result();
-        Integer code = jsonObject.getInteger("errcode");
-        if(code == null || code == 0){
-            code = 0;
-            result.setData(JSON.parseObject(jsonObject.toJSONString(), CallBack.class));
-        } else {
-            result.setErrmsg(jsonObject.getString("errmsg"));
-        }
-        result.setErrcode(code);
-        return result;
+        return new Result(jsonObject, CallBack.class);
     }
 }

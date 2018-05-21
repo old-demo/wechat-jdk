@@ -24,11 +24,7 @@ public class MenuServiceImpl implements MenuService {
     public Result createMenu(String accessToken, Menu menu) {
         String url = MenuApi.MENU_CREATE+"?access_token="+accessToken;
         JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(menu));
-
-        Result result = new Result();
-        result.setErrcode(jsonObject.getInteger("errcode"));
-        result.setErrmsg(jsonObject.getString("errmsg"));
-        return result;
+        return new Result(jsonObject);
     }
 
     @Override
@@ -36,16 +32,6 @@ public class MenuServiceImpl implements MenuService {
         String url = MenuApi.MENU_GET;
         String param = "access_token="+accessToken;
         JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
-
-        Result result = new Result();
-        Integer code = jsonObject.getInteger("errcode");
-        if(code == null || code == 0){
-            code = 0;
-            result.setData(JSON.parseObject(jsonObject.getString("menu"), Menu.class));
-        } else {
-            result.setErrmsg(jsonObject.getString("errmsg"));
-        }
-        result.setErrcode(code);
-        return result;
+        return new Result(jsonObject, "menu", Menu.class);
     }
 }
