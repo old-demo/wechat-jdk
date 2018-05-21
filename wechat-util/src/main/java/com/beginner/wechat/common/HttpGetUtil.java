@@ -25,7 +25,7 @@ public class HttpGetUtil {
      * @return
      */
     public static JSONObject httpGetRequest(String url, String param){
-        String result = "";
+        String response = "";
         BufferedReader in = null;
         try {
             String urlNameString = url + "?" + param;
@@ -47,7 +47,7 @@ public class HttpGetUtil {
                     connection.getInputStream()));
             String line;
             while ((line = in.readLine()) != null) {
-                result += line;
+                response += line;
             }
         } catch (Exception e) {
             System.out.println("发送GET请求出现异常！" + e);
@@ -63,6 +63,6 @@ public class HttpGetUtil {
                 e2.printStackTrace();
             }
         }
-        return JSONObject.parseObject(result);
+        return JSONObject.parseObject(response);
     }
 }

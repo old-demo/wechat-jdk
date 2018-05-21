@@ -1,6 +1,7 @@
-package com.beginner.wechat.model.base;
+package com.beginner.wechat.model;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  * accessToken
@@ -8,15 +9,17 @@ import com.alibaba.fastjson.JSONObject;
  * @author heqing
  * @date 2018/5/14
  */
-public class AccessToken extends Result {
+public class AccessToken {
 
     /**
      * accessToken 获取到的凭证
      */
+    @JSONField(name = "access_token")
     private String accessToken;
     /**
      * expiresIn 凭证有效时间，单位：秒
      */
+    @JSONField(name = "expires_in")
     private String expiresIn;
 
     public String getAccessToken() {

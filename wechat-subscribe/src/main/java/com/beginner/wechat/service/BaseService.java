@@ -1,9 +1,8 @@
-package com.beginner.wechat.service.base;
+package com.beginner.wechat.service;
 
-import com.beginner.wechat.model.base.AccessToken;
-import com.beginner.wechat.model.base.CallBack;
-
-import java.util.List;
+import com.beginner.wechat.model.AccessToken;
+import com.beginner.wechat.model.CallBack;
+import com.beginner.wechat.model.Result;
 
 /**
  * 公共方法接口
@@ -20,7 +19,7 @@ public interface BaseService {
      * @param secret 第三方用户唯一凭证密钥，即appsecret
      * @return
      */
-    AccessToken getAccessToken(String appid, String secret);
+    Result<AccessToken> getAccessToken(String appid, String secret);
 
     /**
      * 获取微信服务器IP地址
@@ -28,5 +27,5 @@ public interface BaseService {
      * @param accessToken 微信access_token
      * @return
      */
-    CallBack listCallBackIP(String accessToken);
+    Result<CallBack> listCallBackIP(String accessToken);
 }
