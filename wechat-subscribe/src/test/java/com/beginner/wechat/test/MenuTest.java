@@ -1,12 +1,10 @@
 package com.beginner.wechat.test;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.annotation.JSONField;
 import com.beginner.wechat.constant.SexType;
 import com.beginner.wechat.constant.SystemType;
 import com.beginner.wechat.model.menu.*;
 import com.beginner.wechat.model.user.User;
-import com.beginner.wechat.test.BaseTest;
 import com.beginner.wechat.constant.ButtonType;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.service.MenuService;
@@ -131,7 +129,7 @@ public class MenuTest extends BaseTest {
         subButton2_1.setName("扫码推事件");
 
         SubButton subButton2_2 = new SubButton();
-        subButton2_2.setType(ButtonType.SACBCODE_WAITMSG);
+        subButton2_2.setType(ButtonType.SACNCODE_WAITMSG);
         subButton2_2.setKey("MENU_2_2");
         subButton2_2.setName("扫码带提示");
 

@@ -4,6 +4,7 @@ import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.menu.AllMenu;
 import com.beginner.wechat.model.menu.ConditionalMenu;
 import com.beginner.wechat.model.menu.Menu;
+import com.beginner.wechat.model.menu.MenuConfig;
 import com.beginner.wechat.model.user.User;
 
 /**
@@ -45,7 +46,7 @@ public interface MenuService {
      * @param accessToken 微信access_token
      * @return
      */
-    Result<Menu> getMenuConfigInfo(String accessToken);
+    Result<MenuConfig> getMenuConfigInfo(String accessToken);
 
     /**
      * 创建个性化菜单

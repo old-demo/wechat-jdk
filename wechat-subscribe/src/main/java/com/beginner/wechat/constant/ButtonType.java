@@ -37,7 +37,7 @@ public enum ButtonType {
      * 完成扫码操作后，将扫码的结果传给开发者，同时收起扫一扫工具，然后弹出“消息接收中”提示框，随后可能会
      * 收到开发者下发的消息。
      */
-    SACBCODE_WAITMSG(4, "scancode_waitmsg"),
+    SACNCODE_WAITMSG(4, "scancode_waitmsg"),
 
     /**
      * pic_sysphoto ：弹出系统拍照发图用户点击按钮后，微信客户端将调起系统相机，完成拍照操作后，会将拍摄
@@ -112,8 +112,8 @@ public enum ButtonType {
                 case SCANCODE_PUSH:
                     button = ButtonType.SCANCODE_PUSH.getName();
                     break;
-                case SACBCODE_WAITMSG:
-                    button = ButtonType.SACBCODE_WAITMSG.getName();
+                case SACNCODE_WAITMSG:
+                    button = ButtonType.SACNCODE_WAITMSG.getName();
                     break;
                 case PIC_SYSPHOTO:
                     button = ButtonType.PIC_SYSPHOTO.getName();

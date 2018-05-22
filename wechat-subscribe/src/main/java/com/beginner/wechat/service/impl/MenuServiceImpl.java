@@ -1,6 +1,7 @@
 package com.beginner.wechat.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.common.HttpGetUtil;
 import com.beginner.wechat.common.HttpPostUtil;
@@ -9,6 +10,7 @@ import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.menu.AllMenu;
 import com.beginner.wechat.model.menu.ConditionalMenu;
 import com.beginner.wechat.model.menu.Menu;
+import com.beginner.wechat.model.menu.MenuConfig;
 import com.beginner.wechat.model.user.User;
 import com.beginner.wechat.service.MenuService;
 import org.springframework.stereotype.Service;
@@ -46,14 +48,35 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Result<Menu> getMenuConfigInfo(String accessToken) {
+    public Result<MenuConfig> getMenuConfigInfo(String accessToken) {
         String url = MenuApi.GET_MENU_CONFIG;
         String param = "access_token="+accessToken;
         JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
 
-        System.out.println("-->"+jsonObject.toJSONString());
-
-        return new Result();
+        Result result = new Result();
+        result.setErrcode(jsonObject.getInteger("errcode"));
+        if(result.getErrcode() == null || result.getErrcode()== 0){
+            JSONObject selfmenuInfo = jsonObject.getJSONObject("selfmenu_info");
+            JSONArray buttonList = selfmenuInfo.getJSONArray("button");
+            for(int i=0; i<buttonList.size(); i++) {
+                JSONObject button = buttonList.getJSONObject(i);
+                JSONObject subButton = button.getJSONObject("sub_button");
+                JSONArray subButtonList = subButton.getJSONArray("list");
+                for(int j=0; j<subButtonList.size(); j++) {
+                    JSONObject news = subButtonList.getJSONObject(i);
+                    JSONObject newsInfo = news.getJSONObject("news_info");
+                    if(newsInfo != null) {
+                        JSONArray newsList = newsInfo.getJSONArray("list");
+                        news.put("news_info", newsList);
+                    }
+                }
+                button.put("sub_button", subButtonList);
+            }
+            result.setData(JSON.parseObject(jsonObject.toJSONString(), MenuConfig.class));
+        } else {
+            result.setErrmsg(jsonObject.getString("errmsg"));
+        }
+        return result;
     }
 
     @Override
