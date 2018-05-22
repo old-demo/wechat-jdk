@@ -6,6 +6,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.util.List;
 
 /**
+ * 一级菜单信息
  * @author heqing
  * @date 2018/5/21.
  */

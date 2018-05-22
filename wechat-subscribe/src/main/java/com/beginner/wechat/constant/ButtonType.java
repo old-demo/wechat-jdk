@@ -1,7 +1,5 @@
 package com.beginner.wechat.constant;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 /**
  * 自定义菜单类型
  *
@@ -83,7 +81,7 @@ public enum ButtonType {
     /**
      * miniprogram ：小程序
      */
-    MINI_PROGRAM(11, "miniprogram"),;
+    MINI_PROGRAM(11, "miniprogram");
 
     ButtonType(int code, String name) {
         this.code = code;
@@ -99,6 +97,50 @@ public enum ButtonType {
 
     public String getName() {
         return name;
+    }
+
+    public static String getButton(ButtonType buttonType) {
+        String button = null;
+        if(buttonType != null) {
+            switch (buttonType) {
+                case CLICK:
+                    button = ButtonType.CLICK.getName();
+                    break;
+                case VIEW:
+                    button = ButtonType.VIEW.getName();
+                    break;
+                case SCANCODE_PUSH:
+                    button = ButtonType.SCANCODE_PUSH.getName();
+                    break;
+                case SACBCODE_WAITMSG:
+                    button = ButtonType.SACBCODE_WAITMSG.getName();
+                    break;
+                case PIC_SYSPHOTO:
+                    button = ButtonType.PIC_SYSPHOTO.getName();
+                    break;
+                case PIC_PHOTO_OR_ALBUM:
+                    button = ButtonType.PIC_PHOTO_OR_ALBUM.getName();
+                    break;
+                case PIC_WEIXIN:
+                    button = ButtonType.PIC_WEIXIN.getName();
+                    break;
+                case LOCATION_SELECT:
+                    button = ButtonType.LOCATION_SELECT.getName();
+                    break;
+                case MEDIA_ID:
+                    button = ButtonType.MEDIA_ID.getName();
+                    break;
+                case VIEW_LIMITED:
+                    button = ButtonType.VIEW_LIMITED.getName();
+                    break;
+                case MINI_PROGRAM:
+                    button = ButtonType.MINI_PROGRAM.getName();
+                    break;
+                default:
+                    button = "";
+            }
+        }
+        return button;
     }
 
 }

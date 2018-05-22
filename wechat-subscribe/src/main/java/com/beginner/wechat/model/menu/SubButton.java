@@ -5,6 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.beginner.wechat.constant.ButtonType;
 
 /**
+ * 二级菜单信息
  * @author heqing
  * @date 2018/5/21.
  */
@@ -15,7 +16,7 @@ public class SubButton {
      * 必传
      * 菜单的响应动作类型，view表示网页类型，click表示点击类型，miniprogram表示小程序类型
      */
-    private ButtonType type;
+    private String type;
     /**
      * name
      * 必传
@@ -57,51 +58,11 @@ public class SubButton {
     private String pagePath;
 
     public String getType() {
-        String typeString = null;
-        if(type != null) {
-            switch (type) {
-                case CLICK:
-                    typeString = ButtonType.CLICK.getName();
-                    break;
-                case VIEW:
-                    typeString = ButtonType.VIEW.getName();
-                    break;
-                case SCANCODE_PUSH:
-                    typeString = ButtonType.SCANCODE_PUSH.getName();
-                    break;
-                case SACBCODE_WAITMSG:
-                    typeString = ButtonType.SACBCODE_WAITMSG.getName();
-                    break;
-                case PIC_SYSPHOTO:
-                    typeString = ButtonType.PIC_SYSPHOTO.getName();
-                    break;
-                case PIC_PHOTO_OR_ALBUM:
-                    typeString = ButtonType.PIC_PHOTO_OR_ALBUM.getName();
-                    break;
-                case PIC_WEIXIN:
-                    typeString = ButtonType.PIC_WEIXIN.getName();
-                    break;
-                case LOCATION_SELECT:
-                    typeString = ButtonType.LOCATION_SELECT.getName();
-                    break;
-                case MEDIA_ID:
-                    typeString = ButtonType.MEDIA_ID.getName();
-                    break;
-                case VIEW_LIMITED:
-                    typeString = ButtonType.VIEW_LIMITED.getName();
-                    break;
-                case MINI_PROGRAM:
-                    typeString = ButtonType.MINI_PROGRAM.getName();
-                    break;
-                default:
-                    typeString = "";
-            }
-        }
-        return typeString;
+        return type;
     }
 
     public void setType(ButtonType type) {
-        this.type = type;
+        this.type = ButtonType.getButton(type);;
     }
 
     public String getName() {
