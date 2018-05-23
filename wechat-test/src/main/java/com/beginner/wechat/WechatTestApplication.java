@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WechatSubscribeApplication {
+public class WechatTestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WechatSubscribeApplication.class, args);
+		SpringApplication.run(WechatTestApplication.class, args);
 	}
 }

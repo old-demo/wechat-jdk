@@ -1,9 +1,8 @@
 package com.beginner.wechat.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.common.HttpGetUtil;
-import com.beginner.wechat.constant.api.BaseApi;
+import com.beginner.wechat.common.api.BaseApi;
 import com.beginner.wechat.model.AccessToken;
 import com.beginner.wechat.model.CallBack;
 import com.beginner.wechat.model.Result;

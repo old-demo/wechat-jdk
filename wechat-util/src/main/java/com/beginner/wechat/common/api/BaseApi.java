@@ -1,4 +1,4 @@
-package com.beginner.wechat.constant.api;
+package com.beginner.wechat.common.api;
 
 /**
  * 微信接口地址

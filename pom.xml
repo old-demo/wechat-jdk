@@ -41,12 +41,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Spring Boot log4j依赖 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j</artifactId>
-		</dependency>
-
 		<!-- 阿里json工具 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

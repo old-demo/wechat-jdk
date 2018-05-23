@@ -4,17 +4,24 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.beginner.wechat</groupId>
-	<artifactId>wechat-subscribe</artifactId>
+	<artifactId>wechat-test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>wechat-subscribe</name>
-	<description>WeChat Subscribe Java Development Kit</description>
+	<name>wechat-test</name>
+	<description>WeChat Test</description>
 
 	<parent>
 		<groupId>com.beginner.wechat</groupId>
 		<artifactId>wechat-jdk</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -30,9 +37,10 @@
 
 		<dependency>
 			<groupId>com.beginner.wechat</groupId>
-			<artifactId>wechat-util</artifactId>
+			<artifactId>wechat-subscribe</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -43,6 +51,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

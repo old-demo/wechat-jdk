@@ -1,5 +1,7 @@
 package com.beginner.wechat.constant.api;
 
+import com.beginner.wechat.common.api.BaseApi;
+
 /**
  * @author heqing
  * @date 2018/5/21.
