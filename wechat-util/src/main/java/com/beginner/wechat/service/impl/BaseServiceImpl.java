@@ -20,17 +20,15 @@ public class BaseServiceImpl implements BaseService {
 
     @Override
     public Result<AccessToken> getAccessToken(String appid, String secret) {
-        String url = BaseApi.GET_TOKEN;
-        String param = "grant_type=client_credential&appid="+appid+"&secret="+secret;
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
+        String url = BaseApi.GET_TOKEN.replace("APPID", appid).replace("APPSECRET", secret);
+        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
         return new Result(jsonObject, AccessToken.class);
     }
 
     @Override
     public Result<CallBack> listCallBackIP(String accessToken) {
-        String url = BaseApi.GET_CALLBACK_IP;
-        String param = "access_token="+accessToken;
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
+        String url = BaseApi.GET_CALLBACK_IP.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
         return new Result(jsonObject, CallBack.class);
     }
 }

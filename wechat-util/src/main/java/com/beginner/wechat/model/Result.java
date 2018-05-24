@@ -16,9 +16,15 @@ public class Result<T> implements Serializable {
 
     public Result() { }
 
+    public Result(Integer errcode, String errmsg) {
+        this.errcode = errcode;
+        this.errmsg = errmsg;
+    }
+
     public Result(JSONObject jsonObject) {
         this.errcode = jsonObject.getInteger("errcode");
         this.errmsg = jsonObject.getString("errmsg");
+        this.data = (T)jsonObject.get("data");
     }
 
     public Result(JSONObject jsonObject, Class<T> c) {

@@ -26,32 +26,29 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Result createMenu(String accessToken, Menu menu) {
-        String url = MenuApi.CREATE_MENU+"?access_token="+accessToken;
+        String url = MenuApi.CREATE_MENU.replace("ACCESS_TOKEN", accessToken);
         JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(menu));
         return new Result(jsonObject);
     }
 
     @Override
     public Result<AllMenu> getMenuInfo(String accessToken) {
-        String url = MenuApi.GET_MENU;
-        String param = "access_token="+accessToken;
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
+        String url = MenuApi.GET_MENU.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
         return new Result(jsonObject, AllMenu.class);
     }
 
     @Override
     public Result delMenu(String accessToken) {
-        String url = MenuApi.DEL_MENU;
-        String param = "access_token="+accessToken;
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
+        String url = MenuApi.DEL_MENU.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
         return new Result(jsonObject);
     }
 
     @Override
     public Result<MenuConfig> getMenuConfigInfo(String accessToken) {
-        String url = MenuApi.GET_MENU_CONFIG;
-        String param = "access_token="+accessToken;
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url, param);
+        String url = MenuApi.GET_MENU_CONFIG.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
 
         Result result = new Result();
         result.setErrcode(jsonObject.getInteger("errcode"));
@@ -81,21 +78,21 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Result<ConditionalMenu> addConditional(String accessToken, ConditionalMenu conditionalMenu) {
-        String url = MenuApi.ADD_CONDITIONAL+"?access_token="+accessToken;
+        String url = MenuApi.ADD_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
         JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(conditionalMenu));
         return new Result(jsonObject, ConditionalMenu.class);
     }
 
     @Override
     public Result delConditional(String accessToken, ConditionalMenu conditionalMenu) {
-        String url = MenuApi.DEL_CONDITIONAL+"?access_token="+accessToken;
+        String url = MenuApi.DEL_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
         JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(conditionalMenu));
         return new Result(jsonObject);
     }
 
     @Override
     public Result<ConditionalMenu> tryMatch(String accessToken, User user) {
-        String url = MenuApi.TRY_MATCH+"?access_token="+accessToken;
+        String url = MenuApi.TRY_MATCH.replace("ACCESS_TOKEN", accessToken);
         JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(user));
         return new Result(jsonObject, "menu", ConditionalMenu.class);
     }

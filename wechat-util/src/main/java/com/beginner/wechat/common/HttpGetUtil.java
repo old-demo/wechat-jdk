@@ -1,10 +1,11 @@
 package com.beginner.wechat.common;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
@@ -25,11 +26,20 @@ public class HttpGetUtil {
      * @return
      */
     public static JSONObject httpGetRequest(String url, String param){
+        String urlNameString = url + "?" + param;
+        return httpGetRequest(urlNameString);
+    }
+
+    /**
+     * 发送get请求
+     * @param url 请求路径
+     * @return
+     */
+    public static JSONObject httpGetRequest(String url) {
         String response = "";
         BufferedReader in = null;
         try {
-            String urlNameString = url + "?" + param;
-            URL realUrl = new URL(urlNameString);
+            URL realUrl = new URL(url);
             // 打开和URL之间的连接
             URLConnection connection = realUrl.openConnection();
             // 设置通用的请求属性
@@ -39,8 +49,6 @@ public class HttpGetUtil {
                     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             // 建立实际的连接
             connection.connect();
-            // 获取所有响应头字段
-            Map<String, List<String>> map = connection.getHeaderFields();
 
             // 定义 BufferedReader输入流来读取URL的响应
             in = new BufferedReader(new InputStreamReader(
@@ -65,4 +73,66 @@ public class HttpGetUtil {
         }
         return JSONObject.parseObject(response);
     }
+
+    public static JSONObject getTmpFile(String url, String filePath){
+        JSONObject json = new JSONObject();
+        try {
+            URL u = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+            conn.setRequestMethod("POST");
+            conn.connect();
+
+            //微信服务器生成的文件名称
+            String file_name ="temp.txt";
+            String content_disposition = conn.getHeaderField("content-disposition");
+            if(content_disposition != null) {
+                String[] content_arr = content_disposition.split(";");
+                if (content_arr.length == 2) {
+                    String tmp = content_arr[1];
+                    file_name = tmp.substring(tmp.indexOf("\"") + 1, tmp.length() - 1);
+                }
+            }
+
+            //生成不同文件名称
+            File file = new File(filePath+"\\"+file_name);
+            BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
+            String s = "";
+            if(bis != null) {
+                FileOutputStream fileOut = new FileOutputStream(file);
+                byte[] buf = new byte[1024 * 2];
+                while (true) {
+                    int read = 0;
+                    read = bis.read(buf);
+                    if (read == -1) {
+                        break;
+                    }
+                    s = new String(buf);
+                    if(!s.contains("errcode")) {
+                        fileOut.write(buf, 0, read);
+                    } else {
+                        break;
+                    }
+                }
+                bis.close();
+                fileOut.flush();
+                fileOut.close();
+            }
+            if(s.contains("errcode")) {
+                json = JSONObject.parseObject(s);
+                file.delete();
+            } else if(s.contains("video_url")) {
+                json.put("errcode", 0);
+                JSONObject video = JSONObject.parseObject(s);
+                json.put("data", video.getString("video_url"));
+                file.delete();
+            } else {
+                json.put("errcode", 0);
+                json.put("data", file.getAbsolutePath());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
 }
