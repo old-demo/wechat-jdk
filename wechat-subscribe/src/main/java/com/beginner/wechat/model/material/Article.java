@@ -47,6 +47,11 @@ public class Article {
     @JSONField(name = "content_source_url")
     private String contentSourceUrl;
 
+    /**
+     * url : 图文页的URL
+     */
+    private String url;
+
     public String getTitle() {
         return title;
     }
@@ -101,6 +106,14 @@ public class Article {
 
     public void setContentSourceUrl(String contentSourceUrl) {
         this.contentSourceUrl = contentSourceUrl;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

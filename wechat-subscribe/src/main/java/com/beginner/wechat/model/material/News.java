@@ -1,6 +1,7 @@
 package com.beginner.wechat.model.material;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.List;
 

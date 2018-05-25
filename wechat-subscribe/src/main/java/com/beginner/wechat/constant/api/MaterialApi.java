@@ -1,7 +1,5 @@
 package com.beginner.wechat.constant.api;
 
-import com.beginner.wechat.common.api.BaseApi;
-
 /**
  * 素材，微信接口
  * @author heqing
@@ -38,5 +36,20 @@ public class MaterialApi extends BaseApi {
      * ADD_MATERIAL 新增永久素材
      */
     public final static String ADD_MATERIAL = WEIXIN + "/material/add_material?access_token=ACCESS_TOKEN&type=TYPE";
+
+    /**
+     * GET_MATERIAL 获取永久素材
+     */
+    public final static String GET_MATERIAL = WEIXIN + "/material/get_material?access_token=ACCESS_TOKEN";
+
+    /**
+     * GET_MATERIAL_COUNT 获取素材总数
+     */
+    public final static String GET_MATERIAL_COUNT = WEIXIN + "/material/get_materialcount?access_token=ACCESS_TOKEN";
+
+    /**
+     * GET_MATERIAL 获取永久素材
+     */
+    public final static String GET_MATERIAL_LIST = WEIXIN + "/material/batchget_material?access_token=ACCESS_TOKEN";
 
 }

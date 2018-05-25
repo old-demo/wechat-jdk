@@ -6,16 +6,20 @@ import com.beginner.wechat.model.Result;
 import com.beginner.wechat.service.BaseService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Created by heqing on 2018/5/14.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@ContextConfiguration("classpath:/spring-config.xml")
 public class BaseTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
     @Autowired
     BaseService baseService;
@@ -35,7 +39,7 @@ public class BaseTest {
     @Test
     public void testToken() {
         // 获取微信access_token
-        System.out.println("-->"+getToken());
+        System.out.println("---->"+getToken());
     }
 
     @Test

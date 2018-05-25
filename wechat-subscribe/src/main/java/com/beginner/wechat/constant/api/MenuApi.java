@@ -1,7 +1,5 @@
 package com.beginner.wechat.constant.api;
 
-import com.beginner.wechat.common.api.BaseApi;
-
 /**
  * 自定义菜单，微信接口
  * @author heqing
@@ -43,4 +41,5 @@ public class MenuApi extends BaseApi {
      * TRY_MATCH 测试个性化菜单匹配结果
      */
     public final static String TRY_MATCH = WEIXIN + "/menu/trymatch?access_token=ACCESS_TOKEN";
+
 }

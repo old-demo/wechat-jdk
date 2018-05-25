@@ -3,8 +3,8 @@ package com.beginner.wechat.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.common.HttpGetUtil;
-import com.beginner.wechat.common.HttpPostUtil;
+import com.beginner.wechat.util.HttpGetUtil;
+import com.beginner.wechat.util.HttpPostUtil;
 import com.beginner.wechat.constant.api.MenuApi;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.menu.AllMenu;
@@ -27,29 +27,29 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Result createMenu(String accessToken, Menu menu) {
         String url = MenuApi.CREATE_MENU.replace("ACCESS_TOKEN", accessToken);
-        JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(menu));
-        return new Result(jsonObject);
+        String response = HttpPostUtil.sendJsonRequest(url, JSON.toJSONString(menu));
+        return new Result(JSONObject.parseObject(response));
     }
 
     @Override
     public Result<AllMenu> getMenuInfo(String accessToken) {
         String url = MenuApi.GET_MENU.replace("ACCESS_TOKEN", accessToken);
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
-        return new Result(jsonObject, AllMenu.class);
+        String response = HttpGetUtil.sendRequest(url);
+        return new Result(JSONObject.parseObject(response), AllMenu.class);
     }
 
     @Override
     public Result delMenu(String accessToken) {
         String url = MenuApi.DEL_MENU.replace("ACCESS_TOKEN", accessToken);
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
-        return new Result(jsonObject);
+        String response = HttpGetUtil.sendRequest(url);
+        return new Result(JSONObject.parseObject(response));
     }
 
     @Override
     public Result<MenuConfig> getMenuConfigInfo(String accessToken) {
         String url = MenuApi.GET_MENU_CONFIG.replace("ACCESS_TOKEN", accessToken);
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
-
+        String response = HttpGetUtil.sendRequest(url);
+        JSONObject jsonObject = JSONObject.parseObject(response);
         Result result = new Result();
         result.setErrcode(jsonObject.getInteger("errcode"));
         if(result.getErrcode() == null || result.getErrcode()== 0){
@@ -79,22 +79,22 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Result<ConditionalMenu> addConditional(String accessToken, ConditionalMenu conditionalMenu) {
         String url = MenuApi.ADD_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
-        JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(conditionalMenu));
-        return new Result(jsonObject, ConditionalMenu.class);
+        String response = HttpPostUtil.sendJsonRequest(url, JSON.toJSONString(conditionalMenu));
+        return new Result(JSONObject.parseObject(response), ConditionalMenu.class);
     }
 
     @Override
     public Result delConditional(String accessToken, ConditionalMenu conditionalMenu) {
         String url = MenuApi.DEL_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
-        JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(conditionalMenu));
-        return new Result(jsonObject);
+        String response = HttpPostUtil.sendJsonRequest(url, JSON.toJSONString(conditionalMenu));
+        return new Result(JSONObject.parseObject(response));
     }
 
     @Override
     public Result<ConditionalMenu> tryMatch(String accessToken, User user) {
         String url = MenuApi.TRY_MATCH.replace("ACCESS_TOKEN", accessToken);
-        JSONObject jsonObject = HttpPostUtil.sendPost(url, JSON.toJSONString(user));
-        return new Result(jsonObject, "menu", ConditionalMenu.class);
+        String response = HttpPostUtil.sendJsonRequest(url, JSON.toJSONString(user));
+        return new Result(JSONObject.parseObject(response), "menu", ConditionalMenu.class);
     }
 
 }

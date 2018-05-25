@@ -1,15 +1,12 @@
-package com.beginner.wechat.common;
+package com.beginner.wechat.util;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
 
 /**
  * http 访问工具
@@ -25,9 +22,9 @@ public class HttpGetUtil {
      * @param param 请求参数
      * @return
      */
-    public static JSONObject httpGetRequest(String url, String param){
+    public static String sendRequest(String url, String param){
         String urlNameString = url + "?" + param;
-        return httpGetRequest(urlNameString);
+        return sendRequest(urlNameString);
     }
 
     /**
@@ -35,7 +32,7 @@ public class HttpGetUtil {
      * @param url 请求路径
      * @return
      */
-    public static JSONObject httpGetRequest(String url) {
+    public static String sendRequest(String url) {
         String response = "";
         BufferedReader in = null;
         try {
@@ -44,25 +41,20 @@ public class HttpGetUtil {
             URLConnection connection = realUrl.openConnection();
             // 设置通用的请求属性
             connection.setRequestProperty("accept", "*/*");
-            connection.setRequestProperty("connection", "Keep-Alive");
-            connection.setRequestProperty("user-agent",
-                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+            connection.setRequestProperty("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             // 建立实际的连接
             connection.connect();
 
             // 定义 BufferedReader输入流来读取URL的响应
-            in = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream()));
+            in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line;
             while ((line = in.readLine()) != null) {
                 response += line;
             }
         } catch (Exception e) {
-            System.out.println("发送GET请求出现异常！" + e);
             e.printStackTrace();
-        }
-        // 使用finally块来关闭输入流
-        finally {
+        } finally {
+            // 使用finally块来关闭输入流
             try {
                 if (in != null) {
                     in.close();
@@ -71,11 +63,12 @@ public class HttpGetUtil {
                 e2.printStackTrace();
             }
         }
-        return JSONObject.parseObject(response);
+        return response;
     }
 
-    public static JSONObject getTmpFile(String url, String filePath){
-        JSONObject json = new JSONObject();
+    public static String getTmpFile(String url, String filePath){
+        String response = "";
+        boolean isFile = true;
         try {
             URL u = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) u.openConnection();
@@ -110,29 +103,22 @@ public class HttpGetUtil {
                     if(!s.contains("errcode")) {
                         fileOut.write(buf, 0, read);
                     } else {
+                        isFile = false;
                         break;
                     }
+                    response = file.getAbsolutePath();
                 }
                 bis.close();
                 fileOut.flush();
                 fileOut.close();
             }
-            if(s.contains("errcode")) {
-                json = JSONObject.parseObject(s);
+            if(!isFile) {
                 file.delete();
-            } else if(s.contains("video_url")) {
-                json.put("errcode", 0);
-                JSONObject video = JSONObject.parseObject(s);
-                json.put("data", video.getString("video_url"));
-                file.delete();
-            } else {
-                json.put("errcode", 0);
-                json.put("data", file.getAbsolutePath());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return json;
+        return response ;
     }
 
 }

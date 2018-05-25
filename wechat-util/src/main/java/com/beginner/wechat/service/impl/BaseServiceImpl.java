@@ -1,8 +1,8 @@
 package com.beginner.wechat.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.common.HttpGetUtil;
-import com.beginner.wechat.common.api.BaseApi;
+import com.beginner.wechat.util.HttpGetUtil;
+import com.beginner.wechat.constant.api.BaseApi;
 import com.beginner.wechat.model.AccessToken;
 import com.beginner.wechat.model.CallBack;
 import com.beginner.wechat.model.Result;
@@ -21,14 +21,14 @@ public class BaseServiceImpl implements BaseService {
     @Override
     public Result<AccessToken> getAccessToken(String appid, String secret) {
         String url = BaseApi.GET_TOKEN.replace("APPID", appid).replace("APPSECRET", secret);
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
-        return new Result(jsonObject, AccessToken.class);
+        String response = HttpGetUtil.sendRequest(url);
+        return new Result(JSONObject.parseObject(response), AccessToken.class);
     }
 
     @Override
     public Result<CallBack> listCallBackIP(String accessToken) {
         String url = BaseApi.GET_CALLBACK_IP.replace("ACCESS_TOKEN", accessToken);
-        JSONObject jsonObject = HttpGetUtil.httpGetRequest(url);
-        return new Result(jsonObject, CallBack.class);
+        String response = HttpGetUtil.sendRequest(url);
+        return new Result(JSONObject.parseObject(response), CallBack.class);
     }
 }

@@ -1,4 +1,4 @@
-package com.beginner.wechat.common;
+package com.beginner.wechat.util;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -12,43 +12,60 @@ import java.net.URL;
  */
 public class HttpPostUtil {
 
-    public static JSONObject sendPost(String url, String params) {
+    /**
+     * post请求连接获取相应数据
+     *
+     * @param url 请求链接
+     * @param params 请求参数（json格式）
+     * @return String  上传成功后，微信服务器返回的消息
+     */
+    public static String sendJsonRequest(String url, String params) {
+        String response = "";
+
         OutputStreamWriter out = null;
         BufferedReader reader = null;
-        String response="";
         try {
-            URL httpUrl = null;
-            //创建URL
-            httpUrl = new URL(url);
-            //建立连接
+            // 创建URL
+            URL httpUrl = new URL(url);
+            // 建立连接
             HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
+            // 设定请求的方法为"POST"，默认是GET
             conn.setRequestMethod("POST");
+            // Post 请求不能使用缓存
+            conn.setUseCaches(false);
+            // 设置是否向httpUrlConnection输出，因为这个是post请求，参数要放在http正文内，因此需要设为true, 默认情况下是false;
+            conn.setDoOutput(true);
+            // 设置是否从httpUrlConnection读入，默认情况下是true;
+            conn.setDoInput(true);
+            // 设定传送的内容类型是json格式
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("connection", "keep-alive");
-            conn.setUseCaches(false);
             conn.setInstanceFollowRedirects(true);
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
+            // 连接
             conn.connect();
-            //POST请求
+
+            // 现在通过输出流对象构建对象输出流对象，以实现输出可序列化的对象。
             out = new OutputStreamWriter(conn.getOutputStream());
+            // 向对象输出流写出数据，这些数据将存到内存缓冲区中
             out.write(params);
+            // 刷新对象输出流，将任何字节都写入潜在的流中（些处为ObjectOutputStream）
             out.flush();
-            //读取响应
-            reader = new BufferedReader(new InputStreamReader( conn.getInputStream()));
-            String lines;
+
+            // 读取输入流响应数据
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String lines = "";
             while ((lines = reader.readLine()) != null) {
                 lines = new String(lines.getBytes(), "utf-8");
-                response+=lines;
+                response += lines;
             }
+            // 关闭输入流
             reader.close();
+
             // 断开连接
             conn.disconnect();
-        } catch (Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
-        }
-        //使用finally块来关闭输出流、输入流
-        finally{
+        } finally {
             try{
                 if(out!=null){
                     out.close();
@@ -61,59 +78,55 @@ public class HttpPostUtil {
                 ex.printStackTrace();
             }
         }
-        return JSONObject.parseObject(response);
+        return response;
     }
 
     /**
-     * @desc ：微信上传素材的请求方法
+     * post请求连接获取相应数据
      *
-     * @param requestUrl  微信上传临时素材的接口url
-     * @param file    要上传的文件
+     * @param url 请求链接
+     * @param file 上传的文件
      * @return String  上传成功后，微信服务器返回的消息
      */
-    public static JSONObject sendFile(String requestUrl, File file) {
-        if(!file.exists()) {
-            JSONObject json = new JSONObject();
-            json.put("errcode", "44001");
-            json.put("errmsg", "找不到对应的文件："+file.getAbsolutePath());
-            return json;
-        }
+    public static String sendFile(String url, File file, String title, String introduction) {
+        StringBuffer response = new StringBuffer();
 
-        StringBuffer buffer = new StringBuffer();
-        try{
-            //1.建立连接
-            URL url = new URL(requestUrl);
-            HttpURLConnection httpUrlConn = (HttpURLConnection) url.openConnection();  //打开链接
-
-            //1.1输入输出设置
-            httpUrlConn.setDoInput(true);
-            httpUrlConn.setDoOutput(true);
-            httpUrlConn.setUseCaches(false); // post方式不能使用缓存
-            //1.2设置请求头信息
-            httpUrlConn.setRequestProperty("Connection", "Keep-Alive");
-            httpUrlConn.setRequestProperty("Charset", "UTF-8");
-            //1.3设置边界
-            String BOUNDARY = "----------" + System.currentTimeMillis();
-            httpUrlConn.setRequestProperty("Content-Type","multipart/form-data; boundary="+ BOUNDARY);
+        BufferedReader reader = null;
+        try {
+            // 创建URL
+            URL httpUrl = new URL(url);
+            // 建立连接
+            HttpURLConnection conn = (HttpURLConnection) httpUrl.openConnection();
+            // 设定请求的方法为"POST"，默认是GET
+            conn.setRequestMethod("POST");
+            // Post 请求不能使用缓存
+            conn.setUseCaches(false);
+            // 设置是否向httpUrlConnection输出，因为这个是post请求，参数要放在http正文内，因此需要设为true, 默认情况下是false;
+            conn.setDoOutput(true);
+            // 设置是否从httpUrlConnection读入，默认情况下是true;
+            conn.setDoInput(true);
+            // 设定数据格式
+            conn.setRequestProperty("Charset", "UTF-8");
+            String boundary = "----------"+ System.currentTimeMillis();
+            // 设定传送的内容类型是form表单
+            conn.setRequestProperty("Content-Type","multipart/form-data; boundary=" + boundary);
 
             // 请求正文信息
-            // 第一部分：
-            //2.将文件头输出到微信服务器
             StringBuilder sb = new StringBuilder();
-            sb.append("--"); // 必须多两道线
-            sb.append(BOUNDARY);
-            sb.append("\r\n");
+            sb.append("--"+boundary + "\r\n");
             sb.append("Content-Disposition: form-data;name=\"media\";filelength=\"" + file.length()
                     + "\";filename=\""+ file.getName() + "\"\r\n");
-            sb.append("Content-Type:application/octet-stream\r\n\r\n");
+            sb.append("--"+boundary + "\r\n");
+            sb.append("Content-Disposition: form-data; name=\"description\";\r\n");
+            sb.append(String.format("{\"title\":\"%s\", \"introduction\":\"%s\"}\r\n", title, introduction));
+            sb.append("Content-Type:application/octet-stream\r\n");
+            System.out.println("--->"+sb.toString());
 
             byte[] head = sb.toString().getBytes("utf-8");
             // 获得输出流
-            OutputStream outputStream = new DataOutputStream(httpUrlConn.getOutputStream());
+            OutputStream outputStream = new DataOutputStream(conn.getOutputStream());
             // 将表头写入输出流中：输出表头
             outputStream.write(head);
-
-            //3.将文件正文部分输出到微信服务器
             // 把文件以流文件的方式 写入到微信服务器中
             DataInputStream in = new DataInputStream(new FileInputStream(file));
             int bytes = 0;
@@ -122,37 +135,45 @@ public class HttpPostUtil {
                 outputStream.write(bufferOut, 0, bytes);
             }
             in.close();
-            //4.将结尾部分输出到微信服务器
-            byte[] foot = ("\r\n--" + BOUNDARY + "--\r\n").getBytes("utf-8");// 定义最后数据分隔线
+//            outputStream.write(("--" + boundary + "\r\n").getBytes());
+//            outputStream.write("Content-Disposition: form-data; name=\"description\";\r\n\r\n".getBytes());
+//            outputStream.write(String.format("{\"title\":\"%s\", \"introduction\":\"%s\"}",title,introduction).getBytes());
+//            outputStream.write(("\r\n--" + boundary + "--\r\n\r\n").getBytes());
+
+            // 将结尾部分输出到正文
+            byte[] foot = ("\r\n--" + boundary + "--\r\n").getBytes("utf-8");
             outputStream.write(foot);
             outputStream.flush();
             outputStream.close();
 
-
             //5.将微信服务器返回的输入流转换成字符串
-            InputStream inputStream = httpUrlConn.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
 
             String str = null;
-            while ((str = bufferedReader.readLine()) != null) {
-                buffer.append(str);
+            while ((str = reader.readLine()) != null) {
+                response.append(str);
             }
+            reader.close();
 
-            bufferedReader.close();
-            inputStreamReader.close();
-            // 释放资源
-            inputStream.close();
-            inputStream = null;
-            httpUrlConn.disconnect();
+            //关闭连接
+            conn.disconnect();
 
-
-        } catch (IOException e) {
-            System.out.println("发送POST请求出现异常！" + e);
+        } catch(Exception e) {
             e.printStackTrace();
+        } finally {
+            try{
+                if(reader!=null){
+                    reader.close();
+                }
+            }
+            catch(IOException ex){
+                ex.printStackTrace();
+            }
         }
-        return JSONObject.parseObject(buffer.toString());
+        return response.toString();
     }
+
+
 
 
     public static JSONObject sendVideoFile(String url, File file, String title,String introduction) {
@@ -206,5 +227,4 @@ public class HttpPostUtil {
         }
         return JSONObject.parseObject(result);
     }
-
 }
