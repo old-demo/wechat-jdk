@@ -11,7 +11,6 @@ import com.beginner.wechat.model.menu.AllMenu;
 import com.beginner.wechat.model.menu.ConditionalMenu;
 import com.beginner.wechat.model.menu.Menu;
 import com.beginner.wechat.model.menu.MenuConfig;
-import com.beginner.wechat.model.user.User;
 import com.beginner.wechat.service.MenuService;
 import org.springframework.stereotype.Service;
 
@@ -27,40 +26,66 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Result createMenu(String accessToken, Menu menu) {
         String url = MenuApi.CREATE_MENU.replace("ACCESS_TOKEN", accessToken);
-        String response = HttpPostUtil.sendJsonRequest(url, JSON.toJSONString(menu));
-        return new Result(JSONObject.parseObject(response));
+        JSONObject response = HttpPostUtil.getResponse(url, menu);
+        return new Result(response);
     }
 
     @Override
     public Result<AllMenu> getMenuInfo(String accessToken) {
         String url = MenuApi.GET_MENU.replace("ACCESS_TOKEN", accessToken);
-        String response = HttpGetUtil.sendRequest(url);
-        return new Result(JSONObject.parseObject(response), AllMenu.class);
+        JSONObject response = HttpGetUtil.getResponse(url);
+        return new Result(response, AllMenu.class);
     }
 
     @Override
     public Result delMenu(String accessToken) {
         String url = MenuApi.DEL_MENU.replace("ACCESS_TOKEN", accessToken);
-        String response = HttpGetUtil.sendRequest(url);
-        return new Result(JSONObject.parseObject(response));
+        JSONObject response = HttpGetUtil.getResponse(url);
+        return new Result(response);
+    }
+
+    @Override
+    public Result addConditional(String accessToken, ConditionalMenu conditionalMenu) {
+        String url = MenuApi.ADD_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
+        JSONObject response = HttpPostUtil.getResponse(url, conditionalMenu);
+        String menuId = response.getString("menuid");
+        response.put("data", menuId == null ? "" : menuId);
+        return new Result(response);
+    }
+
+    @Override
+    public Result delConditional(String accessToken, String menuId) {
+        String url = MenuApi.DEL_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("menuid", menuId);
+        JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
+        return new Result(response);
+    }
+
+    @Override
+    public Result<ConditionalMenu> tryMatch(String accessToken, String userId) {
+        String url = MenuApi.TRY_MATCH.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("user_id", userId);
+        JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
+        return new Result(response, "menu", ConditionalMenu.class);
     }
 
     @Override
     public Result<MenuConfig> getMenuConfigInfo(String accessToken) {
         String url = MenuApi.GET_MENU_CONFIG.replace("ACCESS_TOKEN", accessToken);
-        String response = HttpGetUtil.sendRequest(url);
-        JSONObject jsonObject = JSONObject.parseObject(response);
+        JSONObject response = HttpGetUtil.getResponse(url);
         Result result = new Result();
-        result.setErrcode(jsonObject.getInteger("errcode"));
+        result.setErrcode(response.getInteger("errcode"));
         if(result.getErrcode() == null || result.getErrcode()== 0){
-            JSONObject selfmenuInfo = jsonObject.getJSONObject("selfmenu_info");
+            JSONObject selfmenuInfo = response.getJSONObject("selfmenu_info");
             JSONArray buttonList = selfmenuInfo.getJSONArray("button");
             for(int i=0; i<buttonList.size(); i++) {
                 JSONObject button = buttonList.getJSONObject(i);
                 JSONObject subButton = button.getJSONObject("sub_button");
                 JSONArray subButtonList = subButton.getJSONArray("list");
                 for(int j=0; j<subButtonList.size(); j++) {
-                    JSONObject news = subButtonList.getJSONObject(i);
+                    JSONObject news = subButtonList.getJSONObject(j);
                     JSONObject newsInfo = news.getJSONObject("news_info");
                     if(newsInfo != null) {
                         JSONArray newsList = newsInfo.getJSONArray("list");
@@ -69,32 +94,10 @@ public class MenuServiceImpl implements MenuService {
                 }
                 button.put("sub_button", subButtonList);
             }
-            result.setData(JSON.parseObject(jsonObject.toJSONString(), MenuConfig.class));
+            result.setData(JSON.parseObject(response.toJSONString(), MenuConfig.class));
         } else {
-            result.setErrmsg(jsonObject.getString("errmsg"));
+            result.setErrmsg(response.getString("errmsg"));
         }
         return result;
     }
-
-    @Override
-    public Result<ConditionalMenu> addConditional(String accessToken, ConditionalMenu conditionalMenu) {
-        String url = MenuApi.ADD_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
-        String response = HttpPostUtil.sendJsonRequest(url, JSON.toJSONString(conditionalMenu));
-        return new Result(JSONObject.parseObject(response), ConditionalMenu.class);
-    }
-
-    @Override
-    public Result delConditional(String accessToken, ConditionalMenu conditionalMenu) {
-        String url = MenuApi.DEL_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
-        String response = HttpPostUtil.sendJsonRequest(url, JSON.toJSONString(conditionalMenu));
-        return new Result(JSONObject.parseObject(response));
-    }
-
-    @Override
-    public Result<ConditionalMenu> tryMatch(String accessToken, User user) {
-        String url = MenuApi.TRY_MATCH.replace("ACCESS_TOKEN", accessToken);
-        String response = HttpPostUtil.sendJsonRequest(url, JSON.toJSONString(user));
-        return new Result(JSONObject.parseObject(response), "menu", ConditionalMenu.class);
-    }
-
 }

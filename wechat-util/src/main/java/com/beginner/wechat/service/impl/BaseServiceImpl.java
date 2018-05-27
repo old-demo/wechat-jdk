@@ -21,14 +21,14 @@ public class BaseServiceImpl implements BaseService {
     @Override
     public Result<AccessToken> getAccessToken(String appid, String secret) {
         String url = BaseApi.GET_TOKEN.replace("APPID", appid).replace("APPSECRET", secret);
-        String response = HttpGetUtil.sendRequest(url);
-        return new Result(JSONObject.parseObject(response), AccessToken.class);
+        JSONObject response = HttpGetUtil.getResponse(url);
+        return new Result(response, AccessToken.class);
     }
 
     @Override
     public Result<CallBack> listCallBackIP(String accessToken) {
         String url = BaseApi.GET_CALLBACK_IP.replace("ACCESS_TOKEN", accessToken);
-        String response = HttpGetUtil.sendRequest(url);
-        return new Result(JSONObject.parseObject(response), CallBack.class);
+        JSONObject response = HttpGetUtil.getResponse(url);
+        return new Result(response, CallBack.class);
     }
 }

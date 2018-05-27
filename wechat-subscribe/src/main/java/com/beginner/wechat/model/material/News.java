@@ -11,6 +11,9 @@ import java.util.List;
  */
 public class News {
 
+    /**
+     * articles : 图文列表
+     */
     private List<Article> articles;
 
     public List<Article> getArticles() {

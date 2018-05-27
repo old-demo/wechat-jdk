@@ -12,8 +12,14 @@ import java.util.List;
  */
 public class AllMenu {
 
+    /**
+     * menu 自定义菜单
+     */
     private Menu menu;
 
+    /**
+     * conditionalMenu 个性化菜单
+     */
     @JSONField(name = "conditionalmenu")
     private List<ConditionalMenu> conditionalMenu;
 

@@ -4,7 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * 图文信息
+ * 自定义菜单中图文信息
+ * 请注意这是自定义菜单编辑中的图文消息，本消息不能通过接口创建
  * @author heqing
  * @date 2018/5/23.
  */

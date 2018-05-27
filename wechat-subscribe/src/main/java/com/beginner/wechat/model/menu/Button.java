@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class Button extends SubButton {
 
+    /**
+     * subButton 二级菜单 （每个一级菜单最多5个二级， 每个二级最多7个汉字，多出来的部分将会以“...”代替）
+     */
     @JSONField(name = "sub_button")
     private List<SubButton> subButton;
 

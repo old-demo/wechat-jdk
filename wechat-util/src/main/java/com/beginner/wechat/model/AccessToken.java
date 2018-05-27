@@ -16,6 +16,7 @@ public class AccessToken {
      */
     @JSONField(name = "access_token")
     private String accessToken;
+    
     /**
      * expiresIn 凭证有效时间，单位：秒
      */

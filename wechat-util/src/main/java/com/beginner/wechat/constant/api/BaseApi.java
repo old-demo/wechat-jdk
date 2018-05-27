@@ -8,11 +8,13 @@ package com.beginner.wechat.constant.api;
  */
 public class BaseApi {
 
-    public final static String WEIXIN = "https://api.weixin.qq.com/cgi-bin";
+    protected final static String WEIXIN = "https://api.weixin.qq.com/cgi-bin";
+
     /**
      * GET_TOKEN 获取access_token
      */
     public final static String GET_TOKEN = WEIXIN + "/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+
     /**
      * GET_CALLBACK_IP 获取微信服务器IP地址
      */

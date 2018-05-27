@@ -1,10 +1,9 @@
 package com.beginner.wechat.model;
 
 import com.beginner.wechat.constant.ButtonType;
-import com.beginner.wechat.model.menu.Button;
-import com.beginner.wechat.model.menu.Menu;
-import com.beginner.wechat.model.menu.SubButton;
-import com.beginner.wechat.model.user.User;
+import com.beginner.wechat.constant.SexType;
+import com.beginner.wechat.constant.SystemType;
+import com.beginner.wechat.model.menu.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class TestMenu {
 
-    public static Menu getMenu() {
+    public static List<Button> getButtonList() {
         // 第一个一级菜单
         SubButton subButton1_1 = new SubButton();
         subButton1_1.setType(ButtonType.VIEW);
@@ -80,12 +79,12 @@ public class TestMenu {
         SubButton subButton3_1 = new SubButton();
         subButton3_1.setType(ButtonType.MEDIA_ID);
         subButton3_1.setName("图片");
-        subButton3_1.setMediaId("MEDIA_ID1");
+        subButton3_1.setMediaId("i0Ct6iTPmOh3oekG3hHkMf4ggfJhaN6hMVqlgT5NSos");
 
         SubButton subButton3_2 = new SubButton();
         subButton3_2.setType(ButtonType.VIEW_LIMITED);
         subButton3_2.setName("图文消息");
-        subButton3_2.setMediaId("MEDIA_ID2");
+        subButton3_2.setMediaId("i0Ct6iTPmOh3oekG3hHkMWtu1a4kZvOyRkV_0qKA5Cc");
 
         List<SubButton> subButtonList3 = new ArrayList<>();
         subButtonList3.add(subButton3_1);
@@ -94,14 +93,35 @@ public class TestMenu {
         button3.setName("素材");
         button3.setSubButton(subButtonList3);
 
-        // 自定义菜单
-        Menu menu = new Menu();
         List<Button> buttonList = new ArrayList<>();
         buttonList.add(button1);
         buttonList.add(button2);
-//        buttonList.add(button3);
-        menu.setButton(buttonList);
+        buttonList.add(button3);
+        return buttonList;
+    }
 
+    public static Menu getMenu() {
+        // 自定义菜单
+        Menu menu = new Menu();
+        menu.setButton(getButtonList());
+        return menu;
+    }
+
+    public static ConditionalMenu getConditionalMenu() {
+        // 匹配规则
+        Matchrule matchrule = new Matchrule();
+        matchrule.setTagId("2");
+        matchrule.setSex(SexType.MAN);
+        matchrule.setCountry("中国");
+        matchrule.setProvince("广东");
+        matchrule.setCity("广州");
+        matchrule.setClientPlatformType(SystemType.ANDROID);
+        matchrule.setLanguage("zh_CN");
+
+        // 个性化菜单
+        ConditionalMenu menu = new ConditionalMenu();
+        menu.setMatchrule(matchrule);
+        menu.setButton(getButtonList());
         return menu;
     }
 }

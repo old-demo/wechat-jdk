@@ -24,7 +24,12 @@ public enum MediaType {
     /**
      * thumb :  64KB，支持JPG格式
      */
-    THUMB("thumb");
+    THUMB("thumb"),
+
+    /**
+     * news :  图文
+     */
+    NEWS("news");
 
     MediaType(String name) {
         this.name = name;
@@ -55,6 +60,9 @@ public enum MediaType {
                     break;
                 case THUMB:
                     media = MediaType.THUMB.getName();
+                    break;
+                case NEWS:
+                    media = MediaType.NEWS.getName();
                     break;
               default:
                     media = "";

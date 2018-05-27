@@ -10,9 +10,15 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class MenuConfig {
 
+    /**
+     * isMenuOpen 菜单是否开启，0代表未开启，1代表开启
+     */
     @JSONField(name = "is_menu_open")
     private Integer isMenuOpen;
 
+    /**
+     * selfMenuInfo 菜单信息
+     */
     @JSONField(name = "selfmenu_info")
     private Menu selfMenuInfo;
 

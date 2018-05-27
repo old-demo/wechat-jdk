@@ -1,5 +1,6 @@
 package com.beginner.wechat.test;
 
+import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.AccessToken;
 import com.beginner.wechat.model.CallBack;
 import com.beginner.wechat.model.Result;
@@ -9,17 +10,17 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.StringUtils;
 
 /**
  * Created by heqing on 2018/5/14.
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration("classpath:/spring-config.xml")
+@SpringBootTest
 public class BaseTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
     @Autowired
     BaseService baseService;
@@ -29,9 +30,11 @@ public class BaseTest {
 
     public String getToken() {
         String token = "";
-        Result<AccessToken> result = baseService.getAccessToken(appid, secret);
-        if(result.getErrcode() == 0) {
-            token = result.getData().getAccessToken();
+        if(StringUtils.isEmpty(token)) {
+            Result<AccessToken> result = baseService.getAccessToken(appid, secret);
+            if (result.getErrcode() == 0) {
+                token = result.getData().getAccessToken();
+            }
         }
         return token;
     }
@@ -45,10 +48,7 @@ public class BaseTest {
     @Test
     public void listCallBackIP() {
         // 获取微信服务器IP地址
-        Result<CallBack> result = baseService.listCallBackIP(getToken());
-        if(result.getErrcode() == 0) {
-            System.out.println("-->"+result.getData());
-        }
+        Result result = baseService.listCallBackIP(getToken());
+        System.out.println("-->"+result);
     }
-
 }

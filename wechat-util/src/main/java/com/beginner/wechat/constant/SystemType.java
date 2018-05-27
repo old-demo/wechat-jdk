@@ -1,6 +1,7 @@
 package com.beginner.wechat.constant;
 
 /**
+ * 系统
  * @author heqing
  * @date 2018/5/22.
  */
@@ -40,7 +41,7 @@ public enum SystemType {
                     system = SystemType.ANDROID.getCode();
                     break;
                 case OTHERS:
-                    system = SystemType.ANDROID.getCode();
+                    system = SystemType.OTHERS.getCode();
                     break;
                 default:
                     system = "";

@@ -12,18 +12,10 @@ import java.util.List;
  */
 public class Menu {
 
-    @JSONField(name = "menuid")
-    private String menuId;
-
+    /**
+     * button 一级菜单（最多3个，每个最多4个汉字，多出来的部分将会以“...”代替）
+     */
     private List<Button> button;
-
-    public String getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
-    }
 
     public List<Button> getButton() {
         return button;

@@ -12,21 +12,27 @@ import java.util.List;
  */
 public class TestNews {
 
-    public static News getNews() {
-
-        List<Article> articles = new ArrayList<>();
+    public static Article getArticle() {
+        // 创建文章
         Article article = new Article();
         article.setTitle("测试图文标题");
         article.setThumbMediaId("i0Ct6iTPmOh3oekG3hHkMf4ggfJhaN6hMVqlgT5NSos");
         article.setAuthor("heqing");
         article.setDigest("测试");
         article.setShowCoverPic("0");
-        article.setContent("这只是用来测试的案例");
+        article.setContent("这只是用来测试的案例, <a href=\"http://mmbiz.qpic.cn/mmbiz_jpg/VIicecJdbqqWmmfQGTmXIBkG7R5sfmZyemjUMgRkH9PgicnyCL0VYhibA3icEOnwoGQXxJ4wE13yKt56m1efG30KoQ/0\">图片</a>");
         article.setContentSourceUrl("www.baidu.com");
-        articles.add(article);
+        return article;
+    }
+
+    public static News getNews() {
+        // 创建图文消息
+        List<Article> articles = new ArrayList<>();
+        articles.add(getArticle());
 
         News news = new News();
         news.setArticles(articles);
         return news;
     }
+
 }

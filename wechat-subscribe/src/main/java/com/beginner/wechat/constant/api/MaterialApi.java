@@ -43,6 +43,17 @@ public class MaterialApi extends BaseApi {
     public final static String GET_MATERIAL = WEIXIN + "/material/get_material?access_token=ACCESS_TOKEN";
 
     /**
+     * DEL_MATERIAL 删除永久素材
+     */
+    public final static String DEL_MATERIAL = WEIXIN + "/material/del_material?access_token=ACCESS_TOKEN";
+
+    /**
+     * UPDATE_NEWS 修改图文消息
+     */
+    public final static String UPDATE_NEWS = WEIXIN + "/material/update_news?access_token=ACCESS_TOKEN";
+
+
+    /**
      * GET_MATERIAL_COUNT 获取素材总数
      */
     public final static String GET_MATERIAL_COUNT = WEIXIN + "/material/get_materialcount?access_token=ACCESS_TOKEN";

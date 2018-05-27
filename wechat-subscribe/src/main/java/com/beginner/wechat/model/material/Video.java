@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
+ * 永久视频素材信息
  * @author heqing
  * @date 2018/5/25.
  */
@@ -24,6 +25,12 @@ public class Video {
      */
     @JSONField(name = "down_url")
     private String downUrl;
+
+    /**
+     * filePath : 本地文件地址
+     */
+    @JSONField(name = "file_path")
+    private String filePath;
 
     public String getTitle() {
         return title;
@@ -47,6 +54,14 @@ public class Video {
 
     public void setDownUrl(String downUrl) {
         this.downUrl = downUrl;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     @Override

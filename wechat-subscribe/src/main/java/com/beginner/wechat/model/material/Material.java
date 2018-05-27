@@ -2,11 +2,12 @@ package com.beginner.wechat.model.material;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
-
 /**
+ * 素材
  * @author heqing
  * @date 2018/5/24.
  */
+
 public class Material {
 
     /**
@@ -25,12 +26,6 @@ public class Material {
      */
     @JSONField(name = "created_at")
     private String createdAt;
-
-    /**
-     * imgUrl : 存放图片URL
-     */
-    @JSONField(name = "url")
-    private String imgUrl;
 
     public String getType() {
         return type;
@@ -54,14 +49,6 @@ public class Material {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     @Override

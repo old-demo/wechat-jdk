@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 /**
  * 基本返回信息
@@ -14,31 +16,37 @@ import java.io.Serializable;
  */
 public class Result<T> implements Serializable {
 
+    private static final ResourceBundle ERROR = ResourceBundle.getBundle("error");
+
     public Result() { }
 
     public Result(Integer errcode, String errmsg) {
         this.errcode = errcode;
-        this.errmsg = errmsg;
+        this.errmsg = getMsgbyCode(this.errcode, errmsg);
     }
 
     public Result(JSONObject jsonObject) {
-        this.errcode = jsonObject.getInteger("errcode");
-        this.errmsg = jsonObject.getString("errmsg");
+        Integer errcode = jsonObject.getInteger("errcode");
+        String errmsg = jsonObject.getString("errmsg");
+        this.errcode = errcode == null ? 0 : errcode;
+        this.errmsg = getMsgbyCode(this.errcode, errmsg);
         this.data = (T)jsonObject.get("data");
     }
 
     public Result(JSONObject jsonObject, Class<T> c) {
         this.errcode = jsonObject.getInteger("errcode");
+        String errmsg = jsonObject.getString("errmsg");
         if(this.errcode == null || this.errcode == 0){
             this.errcode = 0;
             this.data = JSON.parseObject(jsonObject.toJSONString(), c);
         } else {
-            this.errmsg = jsonObject.getString("errmsg");
+            this.errmsg = getMsgbyCode(this.errcode, errmsg);
         }
     }
 
     public Result(JSONObject jsonObject, String key, Class<T> c) {
         this.errcode = jsonObject.getInteger("errcode");
+        String errmsg = jsonObject.getString("errmsg");
         if(this.errcode == null || this.errcode == 0){
             this.errcode = 0;
             String json = "";
@@ -49,7 +57,7 @@ public class Result<T> implements Serializable {
             }
             this.data = JSON.parseObject(json, c);
         } else {
-            this.errmsg = jsonObject.getString("errmsg");
+            this.errmsg = getMsgbyCode(this.errcode, errmsg);
         }
     }
 
@@ -87,6 +95,16 @@ public class Result<T> implements Serializable {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public static String getMsgbyCode(Integer code, String msg) {
+        if(!StringUtils.isEmpty(code)) {
+            try {
+                msg = ERROR.getString(code + "");
+            } catch(Exception e) {
+            }
+        }
+        return msg;
     }
 
     @Override

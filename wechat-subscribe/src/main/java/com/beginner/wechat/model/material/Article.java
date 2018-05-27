@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
+ * 永久图文素材信息
  * @author heqing
  * @date 2018/5/24.
  */
