@@ -45,7 +45,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Result addConditional(String accessToken, ConditionalMenu conditionalMenu) {
+    public Result<String> addConditional(String accessToken, ConditionalMenu conditionalMenu) {
         String url = MenuApi.ADD_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, conditionalMenu);
         String menuId = response.getString("menuid");

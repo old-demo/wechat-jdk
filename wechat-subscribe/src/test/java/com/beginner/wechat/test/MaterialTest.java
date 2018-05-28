@@ -21,10 +21,11 @@ import java.io.File;
 @SpringBootTest
 public class MaterialTest {
 
-    private final static String TOKEN = "10_3Hh2tkHexFEKo9jJmy7d85a8R-HB3vQ--xnjYK0Pt5F6Mme2hMR5AoW7GZFJ_Fxm9a6aK7QPAosNBopKpN7F0ca0e6qXc_-RGEG65BXNuzciCqSW3TPEv7e4xz8W8bF4u_w7CpXgGmc29A0rOBDjACAHUW";
+    private final static String TOKEN = "10_8BXUo8WtZ0SnXf-k8NgMeLek416RE1Q2mvr9h26fxlz0e0UpJPehUNChZRg40agI1laQybjBWzFuL_40eeuadoPGdtRlof-7wsRmPa_Rez4269uotATMXdZEwyhYxavzMUQdOJ82D3pi9yMhHGHhAJACBC";
     
     @Autowired
     MaterialService materialService;
+
     @Test
     public void testAddTempMaterial() {
         // 新增临时素材
@@ -67,7 +68,7 @@ public class MaterialTest {
     public void testAddMaterial() {
         // 新增其他类型永久素材
         File file = new File("E:/test/test.jpg");
-        Result result = materialService.addMaterial(TOKEN, MediaType.IMAGE, file, "", "");
+        Result result = materialService.addMaterial(TOKEN, MediaType.IMAGE, file, "test", "测试");
         System.out.println("1--->"+result);
 
 //        File file = new File("E:/test/test.mp4");
@@ -78,11 +79,11 @@ public class MaterialTest {
     @Test
     public void testGetMaterial() {
         // 获取永久素材
-        String imgId = "i0Ct6iTPmOh3oekG3hHkMf4ggfJhaN6hMVqlgT5NSos";  //有问题
+        String imgId = "i0Ct6iTPmOh3oekG3hHkMax5Jn5JT97H7XxIrsrWcG4";  //有问题
         String videoId = "i0Ct6iTPmOh3oekG3hHkMbKZOCXhPRvwVCyTxnIi2cc";
         String newId = "i0Ct6iTPmOh3oekG3hHkMWtu1a4kZvOyRkV_0qKA5Cc";
         File file = new File("E:/test/temp.jpg");
-        Result result = materialService.getMaterial(TOKEN, newId, file);
+        Result result = materialService.getMaterial(TOKEN, imgId, file);
         System.out.println("--->"+result);
     }
 
@@ -112,7 +113,7 @@ public class MaterialTest {
     @Test
     public void testGetMaterialList() {
         // 获取素材列表
-        Result result = materialService.getMaterialList(TOKEN, MediaType.NEWS, 0, 5);
+        Result result = materialService.getMaterialList(TOKEN, MediaType.IMAGE, 0, 5);
         System.out.println("--->"+result);
     }
 

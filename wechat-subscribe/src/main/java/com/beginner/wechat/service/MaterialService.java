@@ -86,7 +86,7 @@ public interface MaterialService {
     Result getMaterial(String accessToken, String mediaId, File file);
 
     /**
-     * 获取永久素材
+     * 删除永久素材
      *
      * @param accessToken 微信access_token
      * @param mediaId 媒体文件ID

@@ -125,9 +125,6 @@ public class MaterialServiceImpl implements MaterialService {
                 result = new Result(jsonObject);
             }
         } catch(Exception e) {
-            System.out.println("--------------------------------------");
-            System.out.println(response);
-            System.out.println("--------------------------------------");
             WechatFileUtil.stringToFile(response, file);
             JSONObject resultJson = new JSONObject();
             resultJson.put("errcode", 0);

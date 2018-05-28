@@ -53,7 +53,7 @@ public interface MenuService {
      * @param conditionalMenu 个性化菜单
      * @return 菜单id
      */
-    Result addConditional(String accessToken, ConditionalMenu conditionalMenu);
+    Result<String> addConditional(String accessToken, ConditionalMenu conditionalMenu);
 
     /**
      * 删除个性化菜单
