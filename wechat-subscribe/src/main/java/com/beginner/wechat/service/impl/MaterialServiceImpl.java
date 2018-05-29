@@ -7,7 +7,7 @@ import com.beginner.wechat.model.material.*;
 import com.beginner.wechat.util.HttpGetUtil;
 import com.beginner.wechat.util.HttpPostUtil;
 import com.beginner.wechat.constant.MediaType;
-import com.beginner.wechat.constant.api.MaterialApi;
+import com.beginner.wechat.api.MaterialApi;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.service.MaterialService;
 import com.beginner.wechat.util.WechatFileUtil;

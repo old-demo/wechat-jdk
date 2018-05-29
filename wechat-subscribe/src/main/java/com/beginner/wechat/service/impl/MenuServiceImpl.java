@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.util.HttpGetUtil;
 import com.beginner.wechat.util.HttpPostUtil;
-import com.beginner.wechat.constant.api.MenuApi;
+import com.beginner.wechat.api.MenuApi;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.menu.AllMenu;
 import com.beginner.wechat.model.menu.ConditionalMenu;

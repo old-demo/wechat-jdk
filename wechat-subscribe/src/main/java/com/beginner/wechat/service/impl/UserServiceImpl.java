@@ -1,9 +1,8 @@
 package com.beginner.wechat.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.constant.api.UserApi;
+import com.beginner.wechat.api.UserApi;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.user.Fans;
 import com.beginner.wechat.model.user.Tag;
@@ -74,8 +73,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<Fans> getFans(String accessToken, Integer tagId, String nextOpenid) {
-        String url = UserApi.GET_FANS.replace("ACCESS_TOKEN", accessToken);
+    public Result<Fans> getFansListByTag(String accessToken, Integer tagId, String nextOpenid) {
+        String url = UserApi.GET_FANS_BY_TAG.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("tagid", tagId);
         params.put("next_openid", nextOpenid);
@@ -125,5 +124,28 @@ public class UserServiceImpl implements UserService {
         return new Result(response);
     }
 
+    @Override
+    public Result updateRemark(String accessToken, String openId, String remark) {
+        String url = UserApi.UPDATE_REMARK.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("openid", openId);
+        params.put("remark", remark);
+        JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
+        return new Result(response);
+    }
+
+    @Override
+    public Result<Fans> getFansList(String accessToken, String nextOpenid) {
+        String url = UserApi.GET_FANS.replace("ACCESS_TOKEN", accessToken).replace("NEXT_OPENID", nextOpenid);
+        JSONObject response = HttpGetUtil.getResponse(url);
+        Integer count = response.getInteger("count");
+        if(count != null) {
+            JSONObject data = response.getJSONObject("data");
+            JSONArray openid = data.getJSONArray("openid");
+            response.put("openid", openid);
+            response.remove("data");
+        }
+        return new Result(response, Fans.class);
+    }
 
 }

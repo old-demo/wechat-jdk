@@ -1,4 +1,4 @@
-package com.beginner.wechat.constant.api;
+package com.beginner.wechat.api;
 
 /**
  * 用户标签 微信地址
@@ -28,9 +28,9 @@ public class UserApi extends BaseApi {
     public final static String DELETE_TAG = WEIXIN + "/tags/delete?access_token=ACCESS_TOKEN";
 
     /**
-     * GET_FANS 获取标签下粉丝列表
+     * GET_FANS_BY_TAG 获取标签下粉丝列表
      */
-    public final static String GET_FANS = WEIXIN + "/user/tag/get?access_token=ACCESS_TOKEN";
+    public final static String GET_FANS_BY_TAG = WEIXIN + "/user/tag/get?access_token=ACCESS_TOKEN";
 
     /**
      * BATCH_TAGGING  批量为用户打标签
@@ -46,4 +46,15 @@ public class UserApi extends BaseApi {
      * GET_ID_LIST  获取用户身上的标签列表
      */
     public final static String GET_ID_LIST = WEIXIN + "/tags/getidlist?access_token=ACCESS_TOKEN";
+
+    /**
+     * UPDATE_REMARK  设置用户备注名
+     */
+    public final static String UPDATE_REMARK = WEIXIN + "/user/info/updateremark?access_token=ACCESS_TOKEN";
+
+    /**
+     * GET_FANS  获取用户列表
+     */
+    public final static String GET_FANS = WEIXIN + "/user/get?access_token=ACCESS_TOKEN&next_openid=NEXT_OPENID";
+
 }

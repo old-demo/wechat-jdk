@@ -35,13 +35,13 @@ public enum SystemType {
         if(systemType != null) {
             switch (systemType) {
                 case IOS:
-                    system = SystemType.IOS.getCode();
+                    system = IOS.getCode();
                     break;
                 case ANDROID:
-                    system = SystemType.ANDROID.getCode();
+                    system = ANDROID.getCode();
                     break;
                 case OTHERS:
-                    system = SystemType.OTHERS.getCode();
+                    system = OTHERS.getCode();
                     break;
                 default:
                     system = "";

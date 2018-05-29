@@ -50,19 +50,19 @@ public enum MediaType {
         if(mediaType != null) {
             switch (mediaType) {
                 case IMAGE:
-                    media = MediaType.IMAGE.getName();
+                    media = IMAGE.getName();
                     break;
                 case VOICE:
-                    media = MediaType.VOICE.getName();
+                    media = VOICE.getName();
                     break;
                 case VIDEO:
-                    media = MediaType.VIDEO.getName();
+                    media = VIDEO.getName();
                     break;
                 case THUMB:
-                    media = MediaType.THUMB.getName();
+                    media = THUMB.getName();
                     break;
                 case NEWS:
-                    media = MediaType.NEWS.getName();
+                    media = NEWS.getName();
                     break;
               default:
                     media = "";

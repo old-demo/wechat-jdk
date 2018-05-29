@@ -31,10 +31,10 @@ public enum SexType {
         if(sexType != null) {
             switch (sexType) {
                 case MAN:
-                    sex = SexType.MAN.getCode();
+                    sex = MAN.getCode();
                     break;
                 case FEMALE:
-                    sex = SexType.FEMALE.getCode();
+                    sex = FEMALE.getCode();
                     break;
                 default:
                     sex = "";

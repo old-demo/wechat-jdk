@@ -1,4 +1,4 @@
-package com.beginner.wechat.constant.api;
+package com.beginner.wechat.api;
 
 /**
  * 自定义菜单，微信接口

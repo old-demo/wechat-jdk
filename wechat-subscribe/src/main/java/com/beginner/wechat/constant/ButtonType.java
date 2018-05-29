@@ -104,13 +104,13 @@ public enum ButtonType {
         if(buttonType != null) {
             switch (buttonType) {
                 case CLICK:
-                    button = ButtonType.CLICK.getName();
+                    button = CLICK.getName();
                     break;
                 case VIEW:
-                    button = ButtonType.VIEW.getName();
+                    button = VIEW.getName();
                     break;
                 case SCANCODE_PUSH:
-                    button = ButtonType.SCANCODE_PUSH.getName();
+                    button = SCANCODE_PUSH.getName();
                     break;
                 case SACNCODE_WAITMSG:
                     button = ButtonType.SACNCODE_WAITMSG.getName();
