@@ -70,7 +70,7 @@ public class SubButton {
     }
 
     public void setType(ButtonType type) {
-        this.type = ButtonType.getButton(type);
+        this.type = type.getName();
     }
 
     public String getName() {

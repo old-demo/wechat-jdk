@@ -26,7 +26,7 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public Result<Material> addTempMaterial(String accessToken, MediaType mediaType, File file) {
         String url = MaterialApi.ADD_TEMP_MATERIAL.replace("ACCESS_TOKEN", accessToken)
-                .replace("TYPE", MediaType.getMedia(mediaType));
+                .replace("TYPE", mediaType.getName());
         JSONObject jsonSendFile = WechatFileUtil.jsonSendFile(url, file, "", "");
         return new Result(jsonSendFile, Material.class);
     }
@@ -70,7 +70,7 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public Result<Material> addMaterial(String accessToken, MediaType mediaType, File file, String titile, String introduction) {
         String url = MaterialApi.ADD_MATERIAL.replace("ACCESS_TOKEN", accessToken)
-                .replace("TYPE", MediaType.getMedia(mediaType));
+                .replace("TYPE", mediaType.getName());
         JSONObject response;
         // 文件的标题或描述是否为空
         boolean description = StringUtils.isEmpty(titile) || StringUtils.isEmpty(introduction);
@@ -142,14 +142,14 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public Result<ItemList> getMaterialList(String accessToken, MediaType type, Integer offset, Integer count) {
+    public Result<ItemList> getMaterialList(String accessToken, MediaType mediaType, Integer offset, Integer count) {
         String url = MaterialApi.GET_MATERIAL_LIST.replace("ACCESS_TOKEN", accessToken);
         JSONObject json = new JSONObject();
-        json.put("type", MediaType.getMedia(type));
+        json.put("type", mediaType.getName());
         json.put("offset", offset);
         json.put("count", count);
         JSONObject response = HttpPostUtil.getResponse(url, json.toJSONString());
-        if(type == MediaType.NEWS) {
+        if(mediaType == MediaType.NEWS) {
             JSONArray itemlist = response.getJSONArray("item");
             for(int i=0; i<itemlist.size(); i++) {
                 JSONObject item = itemlist.getJSONObject(i);

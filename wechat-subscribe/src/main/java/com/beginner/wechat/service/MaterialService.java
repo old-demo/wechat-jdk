@@ -120,10 +120,10 @@ public interface MaterialService {
      * 临时素材无法通过本接口获取
      *
      * @param accessToken 微信access_token
-     * @param type 素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）
+     * @param mediaType 素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）
      * @param offset 从全部素材的该偏移位置开始返回，0表示从第一个素材 返回
      * @param count 返回素材的数量，取值在1到20之间
      * @return
      */
-    Result<ItemList> getMaterialList(String accessToken, MediaType type, Integer offset, Integer count);
+    Result<ItemList> getMaterialList(String accessToken, MediaType mediaType, Integer offset, Integer count);
 }

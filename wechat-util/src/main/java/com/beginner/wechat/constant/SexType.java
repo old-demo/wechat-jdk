@@ -26,20 +26,4 @@ public enum SexType {
         return code;
     }
 
-    public static String getSex(SexType sexType) {
-        String sex = null;
-        if(sexType != null) {
-            switch (sexType) {
-                case MAN:
-                    sex = MAN.getCode();
-                    break;
-                case FEMALE:
-                    sex = FEMALE.getCode();
-                    break;
-                default:
-                    sex = "";
-            }
-        }
-        return sex;
-    }
 }

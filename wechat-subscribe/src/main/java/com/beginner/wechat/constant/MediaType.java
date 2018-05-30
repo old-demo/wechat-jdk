@@ -1,6 +1,7 @@
 package com.beginner.wechat.constant;
 
 /**
+ * 素材类型
  * @author heqing
  * @date 2018/5/23.
  */
@@ -45,29 +46,4 @@ public enum MediaType {
         this.name = name;
     }
 
-    public static String getMedia(MediaType mediaType) {
-        String media = null;
-        if(mediaType != null) {
-            switch (mediaType) {
-                case IMAGE:
-                    media = IMAGE.getName();
-                    break;
-                case VOICE:
-                    media = VOICE.getName();
-                    break;
-                case VIDEO:
-                    media = VIDEO.getName();
-                    break;
-                case THUMB:
-                    media = THUMB.getName();
-                    break;
-                case NEWS:
-                    media = NEWS.getName();
-                    break;
-              default:
-                    media = "";
-            }
-        }
-        return media;
-    }
 }

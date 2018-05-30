@@ -73,8 +73,8 @@ public class Matchrule {
         return sex;
     }
 
-    public void setSex(SexType sex) {
-        this.sex = SexType.getSex(sex);
+    public void setSex(SexType sexType) {
+        this.sex = sexType.getCode();
     }
 
     public String getClientPlatformType() {
@@ -82,7 +82,7 @@ public class Matchrule {
     }
 
     public void setClientPlatformType(SystemType clientPlatformType) {
-        this.clientPlatformType = SystemType.getSystem(clientPlatformType);
+        this.clientPlatformType = clientPlatformType.getCode();
     }
 
     public String getCountry() {

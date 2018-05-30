@@ -30,23 +30,4 @@ public enum SystemType {
         return code;
     }
 
-    public static String getSystem(SystemType systemType) {
-        String system = null;
-        if(systemType != null) {
-            switch (systemType) {
-                case IOS:
-                    system = IOS.getCode();
-                    break;
-                case ANDROID:
-                    system = ANDROID.getCode();
-                    break;
-                case OTHERS:
-                    system = OTHERS.getCode();
-                    break;
-                default:
-                    system = "";
-            }
-        }
-        return system;
-    }
 }
