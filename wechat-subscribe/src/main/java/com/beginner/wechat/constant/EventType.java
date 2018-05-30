@@ -23,6 +23,36 @@ public enum EventType {
     SCAN("SCAN"),
 
     /**
+     * SCANCODE_PUSH : 扫码推事件的事件推送
+     */
+    SCANCODE_PUSH("scancode_push"),
+
+    /**
+     * SCANCODE_WAITMSG : 扫码推事件且弹出“消息接收中”提示框的事件推送
+     */
+    SCANCODE_WAITMSG("scancode_waitmsg"),
+
+    /**
+     * PIC_SYSPHOTO : 弹出系统拍照发图的事件推送
+     */
+    PIC_SYSPHOTO("pic_sysphoto"),
+
+    /**
+     * PIC_PHOTO_OR_ALBUM : 弹出拍照或者相册发图的事件推送
+     */
+    PIC_PHOTO_OR_ALBUM("pic_photo_or_album"),
+
+    /**
+     * PIC_WEIXIN : 弹出微信相册发图器的事件推送
+     */
+    PIC_WEIXIN("pic_weixin"),
+
+    /**
+     * LOCATION_SELECT : 弹出地理位置选择器的事件推送
+     */
+    LOCATION_SELECT("location_select"),
+
+    /**
      * LOCATION : 上报地理位置事件
      */
     LOCATION("LOCATION"),

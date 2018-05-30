@@ -1,6 +1,7 @@
 package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
+import com.beginner.wechat.constant.EventType;
 import com.beginner.wechat.model.message.BaseMsg;
 import com.beginner.wechat.util.CDataAdapter;
 
@@ -20,15 +21,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class ScanEvent extends BaseMsg {
 
     /**
-     * event
-     * subscribe :用户未关注时，进行关注后的事件推送
-     * SCAN :  用户已关注时的事件推送
-     */
-    @XmlElement(name = "Event")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
-    private String event;
-
-    /**
      * eventKey 事件KEY值，qrscene_为前缀，后面为二维码的参数值
      */
     @XmlElement(name = "EventKey")
@@ -42,13 +34,11 @@ public class ScanEvent extends BaseMsg {
     @XmlJavaTypeAdapter(CDataAdapter.class)
     private String ticket;
 
-    public String getEvent() {
-        return event;
-    }
-
-    public void setEvent(String event) {
-        this.event = event;
-    }
+    /**
+     * scanCodeInfo 扫描信息
+     */
+    @XmlElement(name = "ScanCodeInfo")
+    private ScanCodeInfo scanCodeInfo;
 
     public String getEventKey() {
         return eventKey;
@@ -64,6 +54,14 @@ public class ScanEvent extends BaseMsg {
 
     public void setTicket(String ticket) {
         this.ticket = ticket;
+    }
+
+    public ScanCodeInfo getScanCodeInfo() {
+        return scanCodeInfo;
+    }
+
+    public void setScanCodeInfo(ScanCodeInfo scanCodeInfo) {
+        this.scanCodeInfo = scanCodeInfo;
     }
 
     @Override

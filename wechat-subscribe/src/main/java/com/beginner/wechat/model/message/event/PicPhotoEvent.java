@@ -11,22 +11,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
- * 自定义菜单事件
+ * 发图的事件推送
  * @author heqing
  * @date 2018/5/30.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
-public class MenuEvent extends BaseMsg {
+public class PicPhotoEvent extends BaseMsg {
 
     /**
-     * eventKey
-     * CLICK : 事件KEY值，与自定义菜单接口中KEY值对应
-     * VIEW : 事件KEY值，设置的跳转URL
+     * sendPicsInfo 发送的图片信息
+     */
+    @XmlElement(name = "SendPicsInfo")
+    private SendPicsInfo sendPicsInfo;
+
+    /**
+     * eventKey 事件KEY值，由开发者在创建菜单时设定
      */
     @XmlElement(name = "EventKey")
     @XmlJavaTypeAdapter(CDataAdapter.class)
     private String eventKey;
+
+    public SendPicsInfo getSendPicsInfo() {
+        return sendPicsInfo;
+    }
+
+    public void setSendPicsInfo(SendPicsInfo sendPicsInfo) {
+        this.sendPicsInfo = sendPicsInfo;
+    }
 
     public String getEventKey() {
         return eventKey;

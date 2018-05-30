@@ -1,7 +1,6 @@
 package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.model.message.BaseMsg;
 import com.beginner.wechat.util.CDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,29 +10,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
- * 自定义菜单事件
+ * 系统拍照发图, 结构有点坑
  * @author heqing
  * @date 2018/5/30.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "xml")
-public class MenuEvent extends BaseMsg {
+@XmlRootElement(name = "item")
+public class Pic {
 
     /**
-     * eventKey
-     * CLICK : 事件KEY值，与自定义菜单接口中KEY值对应
-     * VIEW : 事件KEY值，设置的跳转URL
+     * picMd5Sum 图片的MD5值
      */
-    @XmlElement(name = "EventKey")
+    @XmlElement(name = "PicMd5Sum")
     @XmlJavaTypeAdapter(CDataAdapter.class)
-    private String eventKey;
+    private String PicMd5Sum;
 
-    public String getEventKey() {
-        return eventKey;
+    public String getPicMd5Sum() {
+        return PicMd5Sum;
     }
 
-    public void setEventKey(String eventKey) {
-        this.eventKey = eventKey;
+    public void setPicMd5Sum(String picMd5Sum) {
+        PicMd5Sum = picMd5Sum;
     }
 
     @Override

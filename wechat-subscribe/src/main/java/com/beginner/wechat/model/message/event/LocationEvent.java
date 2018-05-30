@@ -2,13 +2,11 @@ package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * 上报地理位置事件
@@ -18,13 +16,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
 public class LocationEvent extends BaseMsg {
-
-    /**
-     * event LOCATION
-     */
-    @XmlElement(name = "Event")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
-    private String event;
 
     /**
      * latitude 地理位置纬度
@@ -44,13 +35,11 @@ public class LocationEvent extends BaseMsg {
     @XmlElement(name = "Precision")
     private Double precision;
 
-    public String getEvent() {
-        return event;
-    }
-
-    public void setEvent(String event) {
-        this.event = event;
-    }
+    /**
+     * sendLocationInfo 发送的位置信息
+     */
+    @XmlElement(name = "SendLocationInfo")
+    private SendLocationInfo sendLocationInfo;
 
     public Double getLatitude() {
         return latitude;
@@ -74,6 +63,14 @@ public class LocationEvent extends BaseMsg {
 
     public void setPrecision(Double precision) {
         this.precision = precision;
+    }
+
+    public SendLocationInfo getSendLocationInfo() {
+        return sendLocationInfo;
+    }
+
+    public void setSendLocationInfo(SendLocationInfo sendLocationInfo) {
+        this.sendLocationInfo = sendLocationInfo;
     }
 
     @Override

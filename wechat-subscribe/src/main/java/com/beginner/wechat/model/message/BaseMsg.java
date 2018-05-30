@@ -1,6 +1,7 @@
 package com.beginner.wechat.model.message;
 
 import com.alibaba.fastjson.JSONObject;
+import com.beginner.wechat.constant.EventType;
 import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.util.CDataAdapter;
 
@@ -48,6 +49,12 @@ public class BaseMsg {
     @XmlElement(name = "MsgId")
     private Long msgId;
 
+    /**
+     * event 事件，事件类型，参见EventType
+     */
+    @XmlElement(name = "Event")
+    @XmlJavaTypeAdapter(CDataAdapter.class)
+    private String event;
 
     public String getToUserName() {
         return toUserName;
@@ -87,6 +94,14 @@ public class BaseMsg {
 
     public void setMsgId(Long msgId) {
         this.msgId = msgId;
+    }
+
+    public String getEvent() {
+        return event;
+    }
+
+    public void setEvent(EventType event) {
+        this.event = event.getName();
     }
 
     @Override
