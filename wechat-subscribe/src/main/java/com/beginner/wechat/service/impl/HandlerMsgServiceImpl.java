@@ -15,91 +15,91 @@ public class HandlerMsgServiceImpl implements HandlerMsgService {
 
     @Override
     public String handlerTextMsg(TextMsg textMsg) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerImageMsg(ImageMsg imageMsg) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerVoiceMsg(VoiceMsg voiceMsg) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerVideoMsg(VideoMsg videoMsg) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerLocationMsg(LocationMsg locationMsg) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerLinkMsg(LinkMsg linkMsg) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerSubscribeEvent(SubscribeEvent subscribeEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerUnSubscribeEvent(SubscribeEvent unsubscribeEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerScanEvent(ScanEvent scanEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerLocationEvent(LocationEvent locationEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerClickEvent(MenuEvent clickEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerViewEvent(MenuEvent viewEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerScancodePushEvent(ScanEvent scanEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerScancodeWaitmsgEvent(ScanEvent scanEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerPicSysphotoEvent(PicPhotoEvent picPhotoEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerPicPhotoOrAlbumEvent(PicPhotoEvent picPhotoEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerPicWeixinEvent(PicPhotoEvent picPhotoEvent) {
-        return null;
+        return "success";
     }
 
     @Override
     public String handlerLocationSelectEvent(LocationEvent locationEvent) {
-        return null;
+        return "success";
     }
 }
