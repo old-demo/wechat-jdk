@@ -3,10 +3,7 @@ package com.beginner.wechat.model.message.msg;
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 /**
@@ -27,7 +24,8 @@ public class NewsMsg extends BaseMsg {
     /**
      * articles 多条图文消息信息，默认第一个item为大图,注意，如果图文数超过8，则将会无响应
      */
-    @XmlElement(name = "Articles")
+    @XmlElementWrapper(name = "Articles")
+    @XmlElement(name = "item")
     private List<Articles> articles;
 
     public String getArticleCount() {

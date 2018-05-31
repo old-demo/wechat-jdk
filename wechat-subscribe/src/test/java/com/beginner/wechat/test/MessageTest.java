@@ -39,7 +39,7 @@ public class MessageTest {
                 "<SendPicsInfo>" +
                     "<Count>1</Count>" +
                     "<PicList>" +
-                        "<PicMd5Sum>1111111</PicMd5Sum>" +
+                        "<item><PicMd5Sum>1111111</PicMd5Sum></item>" +
                         "<item><PicMd5Sum>2222222</PicMd5Sum></item>" +
                     "</PicList>" +
                 "</SendPicsInfo>" +

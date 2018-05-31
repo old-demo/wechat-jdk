@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @date 2018/5/30.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "item")
+@XmlRootElement(name = "Pic")
 public class Pic {
 
     /**

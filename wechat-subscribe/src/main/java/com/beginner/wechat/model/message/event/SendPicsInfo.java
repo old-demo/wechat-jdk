@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
 
 /**
@@ -25,7 +26,8 @@ public class SendPicsInfo {
     /**
      * picList 图片列表
      */
-    @XmlElement(name = "PicList")
+    @XmlElementWrapper(name = "PicList")
+    @XmlElement(name = "item")
     private List<Pic> picList;
 
     public Integer getCount() {
