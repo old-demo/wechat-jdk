@@ -1,4 +1,4 @@
-package com.beginner.wechat.test;
+package com.beginner.wechat.service;
 
 import com.beginner.wechat.constant.MediaType;
 import com.beginner.wechat.model.Result;
