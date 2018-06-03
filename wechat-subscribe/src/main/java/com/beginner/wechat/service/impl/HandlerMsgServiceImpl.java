@@ -34,6 +34,11 @@ public class HandlerMsgServiceImpl implements HandlerMsgService {
     }
 
     @Override
+    public String handlerShortVideoMsg(VideoMsg videoMsg) {
+        return "success";
+    }
+
+    @Override
     public String handlerLocationMsg(LocationMsg locationMsg) {
         return "success";
     }

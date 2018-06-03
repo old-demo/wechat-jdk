@@ -15,7 +15,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @date 2018/5/30.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "Articles")
 public class Articles {
 
     /**

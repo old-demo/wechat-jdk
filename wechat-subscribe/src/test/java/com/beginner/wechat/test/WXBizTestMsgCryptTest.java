@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class WXBizMsgCryptTest {
+public class WXBizTestMsgCryptTest {
 	String encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
 	String token = "pamtest";
 	String timestamp = "1409304348";

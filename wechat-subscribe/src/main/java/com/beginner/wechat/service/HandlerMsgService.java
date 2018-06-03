@@ -11,7 +11,7 @@ import com.beginner.wechat.model.message.msg.*;
 public interface HandlerMsgService {
 
     /**
-     * 处理图文消息
+     * 处理文本消息
      *
      * @param textMsg 文本消息
      * @return 返回消息
@@ -41,6 +41,14 @@ public interface HandlerMsgService {
      * @return
      */
     String handlerVideoMsg(VideoMsg videoMsg);
+
+    /**
+     * 处理小视频消息
+     *
+     * @param videoMsg 视频消息
+     * @return
+     */
+    String handlerShortVideoMsg(VideoMsg videoMsg);
 
     /**
      * 处理地理位置消息

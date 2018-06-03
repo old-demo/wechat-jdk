@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @date 2018/5/30.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class BaseMsg {
+public abstract class BaseMsg {
 
     /**
      * toUserName 开发者微信号
