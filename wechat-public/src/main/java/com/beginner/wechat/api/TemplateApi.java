@@ -10,12 +10,12 @@ public class TemplateApi extends BaseApi {
     /**
      * SET_Industry  设置所属行业
      */
-    public final static String SET_Industry = WEIXIN + "/template/api_set_industry?access_token=ACCESS_TOKEN";
+    public final static String SET_INDUSTRY = WEIXIN + "/template/api_set_industry?access_token=ACCESS_TOKEN";
 
     /**
      * GET_Industry  获取设置的行业信息
      */
-    public final static String GET_Industry = WEIXIN + "/template/get_industry?access_token=ACCESS_TOKEN";
+    public final static String GET_INDUSTRY = WEIXIN + "/template/get_industry?access_token=ACCESS_TOKEN";
 
     /**
      * ADD_TEMPLATE  获得模板ID

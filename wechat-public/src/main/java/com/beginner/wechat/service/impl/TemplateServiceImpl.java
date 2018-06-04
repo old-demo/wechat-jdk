@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 模板消息
  * @author heqing
  * @date 2018/6/4.
  */
@@ -24,7 +25,7 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Result setIndustry(String accessToken, String industryId1, String industryId2) {
-        String url = TemplateApi.SET_Industry.replace("ACCESS_TOKEN", accessToken);
+        String url = TemplateApi.SET_INDUSTRY.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("industry_id1", industryId1);
         params.put("industry_id2", industryId2);
@@ -34,9 +35,10 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Result getIndustry(String accessToken) {
-        String url = TemplateApi.GET_Industry.replace("ACCESS_TOKEN", accessToken);
+        String url = TemplateApi.GET_INDUSTRY.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
-        if(response.getInteger("errcode") == null) {
+        Integer errcode = response.getInteger("errcode");
+        if(errcode == null) {
             response.put("data", response.toJSONString());
             response.remove("primary_industry");
             response.remove("secondary_industry");
@@ -50,8 +52,9 @@ public class TemplateServiceImpl implements TemplateService {
         JSONObject params = new JSONObject();
         params.put("template_id_short", templateIdShort);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
-        if(response.getInteger("errcode") != null) {
-            response.put("data", response.getString("template_id"));
+        String templateid = response.getString("template_id");
+        if(templateid != null) {
+            response.put("data", templateid);
         }
         return new Result(response);
     }
@@ -60,7 +63,8 @@ public class TemplateServiceImpl implements TemplateService {
     public Result<List<Template>> getAllTemplate(String accessToken) {
         String url = TemplateApi.GET_ALL_TEMPLATE.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
-        if(response.getInteger("errcode") == null) {
+        Integer errcode = response.getInteger("errcode");
+        if(errcode == null) {
             List<Template> templateList = new ArrayList<>();
             JSONArray templates = response.getJSONArray("template_list");
             for(int i=0; i<templates.size(); i++) {
@@ -85,8 +89,9 @@ public class TemplateServiceImpl implements TemplateService {
     public Result sendTemplate(String accessToken, SendTemplate sendTemplate) {
         String url = TemplateApi.SEND_TEMPLATE.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, sendTemplate);
-        if(response.getInteger("errcode") != null) {
-            response.put("data", response.getString("msgid"));
+        String msgId = response.getString("msgid");
+        if(msgId != null) {
+            response.put("data", msgId);
         }
         return new Result(response);
     }

@@ -1,7 +1,7 @@
 package com.beginner.wechat.service;
 
 import com.beginner.wechat.model.Result;
-import com.beginner.wechat.model.message.KFAccount;
+import com.beginner.wechat.model.message.CustomerServiceAccount;
 
 import java.io.File;
 import java.util.List;
@@ -62,5 +62,5 @@ public interface CustomerService {
      * @param accessToken 微信access_token
      * @return
      */
-    Result<List<KFAccount>> listAccount(String accessToken);
+    Result<List<CustomerServiceAccount>> listAccount(String accessToken);
 }

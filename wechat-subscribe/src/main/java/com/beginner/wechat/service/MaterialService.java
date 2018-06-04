@@ -66,6 +66,18 @@ public interface MaterialService {
     Result<Material> uploadNews(String accessToken, List<Article> articles);
 
     /**
+     * 上传图文消息素材
+     *  若图文中需要包含小程序跳转，请参考https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1481187827_i0l21
+     *
+     * @param accessToken 微信access_token
+     * @param mediaId 多媒体Id（此处media_id需通过基础支持中的上传下载多媒体文件来得到）
+     * @param title 标题
+     * @param description 描述
+     * @return 上传图片的URL，可放置图文消息中使用
+     */
+    Result<Material> uploadVideo(String accessToken, String mediaId, String title, String description);
+
+    /**
      * 新增永久图文素材
      *
      * @param accessToken 微信access_token

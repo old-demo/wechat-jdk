@@ -11,40 +11,40 @@ import java.util.Map;
  */
 public class SendTemplate {
 
-    /*
+    /**
      * toUser 接收者openid（必传）
      */
     @JSONField(name = "touser")
     private String toUser;
 
-    /*
+    /**
      * templateId 模板ID（必传）
      */
     @JSONField(name = "template_id")
     private String templateId;
 
-    /*
+    /**
      * url 模板跳转链接（非必传）
      */
     private String url;
 
-    /*
+    /**
      * scene 订阅场景值
      */
     private String scene;
 
-    /*
+    /**
      * title 消息标题，15字以内
      */
     private String title;
 
-    /*
+    /**
      * miniProgram 跳小程序所需数据，不需跳小程序可不用传该数据（非必传）
      */
     @JSONField(name = "miniprogram")
     private MiniProgram miniProgram;
 
-    /*
+    /**
      * data 模板数据
      */
     private Map<String, Keyword> data;

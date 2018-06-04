@@ -68,6 +68,17 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
+    public Result<Material> uploadVideo(String accessToken, String mediaId, String title, String description) {
+        String url = MaterialApi.UPLOAD_VIDEO.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("media_id", mediaId);
+        params.put("title", title);
+        params.put("description", description);
+        JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
+        return new Result(response);
+    }
+
+    @Override
     public Result<String> addNews(String accessToken, News news) {
         String url = MaterialApi.ADD_NEWS.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, JSON.toJSONString(news));

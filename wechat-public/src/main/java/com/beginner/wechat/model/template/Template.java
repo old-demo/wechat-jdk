@@ -10,37 +10,37 @@ import com.alibaba.fastjson.annotation.JSONField;
  */
 public class Template {
 
-    /*
+    /**
      * templateId 模板ID(必传)
      */
     @JSONField(name = "template_id")
     private String templateId;
 
-    /*
-    * title 模板标题(必传)
-    */
+    /**
+     * title 模板标题(必传)
+     */
     private String title;
 
-    /*
+    /**
      * primaryIndustry 模板所属行业的一级行业(必传)
-    */
+     */
     @JSONField(name = "primary_industry")
     private String primaryIndustry;
 
-    /*
+    /**
      * deputyIndustry 模板所属行业的二级行业(必传)
-    */
+     */
     @JSONField(name = "deputy_industry")
     private String deputyIndustry;
 
-    /*
+    /**
      * content 模板内容
-    */
+     **/
     private String content;
 
-    /*
+    /**
      * example 模板示例
-    */
+     */
     private String example;
 
     public String getTemplateId() {

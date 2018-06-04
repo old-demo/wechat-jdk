@@ -11,31 +11,31 @@ import java.util.List;
  */
 public class ReplyInfo {
 
-    /*
+    /**
      * ruleName :规则名称
      */
     @JSONField(name = "rule_name")
     private String ruleName;
 
-    /*
+    /**
      * createTime :创建时间
      */
     @JSONField(name = "create_time")
     private Long createTime;
 
-    /*
+    /**
      * replyMode :回复模式，reply_all代表全部回复，random_one代表随机回复其中一条
      */
     @JSONField(name = "reply_mode")
     private String replyMode;
 
-    /*
+    /**
      * keywordListInfo :匹配的关键词列表
      */
     @JSONField(name = "keyword_list_info")
     private List<Info> keywordListInfo;
 
-    /*
+    /**
      * replyListInfo :消息自动回复的信息
      */
     @JSONField(name = "reply_list_info")

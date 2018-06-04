@@ -184,13 +184,14 @@ public class MsgServiceImpl implements MsgService {
                 // 弹出地理位置选择器的事件
                 response = handlerMsgService.handlerLocationSelectEvent((LocationEvent) XmlUtil.stringToXml(xmlStr, LocationEvent.class));
             }else if(EventType.TEMPLATE_SEND_JOBFINISH.getName().equals(baseMsg.getEvent())) {
+                String success = "success", refuse = "failed:user block", failed = "failed: system failed";
                 // 模板推送后的事件
                 TemplateEvent templateEvent = (TemplateEvent) XmlUtil.stringToXml(xmlStr, TemplateEvent.class);
-                if("success".equals(templateEvent.getStatus())) {
+                if(success.equals(templateEvent.getStatus())) {
                     response = handlerMsgService.handlerSendTemplateSuccessEvent(templateEvent);
-                } else if("failed:user block".equals(templateEvent.getStatus())) {
+                } else if(refuse.equals(templateEvent.getStatus())) {
                     response = handlerMsgService.handlerSendTemplateRefuseEvent(templateEvent);
-                } else if("failed: system failed".equals(templateEvent.getStatus())) {
+                } else if(failed.equals(templateEvent.getStatus())) {
                     response = handlerMsgService.handlerSendTemplateFailedEvent(templateEvent);
                 }
             }
@@ -202,8 +203,9 @@ public class MsgServiceImpl implements MsgService {
     public Result subscribeTemplate(String accessToken, SendTemplate sendTemplate) {
         String url = MsgApi.SUBSCRIBE_TEMPLATE.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, sendTemplate);
-        if(response.getInteger("errcode") != null) {
-            response.put("data", response.getString("msgid"));
+        String msgid = response.getString("msgid");
+        if(msgid != null) {
+            response.put("data", msgid);
         }
         return new Result(response);
     }
@@ -221,7 +223,8 @@ public class MsgServiceImpl implements MsgService {
     public Result<AutoReplyInfo> getAutoReplyInfo(String accessToken) {
         String url = MsgApi.GET_AUTO_REPLY_INFO.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
-        if(response.getInteger("errcode") == null) {
+        Integer errcode = response.getInteger("errcode");
+        if(errcode == null) {
             JSONObject keywordAutoreplyInfo = response.getJSONObject("keyword_autoreply_info");
             if(keywordAutoreplyInfo != null) {
                 JSONArray autoreplyInfoList = keywordAutoreplyInfo.getJSONArray("list");

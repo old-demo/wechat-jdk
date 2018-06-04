@@ -69,5 +69,11 @@ public interface MsgService {
      */
     Result clearQuota(String accessToken, String appid);
 
+    /**
+     * 获取公众号的自动回复规则
+     *
+     * @param accessToken 微信access_token
+     * @return
+     */
     Result<AutoReplyInfo> getAutoReplyInfo(String accessToken);
 }

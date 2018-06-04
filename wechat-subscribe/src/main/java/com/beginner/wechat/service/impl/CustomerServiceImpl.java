@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.api.CustomerApi;
 import com.beginner.wechat.model.Result;
-import com.beginner.wechat.model.message.KFAccount;
+import com.beginner.wechat.model.message.CustomerServiceAccount;
 import com.beginner.wechat.service.CustomerService;
 import com.beginner.wechat.util.HttpGetUtil;
 import com.beginner.wechat.util.HttpPostUtil;
@@ -67,17 +67,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Result<List<KFAccount>> listAccount(String accessToken) {
+    public Result<List<CustomerServiceAccount>> listAccount(String accessToken) {
         String url = CustomerApi.GET_KF_LIST.replace("ACCESS_TOKEN", accessToken);
         JSONObject response =  HttpGetUtil.getResponse(url);
         System.out.println("-----"+response.toJSONString());
-        List<KFAccount> kfAccountList = new ArrayList<>();
+        List<CustomerServiceAccount> customerServiceAccountList = new ArrayList<>();
         JSONArray kfList = response.getJSONArray("kf_list");
         if(kfList != null) {
             for(int i=0; i<kfList.size(); i++) {
                 JSONObject ks = kfList.getJSONObject(i);
-                KFAccount kfAccount = JSON.parseObject(ks.toJSONString(), KFAccount.class);
-                kfAccountList.add(kfAccount);
+                CustomerServiceAccount customerServiceAccount = JSON.parseObject(ks.toJSONString(), CustomerServiceAccount.class);
+                customerServiceAccountList.add(customerServiceAccount);
             }
             response.put("data", kfList);
         }

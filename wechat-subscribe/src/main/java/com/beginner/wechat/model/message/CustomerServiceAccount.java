@@ -8,7 +8,7 @@ import com.alibaba.fastjson.annotation.JSONField;
  * @author heqing
  * @date 2018/6/3.
  */
-public class KFAccount {
+public class CustomerServiceAccount {
 
     /**
      * id 客服工号
