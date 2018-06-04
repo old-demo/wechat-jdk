@@ -7,8 +7,9 @@ import com.beginner.wechat.api.MsgApi;
 import com.beginner.wechat.constant.EventType;
 import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.Result;
+import com.beginner.wechat.model.message.AutoReplyInfo;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.model.message.KFAccount;
+import com.beginner.wechat.model.message.SendTemplate;
 import com.beginner.wechat.model.message.event.*;
 import com.beginner.wechat.model.message.msg.*;
 import com.beginner.wechat.service.HandlerMsgService;
@@ -19,12 +20,9 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author heqing
@@ -185,68 +183,61 @@ public class MsgServiceImpl implements MsgService {
             } else if(EventType.LOCATION_SELECT.getName().equals(baseMsg.getEvent())) {
                 // 弹出地理位置选择器的事件
                 response = handlerMsgService.handlerLocationSelectEvent((LocationEvent) XmlUtil.stringToXml(xmlStr, LocationEvent.class));
+            }else if(EventType.TEMPLATE_SEND_JOBFINISH.getName().equals(baseMsg.getEvent())) {
+                // 模板推送后的事件
+                TemplateEvent templateEvent = (TemplateEvent) XmlUtil.stringToXml(xmlStr, TemplateEvent.class);
+                if("success".equals(templateEvent.getStatus())) {
+                    response = handlerMsgService.handlerSendTemplateSuccessEvent(templateEvent);
+                } else if("failed:user block".equals(templateEvent.getStatus())) {
+                    response = handlerMsgService.handlerSendTemplateRefuseEvent(templateEvent);
+                } else if("failed: system failed".equals(templateEvent.getStatus())) {
+                    response = handlerMsgService.handlerSendTemplateFailedEvent(templateEvent);
+                }
             }
         }
         return response;
     }
 
     @Override
-    public Result addCustomerService(String accessToken, String account, String nickName, String password) {
-        String url = MsgApi.ADD_KF_ACCOUNT.replace("ACCESS_TOKEN", accessToken);
-        JSONObject params = new JSONObject();
-        params.put("kf_account", account);
-        params.put("nickname", nickName);
-        params.put("password", password);
-        JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
-        System.out.println("---"+response.toJSONString());
+    public Result subscribeTemplate(String accessToken, SendTemplate sendTemplate) {
+        String url = MsgApi.SUBSCRIBE_TEMPLATE.replace("ACCESS_TOKEN", accessToken);
+        JSONObject response = HttpPostUtil.getResponse(url, sendTemplate);
+        if(response.getInteger("errcode") != null) {
+            response.put("data", response.getString("msgid"));
+        }
         return new Result(response);
     }
 
     @Override
-    public Result updateCustomerService(String accessToken, String account, String nickName, String password) {
-        String url = MsgApi.UPDATE_KF_ACCOUNT.replace("ACCESS_TOKEN", accessToken);
+    public Result clearQuota(String accessToken, String appid) {
+        String url = MsgApi.CLEAR_QUOTA.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
-        params.put("kf_account", account);
-        params.put("nickname", nickName);
-        params.put("password", password);
+        params.put("appid", appid);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
         return new Result(response);
     }
 
     @Override
-    public Result delCustomerService(String accessToken, String account, String nickName, String password) {
-        String url = MsgApi.DEL_KF_ACCOUNT.replace("ACCESS_TOKEN", accessToken);
-        JSONObject params = new JSONObject();
-        params.put("kf_account", account);
-        params.put("nickname", nickName);
-        params.put("password", password);
-        JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
-        return new Result(response);
-    }
-
-    @Override
-    public Result accounteadImgUrl(String accessToken, String account, File file) {
-        String url = MsgApi.UPLOAD_HEAD_IMG.replace("ACCESS_TOKEN", accessToken)
-                .replace("KFACCOUNT", account);
-        JSONObject jsonSendFile = WechatFileUtil.jsonSendFile(url, file, "", "");
-        return new Result(jsonSendFile);
-    }
-
-    @Override
-    public Result<List<KFAccount>> listAccount(String accessToken) {
-        String url = MsgApi.GET_KF_LIST.replace("ACCESS_TOKEN", accessToken);
-        JSONObject response =  HttpGetUtil.getResponse(url);
-        System.out.println("-----"+response.toJSONString());
-        List<KFAccount> kfAccountList = new ArrayList<>();
-        JSONArray kfList = response.getJSONArray("kf_list");
-        if(kfList != null) {
-            for(int i=0; i<kfList.size(); i++) {
-                JSONObject ks = kfList.getJSONObject(i);
-                KFAccount kfAccount = JSON.parseObject(ks.toJSONString(), KFAccount.class);
-                kfAccountList.add(kfAccount);
+    public Result<AutoReplyInfo> getAutoReplyInfo(String accessToken) {
+        String url = MsgApi.GET_AUTO_REPLY_INFO.replace("ACCESS_TOKEN", accessToken);
+        JSONObject response = HttpGetUtil.getResponse(url);
+        if(response.getInteger("errcode") == null) {
+            JSONObject keywordAutoreplyInfo = response.getJSONObject("keyword_autoreply_info");
+            if(keywordAutoreplyInfo != null) {
+                JSONArray autoreplyInfoList = keywordAutoreplyInfo.getJSONArray("list");
+                for(int i=0; i<autoreplyInfoList.size(); i++) {
+                    JSONObject autoreplyInfo = autoreplyInfoList.getJSONObject(i);
+                    JSONArray replyListInfo = autoreplyInfo.getJSONArray("reply_list_info");
+                    for(int j=0; j<replyListInfo.size(); j++) {
+                        if("news".equals(replyListInfo.getJSONObject(j).getString("type"))) {
+                            JSONObject newsInfo = replyListInfo.getJSONObject(j).getJSONObject("news_info");
+                            replyListInfo.getJSONObject(j).put("news_info", newsInfo.getJSONArray("list"));
+                        }
+                    }
+                }
+                response.put("keyword_autoreply_info", autoreplyInfoList);
             }
         }
-        response.put("data", kfList);
-        return new Result(response);
+        return new Result(response, AutoReplyInfo.class);
     }
 }

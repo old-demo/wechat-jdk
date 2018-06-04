@@ -1,12 +1,11 @@
 package com.beginner.wechat.service;
 
 import com.beginner.wechat.model.Result;
-import com.beginner.wechat.model.message.KFAccount;
+import com.beginner.wechat.model.message.AutoReplyInfo;
+import com.beginner.wechat.model.message.SendTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.util.List;
 
 /**
  * 消息管理
@@ -53,58 +52,22 @@ public interface MsgService {
     String analysisMsg(String xmlStr, HandlerMsgService handlerMsgService);
 
     /**
-     * 添加客服帐号
+     * 一次性订阅消息
      *
      * @param accessToken 微信access_token
-     * @param account 完整客服账号，格式为：账号前缀@公众号微信号
-     * @param nickName 客服昵称
-     * @param password 登陆密码
+     * @param sendTemplate 模板消息
      * @return
      */
-    @Deprecated
-    Result addCustomerService(String accessToken, String account, String nickName, String password);
+    Result subscribeTemplate(String accessToken, SendTemplate sendTemplate);
 
     /**
-     * 修改客服帐号
+     * 公众号调用或第三方平台帮公众号调用对公众号的所有api调用（包括第三方帮其调用）次数进行清零
      *
      * @param accessToken 微信access_token
-     * @param account 完整客服账号，格式为：账号前缀@公众号微信号
-     * @param nickName 客服昵称
-     * @param password 登陆密码
+     * @param appid 公众号的APPID
      * @return
      */
-    @Deprecated
-    Result updateCustomerService(String accessToken, String account, String nickName, String password);
+    Result clearQuota(String accessToken, String appid);
 
-    /**
-     * 删除客服帐号
-     *
-     * @param accessToken 微信access_token
-     * @param account 完整客服账号，格式为：账号前缀@公众号微信号
-     * @param nickName 客服昵称
-     * @param password 登陆密码
-     * @return
-     */
-    @Deprecated
-    Result delCustomerService(String accessToken, String account, String nickName, String password);
-
-    /**
-     * 设置客服帐号的头像
-     *
-     * @param accessToken 微信access_token
-     * @param account 完整客服账号，格式为：账号前缀@公众号微信号
-     * @param file 头像图片文件必须是jpg格式，推荐使用640*640大小的图片
-     * @return
-     */
-    @Deprecated
-    Result accounteadImgUrl(String accessToken, String account, File file);
-
-    /**
-     * 获取所有客服账号
-     *
-     * @param accessToken 微信access_token
-     * @return
-     */
-    @Deprecated
-    Result<List<KFAccount>> listAccount(String accessToken);
+    Result<AutoReplyInfo> getAutoReplyInfo(String accessToken);
 }

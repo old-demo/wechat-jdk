@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * @author heqing
@@ -54,6 +55,15 @@ public class MaterialServiceImpl implements MaterialService {
         String imageUrl = response.getString("url");
         response.put("data", imageUrl == null ? "" : imageUrl);
         response.remove("url");
+        return new Result(response);
+    }
+
+    @Override
+    public Result<Material> uploadNews(String accessToken, List<Article> articles) {
+        String url = MaterialApi.UPLOAD_NEWS.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("articles", articles);
+        JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
         return new Result(response);
     }
 

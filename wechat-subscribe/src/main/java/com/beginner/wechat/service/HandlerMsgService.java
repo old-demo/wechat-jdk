@@ -161,4 +161,28 @@ public interface HandlerMsgService {
      * @return
      */
     String handlerLocationSelectEvent(LocationEvent locationEvent);
+
+    /**
+     * 在模版消息发送任务完成后，成功通知
+     *
+     * @param templateEvent 模板事件
+     * @return
+     */
+    String handlerSendTemplateSuccessEvent(TemplateEvent templateEvent);
+
+    /**
+     * 在模版消息发送任务完成后，用户拒绝通知
+     *
+     * @param templateEvent 模板事件
+     * @return
+     */
+    String handlerSendTemplateRefuseEvent(TemplateEvent templateEvent);
+
+    /**
+     * 在模版消息发送任务完成后，未知原因失败通知
+     *
+     * @param templateEvent 模板事件
+     * @return
+     */
+    String handlerSendTemplateFailedEvent(TemplateEvent templateEvent);
 }

@@ -33,6 +33,11 @@ public class MaterialApi extends BaseApi {
     public final static String UPLOAD_IMG = WEIXIN + "/media/uploadimg?access_token=ACCESS_TOKEN";
 
     /**
+     * UPLOAD_NEWS 上传图文消息素材
+     */
+    public final static String UPLOAD_NEWS = WEIXIN + "/media/uploadnews?access_token=ACCESS_TOKEN";
+
+    /**
      * ADD_MATERIAL 新增永久素材
      */
     public final static String ADD_MATERIAL = WEIXIN + "/material/add_material?access_token=ACCESS_TOKEN&type=TYPE";

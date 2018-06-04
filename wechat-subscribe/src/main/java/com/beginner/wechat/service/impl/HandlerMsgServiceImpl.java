@@ -107,4 +107,19 @@ public class HandlerMsgServiceImpl implements HandlerMsgService {
     public String handlerLocationSelectEvent(LocationEvent locationEvent) {
         return "success";
     }
+
+    @Override
+    public String handlerSendTemplateSuccessEvent(TemplateEvent templateEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerSendTemplateRefuseEvent(TemplateEvent templateEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerSendTemplateFailedEvent(TemplateEvent templateEvent) {
+        return "success";
+    }
 }

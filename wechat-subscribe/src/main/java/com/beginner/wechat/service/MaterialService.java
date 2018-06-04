@@ -5,6 +5,7 @@ import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.material.*;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * 素材接口
@@ -53,6 +54,16 @@ public interface MaterialService {
      * @return 上传图片的URL，可放置图文消息中使用
      */
     Result<String> uploadImg(String accessToken, File file);
+
+    /**
+     * 上传图文消息素材
+     *  若图文中需要包含小程序跳转，请参考https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1481187827_i0l21
+     *
+     * @param accessToken 微信access_token
+     * @param articles 图文素材列表
+     * @return 上传图片的URL，可放置图文消息中使用
+     */
+    Result<Material> uploadNews(String accessToken, List<Article> articles);
 
     /**
      * 新增永久图文素材

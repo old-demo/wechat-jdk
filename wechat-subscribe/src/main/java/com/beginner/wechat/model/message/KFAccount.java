@@ -40,6 +40,8 @@ public class KFAccount {
     @JSONField(name = "kf_headimgurl")
     private String headImgUrl;
 
+    private Integer status;
+
     public String getId() {
         return id;
     }
@@ -78,6 +80,14 @@ public class KFAccount {
 
     public void setHeadImgUrl(String headImgUrl) {
         this.headImgUrl = headImgUrl;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override

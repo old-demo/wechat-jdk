@@ -7,30 +7,18 @@ package com.beginner.wechat.api;
  */
 public class MsgApi extends BaseApi {
 
-    protected final static String KF = "https://api.weixin.qq.com/customservice";
+    /**
+     * SUBSCRIBE_TEMPLATE 推送一次性订阅消息
+     */
+    public final static String SUBSCRIBE_TEMPLATE = WEIXIN + "/message/template/subscribe?access_token=ACCESS_TOKEN";
 
     /**
-     * ADD_KF_ACCOUNT 添加客服帐号
+     * CLEAR_QUOTA 推送一次性订阅消息
      */
-    public final static String ADD_KF_ACCOUNT = KF + "/kfaccount/add?access_token=ACCESS_TOKEN";
+    public final static String CLEAR_QUOTA = WEIXIN + "/clear_quota?access_token=ACCESS_TOKEN";
 
     /**
-     * UPDATE_KF_ACCOUNT 修改客服帐号
+     * GET_AUTO_REPLY_INFO 获取公众号的自动回复规则
      */
-    public final static String UPDATE_KF_ACCOUNT = KF + "/kfaccount/update?access_token=ACCESS_TOKEN";
-
-    /**
-     * DEL_KF_ACCOUNT 删除客服账号
-     */
-    public final static String DEL_KF_ACCOUNT = KF + "/kfaccount/del?access_token=ACCESS_TOKEN";
-
-    /**
-     * UPLOAD_HEAD_IMG 设置客服帐号的头像
-     */
-    public final static String UPLOAD_HEAD_IMG = KF + "/kfaccount/uploadheadimg?access_token=ACCESS_TOKEN&kf_account=KFACCOUNT";
-
-    /**
-     * GET_KF_LIST 获取所有客服账号
-     */
-    public final static String GET_KF_LIST = WEIXIN + "/customservice/getkflist?access_token=ACCESS_TOKEN";
+    public final static String GET_AUTO_REPLY_INFO = WEIXIN + "/get_current_autoreply_info?access_token=ACCESS_TOKEN";
 }

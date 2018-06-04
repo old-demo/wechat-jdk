@@ -3,6 +3,7 @@ package com.beginner.wechat.service;
 import com.beginner.wechat.constant.MediaType;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.TestNews;
+import com.beginner.wechat.model.material.Article;
 import com.beginner.wechat.service.MaterialService;
 
 import org.junit.Test;
@@ -12,6 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author heqing
@@ -21,7 +24,7 @@ import java.io.File;
 @SpringBootTest
 public class MaterialTest {
 
-    private final static String TOKEN = "10_8BXUo8WtZ0SnXf-k8NgMeLek416RE1Q2mvr9h26fxlz0e0UpJPehUNChZRg40agI1laQybjBWzFuL_40eeuadoPGdtRlof-7wsRmPa_Rez4269uotATMXdZEwyhYxavzMUQdOJ82D3pi9yMhHGHhAJACBC";
+    private final static String TOKEN = "10_8_yqnYMZeUgxAAvoUxQ3_Gsrm0oFcCLFzkQKYp_NtBUrCxK7rndP5p0flzvnOQwpPeiRhHRip6gNYpNeQVIjtikvdYbFIdGtlzFhUjz4wLK2MX-eC-3oqSJ0BWGKoN-627KFXfXT0QXD8InKGNCeAGANUJ";
     
     @Autowired
     MaterialService materialService;
@@ -29,13 +32,13 @@ public class MaterialTest {
     @Test
     public void testAddTempMaterial() {
         // 新增临时素材
-//        File file = new File("E:/test/test.jpg");
-//        Result result = materialService.addTempMaterial(TOKEN, MediaType.IMAGE, file);
-//        System.out.println("--->"+result);
-
-        File file = new File("E:/test/test.mp4");
-        Result result = materialService.addTempMaterial(TOKEN, MediaType.VIDEO, file);
+        File file = new File("E:/test/test.jpg");
+        Result result = materialService.addTempMaterial(TOKEN, MediaType.THUMB, file);
         System.out.println("--->"+result);
+
+//        File file = new File("E:/test/test.mp4");
+//        Result result = materialService.addTempMaterial(TOKEN, MediaType.VIDEO, file);
+//        System.out.println("--->"+result);
     }
 
     @Test
@@ -58,6 +61,15 @@ public class MaterialTest {
     }
 
     @Test
+    public void testUploadNews() {
+        // 上传图文消息素材
+        List<Article> articleList = new ArrayList<>();
+        articleList.add(TestNews.getArticle());
+        Result result = materialService.uploadNews(TOKEN, articleList);
+        System.out.println("--->"+result);
+    }
+
+    @Test
     public void testAddNews() {
         // 新增永久图文素材
         Result result = materialService.addNews(TOKEN, TestNews.getNews());
@@ -68,7 +80,7 @@ public class MaterialTest {
     public void testAddMaterial() {
         // 新增其他类型永久素材
         File file = new File("E:/test/test.jpg");
-        Result result = materialService.addMaterial(TOKEN, MediaType.IMAGE, file, "test", "测试");
+        Result result = materialService.addMaterial(TOKEN, MediaType.THUMB, file, "test", "测试");
         System.out.println("1--->"+result);
 
 //        File file = new File("E:/test/test.mp4");
@@ -113,7 +125,7 @@ public class MaterialTest {
     @Test
     public void testGetMaterialList() {
         // 获取素材列表
-        Result result = materialService.getMaterialList(TOKEN, MediaType.IMAGE, 0, 5);
+        Result result = materialService.getMaterialList(TOKEN, MediaType.THUMB, 0, 5);
         System.out.println("--->"+result);
     }
 

@@ -1,7 +1,9 @@
 package com.beginner.wechat.service;
 
+import com.alibaba.fastjson.JSON;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.TestMsg;
+import com.beginner.wechat.model.message.AutoReplyInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class MsgTest {
     @Autowired
     TestMsg testMsg;
 
-    private final static String TOKEN = "10_pngk-LFEAMqlUx2E1gEPQf8qXrZFKrLxV_o7ikaf42a5I-zNCPcddfTq4t1ZYef2xxdjiNvjtIQgJaHlKj08Ix4eDM6jWgHvnX2GP9pOIzkWEj6GA86y9ZXQNQ-hirouP_gsgiQ-4DnA3aVpVLVaADAAQA";
+    private final static String TOKEN = "10_UehY89RRcgZmo2tKMZbBR41AntfGpFCEw8Ve-irSRQYczC4zjC89ubudYFeWfkMasXCapjMU087ZGnrSp6ZVtymSqUeCT35GpGUNSN7E9JYwUXPwHlxrdQg3VaS93K56vAaiWBPHmZnOCtYLQCViADAEQJ";
 
     @Test
     public void handlerMsgTest() {
@@ -47,34 +49,11 @@ public class MsgTest {
         System.out.println("-->"+msgService.analysisMsg(xmlStr, testMsg));
     }
 
-    @Test
-    public void addCustomerServiceTest() {
-        Result result = msgService.addCustomerService(TOKEN, "975656343@qq.com", "贺小白", "hq246512");
-        System.out.println("--->"+result.getData());
-    }
 
     @Test
-    public void updateCustomerService() {
-        Result result = msgService.updateCustomerService(TOKEN, "975656343@qq.com", "贺小白", "hq246512");
-        System.out.println("--->"+result.getData());
+    public void testGetAutoReplyInfo() {
+        Result result = msgService.getAutoReplyInfo(TOKEN);
+        System.out.println("-->"+result);
     }
 
-    @Test
-    public void delCustomerService() {
-        Result result = msgService.delCustomerService(TOKEN, "975656343@qq.com", "贺小白", "hq246512");
-        System.out.println("--->"+result.getData());
-    }
-
-    @Test
-    public void accounteadImgUrl() {
-        File file = new File("E:/test/test.jpg");
-        Result result = msgService.accounteadImgUrl(TOKEN, "975656343@qq.com", file);
-        System.out.println("--->"+result.getData());
-    }
-
-    @Test
-    public void listAccount() {
-        Result result = msgService.listAccount(TOKEN);
-        System.out.println("--->"+result.getData());
-    }
 }

@@ -65,7 +65,12 @@ public enum EventType {
     /**
      * VIEW : 点击菜单跳转链接时的事件
      */
-    VIEW("VIEW");
+    VIEW("VIEW"),
+
+    /**
+     * TEMPLATE_SEND_JOBFINISH : 模版消息发送任务完成后，微信服务器会将是否送达成功
+     */
+    TEMPLATE_SEND_JOBFINISH("TEMPLATESENDJOBFINISH"),;
 
     EventType(String name) {
         this.name = name;
