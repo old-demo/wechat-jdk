@@ -185,4 +185,44 @@ public interface HandlerMsgService {
      * @return
      */
     String handlerSendTemplateFailedEvent(TemplateEvent templateEvent);
+
+    /**
+     * 资质认证成功通知
+     *
+     * @param authenticationEvent 认证事件
+     * @return
+     */
+    String handlerQualificationSuccessEvent(AuthenticationEvent authenticationEvent);
+
+    /**
+     * 资质认证失败通知
+     *
+     * @param authenticationEvent 认证事件
+     * @return
+     */
+    String handlerQualificationFailedEvent(AuthenticationEvent authenticationEvent);
+
+    /**
+     * 名称认证成功通知
+     *
+     * @param authenticationEvent 认证事件
+     * @return
+     */
+    String handlerNamingSuccessEvent(AuthenticationEvent authenticationEvent);
+
+    /**
+     * 名称认证失败通知
+     *
+     * @param authenticationEvent 认证事件
+     * @return
+     */
+    String handlerNamingFailedEvent(AuthenticationEvent authenticationEvent);
+
+    /**
+     * 年审通知
+     *
+     * @param authenticationEvent 认证事件
+     * @return
+     */
+    String handlerAnnualRenewEvent(AuthenticationEvent authenticationEvent);
 }

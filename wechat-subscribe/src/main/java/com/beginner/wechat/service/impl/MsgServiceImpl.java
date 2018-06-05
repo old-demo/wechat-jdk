@@ -194,6 +194,21 @@ public class MsgServiceImpl implements MsgService {
                 } else if(failed.equals(templateEvent.getStatus())) {
                     response = handlerMsgService.handlerSendTemplateFailedEvent(templateEvent);
                 }
+            } else if(EventType.QUALIFICATION_VERIFY_SUCCESS.getName().equals(baseMsg.getEvent())) {
+                // 资质认证成功通知
+                response = handlerMsgService.handlerQualificationSuccessEvent((AuthenticationEvent) XmlUtil.stringToXml(xmlStr, AuthenticationEvent.class));
+            } else if(EventType.QUALIFICATION_VERIFY_FAIL.getName().equals(baseMsg.getEvent())) {
+                // 资质认证失败通知
+                response = handlerMsgService.handlerQualificationFailedEvent((AuthenticationEvent) XmlUtil.stringToXml(xmlStr, AuthenticationEvent.class));
+            } else if(EventType.NAMING_VERIFY_SUCCESS.getName().equals(baseMsg.getEvent())) {
+                // 名称认证成功通知
+                response = handlerMsgService.handlerNamingSuccessEvent((AuthenticationEvent) XmlUtil.stringToXml(xmlStr, AuthenticationEvent.class));
+            } else if(EventType.NAMING_VERIFY_FAIL.getName().equals(baseMsg.getEvent())) {
+                // 名称认证失败通知
+                response = handlerMsgService.handlerNamingFailedEvent((AuthenticationEvent) XmlUtil.stringToXml(xmlStr, AuthenticationEvent.class));
+            } else if(EventType.ANNUAL_RENEW.getName().equals(baseMsg.getEvent())) {
+                // 年审通知
+                response = handlerMsgService.handlerAnnualRenewEvent((AuthenticationEvent) XmlUtil.stringToXml(xmlStr, AuthenticationEvent.class));
             }
         }
         return response;

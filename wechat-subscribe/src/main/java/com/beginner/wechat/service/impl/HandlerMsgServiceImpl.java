@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class HandlerMsgServiceImpl implements HandlerMsgService {
 
-
     @Override
     public String handlerTextMsg(TextMsg textMsg) {
         return "success";
@@ -120,6 +119,31 @@ public class HandlerMsgServiceImpl implements HandlerMsgService {
 
     @Override
     public String handlerSendTemplateFailedEvent(TemplateEvent templateEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerQualificationSuccessEvent(AuthenticationEvent authenticationEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerQualificationFailedEvent(AuthenticationEvent authenticationEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerNamingSuccessEvent(AuthenticationEvent authenticationEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerNamingFailedEvent(AuthenticationEvent authenticationEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerAnnualRenewEvent(AuthenticationEvent authenticationEvent) {
         return "success";
     }
 }

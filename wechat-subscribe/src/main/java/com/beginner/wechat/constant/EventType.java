@@ -70,7 +70,32 @@ public enum EventType {
     /**
      * TEMPLATE_SEND_JOBFINISH : 模版消息发送任务完成后，微信服务器会将是否送达成功
      */
-    TEMPLATE_SEND_JOBFINISH("TEMPLATESENDJOBFINISH"),;
+    TEMPLATE_SEND_JOBFINISH("TEMPLATESENDJOBFINISH"),
+
+    /**
+     * QUALIFICATION_VERIFY_SUCCESS : 资质认证成功
+     */
+    QUALIFICATION_VERIFY_SUCCESS("qualification_verify_success"),
+
+    /**
+     * QUALIFICATION_VERIFY_FAIL : 资质认证失败
+     */
+    QUALIFICATION_VERIFY_FAIL("qualification_verify_fail"),
+
+    /**
+     * NAMING_VERIFY_SUCCESS : 名称认证成功
+     */
+    NAMING_VERIFY_SUCCESS("naming_verify_success"),
+
+    /**
+     * NAMING_VERIFY_FAIL : 名称认证失败
+     */
+    NAMING_VERIFY_FAIL("naming_verify_fail"),
+
+    /**
+     * ANNUAL_RENEW : 年审通知
+     */
+    ANNUAL_RENEW("annual_renew");
 
     EventType(String name) {
         this.name = name;

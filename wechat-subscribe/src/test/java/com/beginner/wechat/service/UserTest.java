@@ -19,7 +19,7 @@ import java.util.List;
 @SpringBootTest
 public class UserTest {
 
-    private final static String TOKEN = "10__fNw9LwtA3gOaMsLIw-vPVbwOG-njGrVVUVAJEOKPFXlc5Tc3Dr6JBxvAE7a5fl-SgHNi4OqcPZ6n4T8H_-RvPyOFX7hIUqtXk5OLb-RsQrzOYgx0-TRv4tNCGiq5TX26GtXnEx6ZCFHAEFdOFWbAFAKBS";
+    private final static String TOKEN = "10_M4Fv9A8UPXX4zhNvddITwUAnw9Yv-Vn89YBAW2y_3_aLsr4oT-Y26l23FOmTSS2w5p7PCwoBgkNW-HRVZOZ-IOFSXQ0--12mwG9ni-vEI8p1tQgRKUmgn-9NN1qOOIA-MbqkIl9iwpaMLVCVSEYgADACOI";
 
     @Autowired
     UserService userService;
@@ -80,7 +80,7 @@ public class UserTest {
     @Test
     public void testGetTagIdByOpenId() {
         // 获取用户身上的标签列表
-        Result result = userService.getTagIdByOpenId(TOKEN, "oa3070VHNTZojJ-zdhZPIe21ETHs");
+        Result result = userService.getTagIdByOpenId(TOKEN, "o0xVxt1HBqcN1zsXswCXFrpVfiWA");
         System.out.println("--->"+result);
     }
 
