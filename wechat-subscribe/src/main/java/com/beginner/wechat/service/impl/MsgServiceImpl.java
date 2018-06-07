@@ -1,6 +1,5 @@
 package com.beginner.wechat.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.api.MsgApi;
@@ -23,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author heqing
@@ -258,4 +260,183 @@ public class MsgServiceImpl implements MsgService {
         }
         return new Result(response, AutoReplyInfo.class);
     }
+
+    @Override
+    public Result sendMassAllByTag(String accessToken, boolean isToAll, int tagId, MsgType msgType, String content, int sendIgnoreReprint) {
+        JSONObject params = new JSONObject();
+        Map filter = new HashMap<>();
+        filter.put("is_to_all", isToAll);
+        filter.put("tag_id", tagId);
+        params.put("filter", filter);
+        params.put("msgtype", msgType.getName());
+        filter = new HashMap<>();
+        switch (msgType) {
+            case MPNEWS:
+                params.put("send_ignore_reprint", sendIgnoreReprint);
+                filter.put("media_id", content);
+                break;
+            case TEXT:
+                filter.put("content", content);
+                break;
+            case WXCARD:
+                filter.put("card_id", content);
+                break;
+            case VOICE:
+            case MUSIC:
+            case IMAGE:
+            case VIDEO:
+                filter.put("media_id", content);
+                break;
+            default: ;
+        }
+        params.put(msgType.getName(), filter);
+        String url = MsgApi.SEND_MASS_ALL_BY_TAG.replace("ACCESS_TOKEN", accessToken);
+        JSONObject response = HttpPostUtil.getResponse(url, params);
+        Map result = new HashMap();
+        Integer msgId = response.getInteger("msg_id");
+        Integer msgDataId = response.getInteger("msg_data_id");
+        if(msgId != null) {
+            result.put("msgId", msgId);
+        }
+        if(msgDataId != null) {
+            result.put("msgDataId", msgDataId);
+        }
+        response.put("data", result);
+        return new Result(response);
+    }
+
+    @Override
+    public Result sendMassAllByOpenId(String accessToken, List<String> openIdList, MsgType msgType, String content, int sendIgnoreReprint) {
+        JSONObject params = new JSONObject();
+        Map filter = new HashMap<>();
+        filter.put("touser", openIdList);
+        params.put("filter", filter);
+        params.put("msgtype", msgType.getName());
+        filter = new HashMap<>();
+        switch (msgType) {
+            case MPNEWS:
+                params.put("send_ignore_reprint", sendIgnoreReprint);
+                filter.put("media_id", content);
+                break;
+            case TEXT:
+                filter.put("content", content);
+                break;
+            case WXCARD:
+                filter.put("card_id", content);
+                break;
+            case VOICE:
+            case MUSIC:
+            case IMAGE:
+            case VIDEO:
+                filter.put("media_id", content);
+                break;
+            default: ;
+        }
+        params.put(msgType.getName(), filter);
+        String url = MsgApi.SEND_MASS_ALL_BY_OPENID.replace("ACCESS_TOKEN", accessToken);
+        JSONObject response = HttpPostUtil.getResponse(url, params);
+        Map result = new HashMap();
+        Integer msgId = response.getInteger("msg_id");
+        Integer msgDataId = response.getInteger("msg_data_id");
+        if(msgId != null) {
+            result.put("msgId", msgId);
+        }
+        if(msgDataId != null) {
+            result.put("msgDataId", msgDataId);
+        }
+        response.put("data", result);
+        return new Result(response);
+    }
+
+    @Override
+    public Result deleteMass(String accessToken, Integer msgId, Integer articleIdx) {
+        String url = MsgApi.DELETE_MASS.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("msg_id", msgId);
+        params.put("article_idx", articleIdx);
+        JSONObject response = HttpPostUtil.getResponse(url, params);
+        return new Result(response);
+    }
+
+    @Override
+    public Result previewMass(String accessToken, String openId, MsgType msgType, String content, Map map) {
+        JSONObject params = new JSONObject();
+        Map filter = new HashMap<>();
+        filter.put("touser", openId);
+        params.put("filter", filter);
+        params.put("msgtype", msgType.getName());
+        filter = new HashMap<>();
+        switch (msgType) {
+            case VIDEO:
+                filter.put("media_id", content);
+                params.put("msgtype", "mpvideo");
+                params.put("mpvideo", filter);
+                break;
+            case TEXT:
+                filter.put("content", content);
+                break;
+            case WXCARD:
+                filter.put("card_ext", map);
+                filter.put("card_id", content);
+                break;
+            case VOICE:
+            case IMAGE:
+            case MPNEWS:
+                filter.put("media_id", content);
+                break;
+            default: ;
+        }
+        params.put(msgType.getName(), filter);
+        String url = MsgApi.PREVIEW_MASS.replace("ACCESS_TOKEN", accessToken);
+        JSONObject response = HttpPostUtil.getResponse(url, params);
+        Integer msgId = response.getInteger("msg_id");
+        if(msgId != null) {
+            response.put("data", msgId);
+        }
+        return new Result(response);
+    }
+
+    @Override
+    public Result getMass(String accessToken, Integer msgId) {
+        String url = MsgApi.GET_MASS.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("msg_id", msgId);
+        JSONObject response = HttpPostUtil.getResponse(url, params);
+        Map result = new HashMap();
+        Integer msgDataId = response.getInteger("msg_data_id");
+        result.put("msgId", msgId);
+        if(msgDataId != null) {
+            result.put("msgDataId", msgDataId);
+        }
+        response.put("data", result);
+        return new Result(response);
+    }
+
+    @Override
+    public Result getMassSpeed(String accessToken) {
+        String url = MsgApi.GET_MASS_SPEED.replace("ACCESS_TOKEN", accessToken);
+        JSONObject response = HttpPostUtil.getResponse(url, "");
+        Map result = new HashMap();
+        Integer speed = response.getInteger("speed");
+        if(speed != null) {
+            result.put("speed", speed);
+        }
+        Integer realSpeed = response.getInteger("realspeed");
+        if(realSpeed != null) {
+            result.put("realSpeed", realSpeed);
+        }
+        response.put("data", result);
+        return new Result(response);
+    }
+
+    @Override
+    public Result setMassSpeed(String accessToken, Integer speed) {
+        String url = MsgApi.SET_MASS_SPEED.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("speed", speed);
+        JSONObject response = HttpPostUtil.getResponse(url, params);
+        return new Result(response);
+    }
+
+
 }

@@ -11,6 +11,7 @@ import com.beginner.wechat.model.statistics.NewsAnalysis;
 import com.beginner.wechat.model.statistics.UserAnalysis;
 import com.beginner.wechat.service.StatisticsService;
 import com.beginner.wechat.util.HttpPostUtil;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
  * @author heqing
  * @date 2018/6/5.
  */
+@Service
 public class StatisticsServiceImpl implements StatisticsService {
 
     @Override

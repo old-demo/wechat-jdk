@@ -9,6 +9,21 @@ package com.beginner.wechat.constant;
 public enum MsgType {
 
     /**
+     * mpnews : 图文消息
+     */
+    MPNEWS("mpnews"),
+
+    /**
+     * music : 音乐
+     */
+    MUSIC("music"),
+
+    /**
+     * wxcard : 卡券消息
+     */
+    WXCARD("wxcard"),
+
+    /**
      * text : 文本消息
      */
     TEXT("text"),
