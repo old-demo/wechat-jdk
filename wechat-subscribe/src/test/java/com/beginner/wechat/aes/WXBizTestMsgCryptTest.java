@@ -1,4 +1,4 @@
-package com.beginner.wechat.test;
+package com.beginner.wechat.aes;
 
 import java.io.IOException;
 import java.io.StringReader;

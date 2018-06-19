@@ -24,7 +24,7 @@ import java.util.List;
 @SpringBootTest
 public class MaterialTest {
 
-    private final static String TOKEN = "10_8_yqnYMZeUgxAAvoUxQ3_Gsrm0oFcCLFzkQKYp_NtBUrCxK7rndP5p0flzvnOQwpPeiRhHRip6gNYpNeQVIjtikvdYbFIdGtlzFhUjz4wLK2MX-eC-3oqSJ0BWGKoN-627KFXfXT0QXD8InKGNCeAGANUJ";
+    private final static String TOKEN = "10_dUIS8CqbAxc3sGfTeCaJ2CoSMiUucRZH-Qj3T1YVmDhkV_yTfpxyA9FujX_Wp4qj4jl0NKPVD-mzXooy8yKhJUqAsX19n1XdnAK7VJiFch7IgCXV3uvqs0bcX4qJ6VC1WFsTgVic0quJgh8RPHEiAJAXPM";
     
     @Autowired
     MaterialService materialService;
@@ -32,21 +32,21 @@ public class MaterialTest {
     @Test
     public void testAddTempMaterial() {
         // 新增临时素材
-        File file = new File("E:/test/test.jpg");
-        Result result = materialService.addTempMaterial(TOKEN, MediaType.THUMB, file);
-        System.out.println("--->"+result);
-
-//        File file = new File("E:/test/test.mp4");
-//        Result result = materialService.addTempMaterial(TOKEN, MediaType.VIDEO, file);
+//        File file = new File("E:/test/test.jpg");
+//        Result result = materialService.addTempMaterial(TOKEN, MediaType.THUMB, file);
 //        System.out.println("--->"+result);
+
+        File file = new File("E:/test/test.mp4");
+        Result result = materialService.addTempMaterial(TOKEN, MediaType.VIDEO, file);
+        System.out.println("--->"+result);
     }
 
     @Test
     public void testGetTempMaterial() {
         // 获取临时素材
-        // 图片：8-1qgGj20f40fvEOJe3aNphKsQ3UKKagji-HEvl90ycjYkMJ9yhLqoEmFfsB4ip5
-        // 视频：Lyp_iB7rW0FqVOPgxhRZo1cjuxOW1ecXxVUXlG-XJ9Q0XwQaZqDGH0nD4eYhNcA1
-        String mediaId = "991CSS9W-bQ6OA_t_JZuXqPLu0uES7M6Jjnct1dzo-qyFwOwbhYtwDljg6z1s3Gc";
+        // 图片：t-2EhRqzDim_H7Oyx9Cw6jbdRasgn9RqzFpmKkXf6jnJaBCykPZguNxnUJBOO21p
+        // 视频：ioFYDvR9K0Zdb9MAJcp2zQm6vFq0JuIYj79hXX6l-2v8VSLcfQIB9jJ6J2KoKCr3
+        String mediaId = "ioFYDvR9K0Zdb9MAJcp2zQm6vFq0JuIYj79hXX6l-2v8VSLcfQIB9jJ6J2KoKCr3";
         File file = new File("E:/test/1.mp4");
         Result result = materialService.getTempMaterial(TOKEN, mediaId, file);
         System.out.println("--->"+result);
@@ -79,8 +79,9 @@ public class MaterialTest {
     @Test
     public void testAddMaterial() {
         // 新增其他类型永久素材
+        // 有问题
         File file = new File("E:/test/test.jpg");
-        Result result = materialService.addMaterial(TOKEN, MediaType.THUMB, file, "test", "测试");
+        Result result = materialService.addMaterial(TOKEN, MediaType.IMAGE, file, null, null);
         System.out.println("1--->"+result);
 
 //        File file = new File("E:/test/test.mp4");
@@ -91,7 +92,7 @@ public class MaterialTest {
     @Test
     public void testGetMaterial() {
         // 获取永久素材
-        String imgId = "i0Ct6iTPmOh3oekG3hHkMax5Jn5JT97H7XxIrsrWcG4";  //有问题
+        String imgId = "i0Ct6iTPmOh3oekG3hHkMax5Jn5JT97H7XxIrsrWcG4";  // 有问题
         String videoId = "i0Ct6iTPmOh3oekG3hHkMbKZOCXhPRvwVCyTxnIi2cc";
         String newId = "i0Ct6iTPmOh3oekG3hHkMWtu1a4kZvOyRkV_0qKA5Cc";
         File file = new File("E:/test/temp.jpg");
@@ -102,7 +103,7 @@ public class MaterialTest {
     @Test
     public void testDelMaterial() {
         // 删除永久素材
-        String imgId = "i0Ct6iTPmOh3oekG3hHkMb2hZ5K0aqEl_qi20Vmgw28";
+        String imgId = "i0Ct6iTPmOh3oekG3hHkMf7Pz6OBVpEPF7X8-aHScgw";
         Result result = materialService.delMaterial(TOKEN, imgId);
         System.out.println("--->"+result);
     }
@@ -110,7 +111,7 @@ public class MaterialTest {
     @Test
     public void testUpdateNews() {
         // 修改永久图文素材
-        String mediaId = "i0Ct6iTPmOh3oekG3hHkMdzLBYHz5fQe2phQMElaRNo";
+        String mediaId = "i0Ct6iTPmOh3oekG3hHkMcehY2rVOEs-Z2VC8TfbmNs";
         Result result = materialService.updateNews(TOKEN, mediaId, 0, TestNews.getArticle());
         System.out.println("--->"+result);
     }
@@ -125,7 +126,7 @@ public class MaterialTest {
     @Test
     public void testGetMaterialList() {
         // 获取素材列表
-        Result result = materialService.getMaterialList(TOKEN, MediaType.THUMB, 0, 5);
+        Result result = materialService.getMaterialList(TOKEN, MediaType.VIDEO, 0, 5);
         System.out.println("--->"+result);
     }
 

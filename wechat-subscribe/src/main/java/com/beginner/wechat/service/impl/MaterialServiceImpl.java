@@ -29,6 +29,9 @@ public class MaterialServiceImpl implements MaterialService {
         String url = MaterialApi.ADD_TEMP_MATERIAL.replace("ACCESS_TOKEN", accessToken)
                 .replace("TYPE", mediaType.getName());
         JSONObject jsonSendFile = WechatFileUtil.jsonSendFile(url, file, "", "");
+        if(mediaType == MediaType.THUMB && jsonSendFile.get("thumb_media_id") != null) {
+            jsonSendFile.put("media_id", jsonSendFile.get("thumb_media_id"));
+        }
         return new Result(jsonSendFile, Material.class);
     }
 
@@ -92,13 +95,12 @@ public class MaterialServiceImpl implements MaterialService {
     public Result<Material> addMaterial(String accessToken, MediaType mediaType, File file, String titile, String introduction) {
         String url = MaterialApi.ADD_MATERIAL.replace("ACCESS_TOKEN", accessToken)
                 .replace("TYPE", mediaType.getName());
-        JSONObject response;
         // 文件的标题或描述是否为空
         boolean description = StringUtils.isEmpty(titile) || StringUtils.isEmpty(introduction);
         if(mediaType == MediaType.VIDEO && description) {
                 return new Result(41005, "缺少多媒体文件数据");
         }
-        response =  WechatFileUtil.jsonSendFile(url, file, titile, introduction);
+        JSONObject response =  WechatFileUtil.jsonSendFile(url, file, titile, introduction);
         return new Result(response, Material.class);
     }
 
@@ -165,11 +167,17 @@ public class MaterialServiceImpl implements MaterialService {
     @Override
     public Result<ItemList> getMaterialList(String accessToken, MediaType mediaType, Integer offset, Integer count) {
         String url = MaterialApi.GET_MATERIAL_LIST.replace("ACCESS_TOKEN", accessToken);
+        JSONObject response = new JSONObject();
+        if(mediaType != MediaType.IMAGE && mediaType != MediaType.VIDEO && mediaType != MediaType.VOICE && mediaType != MediaType.NEWS) {
+            response.put("errcode", 10001);
+            response.put("errmsg", "多媒体文件参数不正确");
+            return new Result(response);
+        }
         JSONObject json = new JSONObject();
         json.put("type", mediaType.getName());
         json.put("offset", offset);
         json.put("count", count);
-        JSONObject response = HttpPostUtil.getResponse(url, json.toJSONString());
+        response = HttpPostUtil.getResponse(url, json.toJSONString());
         if(mediaType == MediaType.NEWS) {
             JSONArray itemlist = response.getJSONArray("item");
             for(int i=0; i<itemlist.size(); i++) {

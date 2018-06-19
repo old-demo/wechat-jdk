@@ -37,7 +37,7 @@ public enum ButtonType {
      * 完成扫码操作后，将扫码的结果传给开发者，同时收起扫一扫工具，然后弹出“消息接收中”提示框，随后可能会
      * 收到开发者下发的消息。
      */
-    SACNCODE_WAITMSG(4, "scancode_waitmsg"),
+    SCANCODE_WAITMSG(4, "scancode_waitmsg"),
 
     /**
      * pic_sysphoto ：弹出系统拍照发图用户点击按钮后，微信客户端将调起系统相机，完成拍照操作后，会将拍摄

@@ -17,7 +17,7 @@ public class SubButton {
      * type (必传)
      * 菜单的响应动作类型，view表示网页类型，click表示点击类型，miniprogram表示小程序类型
      */
-    private String type;
+    private ButtonType type;
 
     /**
      * name (必传)
@@ -66,11 +66,15 @@ public class SubButton {
     private List<NewsInfo> newsInfo;
 
     public String getType() {
-        return type;
+        if(type == null) {
+            return "";
+        } else {
+            return type.getName();
+        }
     }
 
     public void setType(ButtonType type) {
-        this.type = type.getName();
+        this.type = type;
     }
 
     public String getName() {

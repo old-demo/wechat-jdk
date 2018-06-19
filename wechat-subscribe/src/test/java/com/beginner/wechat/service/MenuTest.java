@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class MenuTest {
 
-    private final static String TOKEN = "10_4NCGsb1sizMpgvFt90mhpqb_DTcRT7nC9Cyc8usGiIhi9JomVWcNSXORT6ds9m1dBWl_8cUBqc10zVAPvZeFWmrzjz1fHh3KRM45oTOgXaXuXNob76xiEAl1misdVbI_PgSuBeomUPYIns0KGUUbAHATHH";
+    private final static String TOKEN = "10_L_aAomjDFXil6NL_esx1MKGSyP3SUp5_PsBfA_hhxOMnKWdsIeJUG0-wjP8B87-_n_6zdoq8cyhjSElg-AZVq3v5kdKZWk4ydYsMaVzGnexKoktaEO1Vo7tOs8zKpQkd4NKTRL7hy4O7BA18IELcABAYUB";
 
     @Autowired
     MenuService menuService;
@@ -53,7 +53,7 @@ public class MenuTest {
     @Test
     public void testDelConditional() {
         // 删除个性化菜单
-        Result result = menuService.delConditional(TOKEN, "449198255");
+        Result result = menuService.delConditional(TOKEN, "449945323");
         System.out.println("--->"+result);
     }
 

@@ -97,7 +97,7 @@ public interface MsgService {
      * 根据OpenId进行群发
      *
      * @param accessToken 微信access_token
-     * @param openIDList 填写图文消息的接收者，一串OpenID列表，OpenID最少2个，最多10000个
+     * @param openIdList 填写图文消息的接收者，一串OpenID列表，OpenID最少2个，最多10000个
      * @param msgType 群发的消息类型，图文消息为mpnews，文本消息为text，语音为voice，音乐为music，图片为image，视频为video，卡券为wxcard
      * @param content 文本内容 或 其他类型文件的media_id
      * @param sendIgnoreReprint （图文时必传）图文消息被判定为转载时，是否继续群发。 1为继续群发（转载），0为停止群发。 该参数默认为0。

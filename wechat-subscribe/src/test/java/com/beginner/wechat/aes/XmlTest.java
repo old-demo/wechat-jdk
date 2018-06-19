@@ -1,4 +1,4 @@
-package com.beginner.wechat.test;
+package com.beginner.wechat.aes;
 
 import com.alibaba.fastjson.JSON;
 import com.beginner.wechat.constant.EventType;

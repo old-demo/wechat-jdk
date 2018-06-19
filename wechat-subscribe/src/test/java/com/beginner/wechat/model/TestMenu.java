@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class TestMenu {
 
-    public static List<Button> getButtonList() {
+    public static Button getButton1() {
         // 第一个一级菜单
         SubButton subButton1_1 = new SubButton();
         subButton1_1.setType(ButtonType.VIEW);
@@ -38,7 +38,10 @@ public class TestMenu {
         Button button1 = new Button();
         button1.setName("普通");
         button1.setSubButton(subButtonList1);
+        return button1;
+    }
 
+    public static Button getButton2() {
         // 第二个一级菜单
         SubButton subButton2_1 = new SubButton();
         subButton2_1.setType(ButtonType.SCANCODE_PUSH);
@@ -46,7 +49,7 @@ public class TestMenu {
         subButton2_1.setName("扫码推事件");
 
         SubButton subButton2_2 = new SubButton();
-        subButton2_2.setType(ButtonType.SACNCODE_WAITMSG);
+        subButton2_2.setType(ButtonType.SCANCODE_WAITMSG);
         subButton2_2.setKey("MENU_2_2");
         subButton2_2.setName("扫码带提示");
 
@@ -74,7 +77,10 @@ public class TestMenu {
         Button button2 = new Button();
         button2.setName("系统");
         button2.setSubButton(subButtonList);
+        return button2;
+    }
 
+    public static Button getButton3() {
         // 第三个一级菜单
         SubButton subButton3_1 = new SubButton();
         subButton3_1.setType(ButtonType.MEDIA_ID);
@@ -92,18 +98,17 @@ public class TestMenu {
         Button button3 = new Button();
         button3.setName("素材");
         button3.setSubButton(subButtonList3);
-
-        List<Button> buttonList = new ArrayList<>();
-        buttonList.add(button1);
-        buttonList.add(button2);
-        buttonList.add(button3);
-        return buttonList;
+        return button3;
     }
 
     public static Menu getMenu() {
         // 自定义菜单
         Menu menu = new Menu();
-        menu.setButton(getButtonList());
+        List<Button> buttonList = new ArrayList<>();
+        buttonList.add(getButton1());
+        buttonList.add(getButton2());
+        buttonList.add(getButton3());
+        menu.setButton(buttonList);
         return menu;
     }
 
@@ -113,15 +118,17 @@ public class TestMenu {
         matchrule.setTagId("2");
         matchrule.setSex(SexType.MAN);
         matchrule.setCountry("中国");
-        matchrule.setProvince("广东");
-        matchrule.setCity("广州");
+        matchrule.setProvince("安徽");
+        matchrule.setCity("安庆");
         matchrule.setClientPlatformType(SystemType.ANDROID);
         matchrule.setLanguage("zh_CN");
 
         // 个性化菜单
         ConditionalMenu menu = new ConditionalMenu();
         menu.setMatchrule(matchrule);
-        menu.setButton(getButtonList());
+        List<Button> buttonList = new ArrayList<>();
+        buttonList.add(getButton1());
+        menu.setButton(buttonList);
         return menu;
     }
 }

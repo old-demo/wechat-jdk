@@ -28,14 +28,14 @@ public class Matchrule {
      * sex (非必传)
      * 性别：男（1）女（2），不填则不做匹配
      */
-    private String sex;
+    private SexType sex;
 
     /**
      * clientPlatformType (非必传)
      * 客户端版本，当前只具体到系统型号：IOS(1), Android(2),Others(3)，不填则不做匹配
      */
     @JSONField(name = "client_platform_type")
-    private String clientPlatformType;
+    private SystemType clientPlatformType;
 
     /**
      * country (非必传)
@@ -70,19 +70,27 @@ public class Matchrule {
     }
 
     public String getSex() {
-        return sex;
+        if(sex == null) {
+            return "";
+        } else {
+            return sex.getCode();
+        }
     }
 
     public void setSex(SexType sexType) {
-        this.sex = sexType.getCode();
+        this.sex = sexType;
     }
 
     public String getClientPlatformType() {
-        return clientPlatformType;
+        if(clientPlatformType == null) {
+            return "";
+        } else {
+            return clientPlatformType.getCode();
+        }
     }
 
     public void setClientPlatformType(SystemType clientPlatformType) {
-        this.clientPlatformType = clientPlatformType.getCode();
+        this.clientPlatformType = clientPlatformType;
     }
 
     public String getCountry() {
