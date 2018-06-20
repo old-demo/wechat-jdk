@@ -2,7 +2,6 @@ package com.beginner.wechat.test;
 
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.service.UserExtService;
-import com.beginner.wechat.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

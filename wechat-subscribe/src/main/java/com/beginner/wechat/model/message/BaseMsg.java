@@ -3,7 +3,7 @@ package com.beginner.wechat.model.message;
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.constant.EventType;
 import com.beginner.wechat.constant.MsgType;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -20,14 +20,14 @@ public abstract class BaseMsg {
      * toUserName 开发者微信号
      */
     @XmlElement(name = "ToUserName")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String toUserName;
 
     /**
      * fromUserName 发送方帐号（一个OpenID）
      */
     @XmlElement(name = "FromUserName")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String fromUserName;
 
     /**
@@ -40,7 +40,7 @@ public abstract class BaseMsg {
      * msgType 消息类型
      */
     @XmlElement(name = "MsgType")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String msgType;
 
     /**
@@ -53,7 +53,7 @@ public abstract class BaseMsg {
      * event 事件，事件类型，参见EventType
      */
     @XmlElement(name = "Event")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String event;
 
     public String getToUserName() {

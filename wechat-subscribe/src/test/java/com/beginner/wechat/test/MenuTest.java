@@ -1,4 +1,4 @@
-package com.beginner.wechat.service;
+package com.beginner.wechat.test;
 
 import com.beginner.wechat.model.TestMenu;
 import com.beginner.wechat.model.Result;

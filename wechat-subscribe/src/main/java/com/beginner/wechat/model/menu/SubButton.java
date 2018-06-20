@@ -9,50 +9,50 @@ import java.util.List;
 /**
  * 二级菜单信息
  * @author heqing
- * @date 2018/5/21.
+ * @date 2018/5/21
  */
 public class SubButton {
 
     /**
-     * type (必传)
+     * 必传<br/>
      * 菜单的响应动作类型，view表示网页类型，click表示点击类型，miniprogram表示小程序类型
      */
     private ButtonType type;
 
     /**
-     * name (必传)
+     * 必传<br/>
      * 菜单标题，不超过16个字节，子菜单不超过60个字节
      */
     private String name;
 
     /**
-     * key (click等点击类型必传)
+     * click等点击类型必传<br/>
      * 菜单KEY值，用于消息接口推送，不超过128字节
      */
     private String key;
 
     /**
-     * url (view、miniprogram类型必传/网页)
+     * view、miniprogram类型必传/网页<br/>
      * 链接，用户点击菜单可打开链接，不超过1024字节。 type为miniprogram时，不支持小程序的老版本客户端将打开本url。
      */
     private String url;
 
     /**
-     * media_id （media_id类型和view_limited类型必传）
+     * media_id类型和view_limited类型必传<br/>
      * 调用新增永久素材接口返回的合法media_id
      */
     @JSONField(name = "media_id")
     private String mediaId;
 
     /**
-     * appid （miniprogram类型必传）
+     * miniprogram类型必传<br/>
      * 小程序的appid（仅认证公众号可配置）
      */
     @JSONField(name = "appid")
     private String appId;
 
     /**
-     * pagepath （miniprogram类型必须）
+     * pminiprogram类型必须<br/>
      * 小程序的页面路径
      */
     @JSONField(name = "pagepath")

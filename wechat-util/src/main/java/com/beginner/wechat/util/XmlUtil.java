@@ -9,15 +9,14 @@ import javax.xml.bind.Unmarshaller;
 import java.io.*;
 
 /**
- * xml 解析工具类
+ * xml解析工具类
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 public class XmlUtil {
 
     /**
      * 将xml字符串转为java对象
-     *
      * @param xmlStr xml字符串
      * @param clazz 对象类型
      * @return java对象
@@ -36,7 +35,6 @@ public class XmlUtil {
 
     /**
      * 将java对象转为xml字符串
-     *
      * @param obj java对象
      * @return xml字符串
      */
@@ -53,7 +51,6 @@ public class XmlUtil {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             //去掉生成xml的默认报文头。
             marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
-
             marshaller.setProperty("com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler",
                     new CharacterEscapeHandler() {
                         @Override
@@ -62,10 +59,9 @@ public class XmlUtil {
                             writer.write(ch, start, length);
                         }
                     });
-
             // 将对象转换成输出流形式的xml
             marshaller.marshal(obj, sw);
-        } catch (Exception e) {
+        } catch (JAXBException e) {
             e.printStackTrace();
         }
         return sw.toString();

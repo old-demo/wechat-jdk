@@ -4,24 +4,23 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * accessToken
- *
+ * 获取微信TOKEN返回对象
  * @author heqing
  * @date 2018/5/14
  */
 public class AccessToken {
 
     /**
-     * accessToken 获取到的凭证
+     * 获取到的凭证
      */
     @JSONField(name = "access_token")
     private String accessToken;
     
     /**
-     * expiresIn 凭证有效时间，单位：秒
+     * 凭证有效时间，单位：秒
      */
     @JSONField(name = "expires_in")
-    private String expiresIn;
+    private Integer expiresIn;
 
     public String getAccessToken() {
         return accessToken;
@@ -31,11 +30,11 @@ public class AccessToken {
         this.accessToken = accessToken;
     }
 
-    public String getExpiresIn() {
+    public Integer getExpiresIn() {
         return expiresIn;
     }
 
-    public void setExpiresIn(String expiresIn) {
+    public void setExpiresIn(Integer expiresIn) {
         this.expiresIn = expiresIn;
     }
 

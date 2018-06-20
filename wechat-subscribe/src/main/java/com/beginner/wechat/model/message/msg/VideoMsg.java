@@ -2,7 +2,7 @@ package com.beginner.wechat.model.message.msg;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -23,28 +23,28 @@ public class VideoMsg extends BaseMsg {
      * mediaId 视频消息媒体id，可以调用多媒体文件下载接口拉取数据。
      */
     @XmlElement(name = "MediaId")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String mediaId;
 
     /**
      * thumbMediaId 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
      */
     @XmlElement(name = "ThumbMediaId")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String thumbMediaId;
 
     /**
      * title 视频消息的标题 （回复才有此参数，非必传）
      */
     @XmlElement(name = "Title")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String title;
 
     /**
      * description 视频消息的描述（回复才有此参数，非必传）
      */
     @XmlElement(name = "Description")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String description;
 
     public String getMediaId() {

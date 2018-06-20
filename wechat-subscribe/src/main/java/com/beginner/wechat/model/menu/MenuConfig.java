@@ -6,18 +6,18 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * 自定义菜单配置
  * @author heqing
- * @date 2018/5/23.
+ * @date 2018/5/23
  */
 public class MenuConfig {
 
     /**
-     * isMenuOpen 菜单是否开启，0代表未开启，1代表开启
+     * 菜单是否开启，0代表未开启，1代表开启
      */
     @JSONField(name = "is_menu_open")
     private Integer isMenuOpen;
 
     /**
-     * selfMenuInfo 菜单信息
+     * 菜单信息
      */
     @JSONField(name = "selfmenu_info")
     private Menu selfMenuInfo;

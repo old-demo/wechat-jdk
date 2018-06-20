@@ -2,7 +2,7 @@ package com.beginner.wechat.model.message.msg;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -23,35 +23,35 @@ public class MusicMsg extends BaseMsg {
      * title 音乐标题 （非必传）
      */
     @XmlElement(name = "Title")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String title;
 
     /**
      * description 音乐描述（非必传）
      */
     @XmlElement(name = "Description")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String description;
 
     /**
      * musicURL 音乐链接（非必传）
      */
     @XmlElement(name = "MusicURL")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String musicURL;
 
     /**
      * hqMusicUrl 高质量音乐链接，WIFI环境优先使用该链接播放音乐（非必传）
      */
     @XmlElement(name = "HQMusicUrl")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String hqMusicUrl;
 
     /**
      * thumbMediaId 缩略图的媒体id，通过素材管理中的接口上传多媒体文件，得到的id
      */
     @XmlElement(name = "ThumbMediaId")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String thumbMediaId;
 
     public String getTitle() {

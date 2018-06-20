@@ -2,7 +2,7 @@ package com.beginner.wechat.model.message.msg;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -23,21 +23,21 @@ public class VoiceMsg extends BaseMsg {
      * mediaId 语音消息媒体id，可以调用多媒体文件下载接口拉取数据。
      */
     @XmlElement(name = "MediaId")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String mediaId;
 
     /**
      * format 语音格式，如amr，speex等
      */
     @XmlElement(name = "Format")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String format;
 
     /**
      * recognition 语音识别结果，UTF8编码
      */
     @XmlElement(name = "Recognition")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String recognition;
 
     public String getMediaId() {

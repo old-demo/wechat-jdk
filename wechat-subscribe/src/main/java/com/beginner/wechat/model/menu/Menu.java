@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * 自定义菜单信息
  * @author heqing
- * @date 2018/5/21.
+ * @date 2018/5/21
  */
 public class Menu {
 
     /**
-     * button 一级菜单（最多3个，每个最多4个汉字，多出来的部分将会以“...”代替）
+     * 一级菜单（最多3个，每个最多4个汉字，多出来的部分将会以“...”代替）
      */
     private List<Button> button;
 

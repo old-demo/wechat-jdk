@@ -1,9 +1,8 @@
 package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.constant.EventType;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -24,14 +23,14 @@ public class ScanEvent extends BaseMsg {
      * eventKey 事件KEY值，qrscene_为前缀，后面为二维码的参数值
      */
     @XmlElement(name = "EventKey")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String eventKey;
 
     /**
      * ticket 二维码的ticket，可用来换取二维码图片
      */
     @XmlElement(name = "Ticket")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String ticket;
 
     /**

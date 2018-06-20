@@ -2,7 +2,7 @@ package com.beginner.wechat.model.message.msg;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -20,7 +20,7 @@ public class TextMsg extends BaseMsg {
      * content 文本消息内容
      */
     @XmlElement(name = "Content")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String content;
 
     public String getContent() {

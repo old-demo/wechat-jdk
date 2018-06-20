@@ -2,18 +2,17 @@ package com.beginner.wechat.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.beginner.wechat.service.BaseService;
 import com.beginner.wechat.util.HttpGetUtil;
 import com.beginner.wechat.api.BaseApi;
 import com.beginner.wechat.model.AccessToken;
 import com.beginner.wechat.model.Result;
-import com.beginner.wechat.service.BaseService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * 公共方法实现类
- *
+ * 微信公共方法实现类
  * @author heqing
  * @date 2018/5/14
  */

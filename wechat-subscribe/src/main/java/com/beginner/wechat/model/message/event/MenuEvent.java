@@ -2,7 +2,7 @@ package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,7 +25,7 @@ public class MenuEvent extends BaseMsg {
      * VIEW : 事件KEY值，设置的跳转URL
      */
     @XmlElement(name = "EventKey")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String eventKey;
 
     public String getEventKey() {

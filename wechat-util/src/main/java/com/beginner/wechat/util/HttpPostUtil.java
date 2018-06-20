@@ -8,25 +8,37 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
+ * http/https post访问
  * @author heqing
- * @date 2018/5/21.
+ * @date 2018/5/21
  */
 public class HttpPostUtil {
 
+    /**
+     * 发送post请求,获取json格式的应答
+     * @param url 请求路径加参数
+     * @param params 请求参数对象
+     * @return 服务端返回的数据
+     */
     public static JSONObject getResponse(String url, Object params) {
         return getResponse(url, JSON.toJSONString(params));
     }
 
+    /**
+     * 发送发送post请求请求,获取json格式的应答
+     * @param url 请求路径加参数
+     * @param params 请求参数
+     * @return 服务端返回的数据
+     */
     public static JSONObject getResponse(String url, String params) {
         return JSONObject.parseObject(sendJsonRequest(url, params));
     }
 
     /**
      * post请求连接获取相应数据
-     *
      * @param url 请求链接
      * @param params 请求参数（json格式）
-     * @return String  上传成功后，微信服务器返回的消息
+     * @return 上传成功后，微信服务器返回的数据
      */
     public static String sendJsonRequest(String url, String params) {
         StringBuilder response = new StringBuilder();
@@ -67,7 +79,7 @@ public class HttpPostUtil {
 
             // 断开连接
             conn.disconnect();
-        } catch(Exception e) {
+        } catch(IOException e) {
             e.printStackTrace();
         } finally {
             try{

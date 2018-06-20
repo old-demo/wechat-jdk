@@ -1,6 +1,7 @@
-package com.beginner.wechat.service;
+package com.beginner.wechat.test;
 
 import com.beginner.wechat.model.Result;
+import com.beginner.wechat.service.CustomerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,11 @@ public class CustomerTest {
     @Autowired
     CustomerService customerService;
 
-    private final static String TOKEN = "10_8_yqnYMZeUgxAAvoUxQ3_Gsrm0oFcCLFzkQKYp_NtBUrCxK7rndP5p0flzvnOQwpPeiRhHRip6gNYpNeQVIjtikvdYbFIdGtlzFhUjz4wLK2MX-eC-3oqSJ0BWGKoN-627KFXfXT0QXD8InKGNCeAGANUJ";
+    private final static String TOKEN = "10_HrMuD_zcqe34PhZ1VSgw4xlFm0JOOBYmcip9I4aOYG7NChWYW3nA7YYaTufAfX58IZbut2eWRrvixJbcYllzyXrSq-qR3YiPAkzJXQ0Fql_EMrcwtxlvsPNvB9E6Jy1YwV_ThV9P-abc4xTPPLGeAJAJFA";
 
     @Test
     public void addCustomerServiceTest() {
-        Result result = customerService.addCustomerService(TOKEN, "975656343@qq.com", "贺小白", "hq246512");
+        Result result = customerService.addCustomerService(TOKEN, "o0xVxt1HBqcN1zsXswCXFrpVfiWA", "贺小白", "hq246512");
         System.out.println("--->"+result);
     }
 

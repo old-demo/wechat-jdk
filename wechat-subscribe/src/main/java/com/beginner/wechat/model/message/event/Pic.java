@@ -1,12 +1,11 @@
 package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
@@ -21,7 +20,7 @@ public class Pic {
      * picMd5Sum 图片的MD5值
      */
     @XmlElement(name = "PicMd5Sum")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String picMd5Sum;
 
     public String getPicMd5Sum() {

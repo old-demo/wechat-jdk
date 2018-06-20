@@ -8,17 +8,16 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * 文件帮助类
+ * 微信多媒体文件帮助类
  * @author heqing
- * @date 2018/5/25.
+ * @date 2018/5/25
  */
 public class WechatFileUtil {
 
     /**
      * 将字符串存入对应的文件
-     *
      * @param content 文件内容
-     * @param file 文件
+     * @param file 本地文件
      */
     public static void stringToFile(String content, File file) {
         ByteArrayInputStream bis = null;
@@ -38,7 +37,7 @@ public class WechatFileUtil {
                 os.close();
             }
             bis.close();
-        } catch(Exception e) {
+        } catch(IOException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -49,7 +48,7 @@ public class WechatFileUtil {
                 if(bis != null) {
                     bis.close();
                 }
-            } catch (Exception e1) {
+            } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
@@ -59,9 +58,8 @@ public class WechatFileUtil {
      * 从网络Url中下载文件
      * @param urlStr 网络文件地址
      * @param file 本地文件
-     * @throws IOException
      */
-    public static void  downLoadFromUrl(String urlStr, File file){
+    public static void downLoadFromUrl(String urlStr, File file){
         InputStream inputStream = null;
         FileOutputStream fos = null;
         try {
@@ -90,7 +88,7 @@ public class WechatFileUtil {
 
             // 断开连接
             conn.disconnect();
-        } catch(Exception e) {
+        } catch(IOException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -100,12 +98,17 @@ public class WechatFileUtil {
                 if (inputStream != null) {
                     inputStream.close();
                 }
-            } catch(Exception e1) {
+            } catch(IOException e1) {
                 e1.printStackTrace();
             }
         }
     }
 
+    /**
+     * 从微信返回的地址下载文件
+     * @param url 微信文件地址
+     * @param file 本地文件
+     */
     public static JSONObject getFile(String url, File file){
         JSONObject response = new JSONObject();
         boolean isFile = true;
@@ -149,7 +152,7 @@ public class WechatFileUtil {
                     }
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             // 使用finally块来关闭输入流
@@ -171,26 +174,34 @@ public class WechatFileUtil {
                     response.put("errcode", 0);
                     response.put("data", file.getAbsolutePath());
                 }
-            } catch (Exception e2) {
+            } catch (IOException e2) {
                 e2.printStackTrace();
             }
         }
         return response;
     }
 
+    /**
+     * 将文件上传到微信服务器中
+     * @param url 请求链接
+     * @param file 上传的文件
+     * @return 上传成功后，微信服务器返回的数据（json格式）
+     */
     public static JSONObject jsonSendFile(String url, File file, String title, String introduction) {
         return JSONObject.parseObject(sendFile(url, file, title, introduction));
     }
 
     /**
-     * post请求连接获取相应数据
-     *
+     * 将文件上传到微信服务器中
      * @param url 请求链接
      * @param file 上传的文件
-     * @return String  上传成功后，微信服务器返回的消息
+     * @return 上传成功后，微信服务器返回的数据
      */
     public static String sendFile(String url, File file, String title, String introduction) {
         StringBuffer response = new StringBuffer();
+        BufferedReader bufferedReader = null;
+        InputStreamReader inputStreamReader = null;
+        InputStream inputStream = null;
         try {
             // 1.建立连接
             URL urlRequest = new URL(url);
@@ -244,24 +255,32 @@ public class WechatFileUtil {
             outputStream.close();
 
             // 5.将微信服务器返回的输入流转换成字符串
-            InputStream inputStream = conn.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            inputStream = conn.getInputStream();
+            inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+            bufferedReader = new BufferedReader(inputStreamReader);
             String str = null;
             while ((str = bufferedReader.readLine()) != null) {
                 response.append(str);
             }
-            bufferedReader.close();
-            inputStreamReader.close();
-            // 释放资源
-            inputStream.close();
-            inputStream = null;
             //关闭连接
             conn.disconnect();
-        } catch(Exception e) {
+        } catch(IOException e) {
             e.printStackTrace();
         } finally {
-
+            // 释放资源
+            try{
+                if(bufferedReader!=null){
+                    bufferedReader.close();
+                }
+                if(inputStreamReader!=null){
+                    inputStreamReader.close();
+                }
+                if(inputStream!=null){
+                    inputStream.close();
+                }
+            } catch(IOException ex){
+                ex.printStackTrace();
+            }
         }
         return response.toString();
     }

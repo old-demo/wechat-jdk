@@ -2,7 +2,7 @@ package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -23,7 +23,7 @@ public class TemplateEvent extends BaseMsg {
      * event 事件，事件类型，参见EventType
      */
     @XmlElement(name = "Status")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String status;
 
     public String getStatus() {

@@ -103,7 +103,7 @@ public interface MaterialService {
      *
      * @param accessToken 微信access_token
      * @param mediaId 媒体文件ID
-     * @param file 保存的文件
+     * @param file 保存的文件，图文消息传null
      * @return
      */
     Result getMaterial(String accessToken, String mediaId, File file);

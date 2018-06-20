@@ -16,9 +16,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * 自定义菜单实现类
- *
  * @author heqing
- * @date 2018/5/21.
+ * @date 2018/5/21
  */
 @Service
 public class MenuServiceImpl implements MenuService {

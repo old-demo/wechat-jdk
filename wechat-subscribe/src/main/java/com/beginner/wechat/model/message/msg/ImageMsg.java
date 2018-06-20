@@ -2,7 +2,7 @@ package com.beginner.wechat.model.message.msg;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.util.CDataAdapter;
+import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -20,14 +20,14 @@ public class ImageMsg extends BaseMsg {
      * picUrl 图片链接（由系统生成）
      */
     @XmlElement(name = "PicUrl")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String picUrl;
 
     /**
      * mediaId 图片消息媒体id，可以调用多媒体文件下载接口拉取数据。
      */
     @XmlElement(name = "MediaId")
-    @XmlJavaTypeAdapter(CDataAdapter.class)
+    @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String mediaId;
 
     public String getPicUrl() {

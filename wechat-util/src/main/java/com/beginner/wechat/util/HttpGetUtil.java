@@ -10,7 +10,6 @@ import java.net.URLConnection;
 
 /**
  * http/https get访问
- *
  * @author heqing
  * @date 2018/5/14
  */
@@ -19,7 +18,7 @@ public class HttpGetUtil {
     /**
      * 发送get请求,获取json格式的应答
      * @param url 请求路径加参数
-     * @return
+     * @return 服务端返回的数据
      */
     public static JSONObject getResponse(String url) {
         return JSONObject.parseObject(sendRequest(url));
@@ -27,19 +26,8 @@ public class HttpGetUtil {
 
     /**
      * 发送get请求
-     * @param url 请求路径
-     * @param param 请求参数
-     * @return
-     */
-    public static String sendRequest(String url, String param){
-        String urlNameString = url + "?" + param;
-        return sendRequest(urlNameString);
-    }
-
-    /**
-     * 发送get请求
      * @param url 请求路径加参数
-     * @return
+     * @return 服务端返回的数据
      */
     public static String sendRequest(String url) {
         String response = "";
@@ -65,7 +53,7 @@ public class HttpGetUtil {
             while ((line = buffReader.readLine()) != null) {
                 response += line;
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             // 使用finally块来关闭输入流
@@ -86,4 +74,14 @@ public class HttpGetUtil {
         return response;
     }
 
+    /**
+     * 发送get请求
+     * @param url 请求路径
+     * @param param 请求参数
+     * @return 服务端返回的数据
+     */
+    public static String sendRequest(String url, String param){
+        String urlNameString = url + "?" + param;
+        return sendRequest(urlNameString);
+    }
 }

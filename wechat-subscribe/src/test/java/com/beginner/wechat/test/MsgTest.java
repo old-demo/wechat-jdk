@@ -1,17 +1,15 @@
-package com.beginner.wechat.service;
+package com.beginner.wechat.test;
 
-import com.alibaba.fastjson.JSON;
 import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.TestMsg;
-import com.beginner.wechat.model.message.AutoReplyInfo;
+import com.beginner.wechat.service.MsgService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 

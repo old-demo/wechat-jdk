@@ -1,11 +1,11 @@
-package com.beginner.wechat.service;
+package com.beginner.wechat.test;
 
 import com.beginner.wechat.constant.MediaType;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.TestNews;
 import com.beginner.wechat.model.material.Article;
-import com.beginner.wechat.service.MaterialService;
 
+import com.beginner.wechat.service.MaterialService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import java.util.List;
 @SpringBootTest
 public class MaterialTest {
 
-    private final static String TOKEN = "10_dUIS8CqbAxc3sGfTeCaJ2CoSMiUucRZH-Qj3T1YVmDhkV_yTfpxyA9FujX_Wp4qj4jl0NKPVD-mzXooy8yKhJUqAsX19n1XdnAK7VJiFch7IgCXV3uvqs0bcX4qJ6VC1WFsTgVic0quJgh8RPHEiAJAXPM";
+    private final static String TOKEN = "10_FkxXRDCmLL3VJz2C27mLPS51amWNVunE9GFA8zZHkCnQaJscQ2o39k0rHswzIUVNwe1lLd631nqZYrBBUqcG6kAURSzbK-GtW_6kGowg9OZRKT1kJ6baSMZTgPBv8YF1f5uhwhrezlgbYQImLRLdAJAXDX";
     
     @Autowired
     MaterialService materialService;

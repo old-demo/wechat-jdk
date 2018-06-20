@@ -20,6 +20,7 @@
 	<modules>
 		<module>wechat-util</module>
 		<module>wechat-subscribe</module>
+		<module>wechat-public</module>
 	</modules>
 
 	<properties>
@@ -54,11 +55,6 @@
 			<artifactId>servlet-api</artifactId>
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.beginner.wechat</groupId>
-			<artifactId>wechat-subscribe</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

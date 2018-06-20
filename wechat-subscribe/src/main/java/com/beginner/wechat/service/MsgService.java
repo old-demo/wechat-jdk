@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * 消息管理
  * 多客服升级为新版客服，某些接口不再提服务，详见：
- *  https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&key=1464266075&version=12&lang=zh_CN
+ *  https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&key=1464266075&version=12&lang=zh_CN;
  *
  * @author heqing
  * @date 2018/5/31.

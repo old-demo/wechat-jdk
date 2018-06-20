@@ -32,7 +32,6 @@ public class CustomerServiceImpl implements CustomerService {
         params.put("nickname", nickName);
         params.put("password", password);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
-        System.out.println("---"+response.toJSONString());
         return new Result(response);
     }
 
@@ -70,7 +69,6 @@ public class CustomerServiceImpl implements CustomerService {
     public Result<List<CustomerServiceAccount>> listAccount(String accessToken) {
         String url = CustomerApi.GET_KF_LIST.replace("ACCESS_TOKEN", accessToken);
         JSONObject response =  HttpGetUtil.getResponse(url);
-        System.out.println("-----"+response.toJSONString());
         List<CustomerServiceAccount> customerServiceAccountList = new ArrayList<>();
         JSONArray kfList = response.getJSONArray("kf_list");
         if(kfList != null) {

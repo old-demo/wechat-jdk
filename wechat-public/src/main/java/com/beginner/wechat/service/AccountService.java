@@ -2,7 +2,6 @@ package com.beginner.wechat.service;
 
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.account.QRCode;
-import com.beginner.wechat.model.message.SendTemplate;
 
 import java.io.File;
 

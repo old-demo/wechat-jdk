@@ -7,45 +7,45 @@ import com.alibaba.fastjson.annotation.JSONField;
  * 自定义菜单中图文信息
  * 请注意这是自定义菜单编辑中的图文消息，本消息不能通过接口创建
  * @author heqing
- * @date 2018/5/23.
+ * @date 2018/5/23
  */
 public class NewsInfo {
 
     /**
-     * title : 图文消息的标题
+     * 图文消息的标题
      */
     private String title;
 
     /**
-     * digest : 摘要
+     * 摘要
      */
     private String digest;
 
     /**
-     * author : 作者
+     * 作者
      */
     private String author;
 
     /**
-     * show_cover : 是否显示封面，0为不显示，1为显示
+     * 是否显示封面，0为不显示，1为显示
      */
     @JSONField(name = "show_cover")
     private String showCover;
 
     /**
-     * cover_url : 封面图片的URL
+     * 封面图片的URL
      */
     @JSONField(name = "cover_url")
     private String coverUrl;
 
     /**
-     * content_url : 正文的URL
+     * 正文的URL
      */
     @JSONField(name = "content_url")
     private String contentUrl;
 
     /**
-     * sourceUrl : 原文的URL，若置空则无查看原文入口
+     * 原文的URL，若置空则无查看原文入口
      */
     @JSONField(name = "source_url")
     private String sourceUrl;
