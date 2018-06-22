@@ -24,28 +24,28 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Result createMenu(String accessToken, Menu menu) {
-        String url = MenuApi.CREATE_MENU.replace("ACCESS_TOKEN", accessToken);
+        String url = MenuApi.MENU_CREATE.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, menu);
         return new Result(response);
     }
 
     @Override
     public Result<AllMenu> getMenuInfo(String accessToken) {
-        String url = MenuApi.GET_MENU.replace("ACCESS_TOKEN", accessToken);
+        String url = MenuApi.MENU_GET.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
         return new Result(response, AllMenu.class);
     }
 
     @Override
     public Result delMenu(String accessToken) {
-        String url = MenuApi.DEL_MENU.replace("ACCESS_TOKEN", accessToken);
+        String url = MenuApi.MENU_DELETE.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
         return new Result(response);
     }
 
     @Override
     public Result<String> addConditional(String accessToken, ConditionalMenu conditionalMenu) {
-        String url = MenuApi.ADD_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
+        String url = MenuApi.MENU_ADD_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, conditionalMenu);
         String menuId = response.getString("menuid");
         response.put("data", menuId == null ? "" : menuId);
@@ -54,7 +54,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Result delConditional(String accessToken, String menuId) {
-        String url = MenuApi.DEL_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
+        String url = MenuApi.MENU_DEL_CONDITIONAL.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("menuid", menuId);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
@@ -63,7 +63,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Result<ConditionalMenu> tryMatch(String accessToken, String userId) {
-        String url = MenuApi.TRY_MATCH.replace("ACCESS_TOKEN", accessToken);
+        String url = MenuApi.MENU_TRY_MATCH.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("user_id", userId);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
@@ -72,7 +72,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Result<MenuConfig> getMenuConfigInfo(String accessToken) {
-        String url = MenuApi.GET_MENU_CONFIG.replace("ACCESS_TOKEN", accessToken);
+        String url = MenuApi.MENU_GET_CURRENT_INFO.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
         Result result = new Result();
         result.setErrcode(response.getInteger("errcode"));

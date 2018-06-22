@@ -11,13 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @author heqing
- * @date 2018/5/21.
+ * @date 2018/5/21
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MenuTest {
 
-    private final static String TOKEN = "10_L_aAomjDFXil6NL_esx1MKGSyP3SUp5_PsBfA_hhxOMnKWdsIeJUG0-wjP8B87-_n_6zdoq8cyhjSElg-AZVq3v5kdKZWk4ydYsMaVzGnexKoktaEO1Vo7tOs8zKpQkd4NKTRL7hy4O7BA18IELcABAYUB";
+    private final static String TOKEN = "10_0-LI0h0CUYipW_CGd-v3hVF6qkKPcrQ-qGk4KSoF2levCC6p9tdLwi3ohFgoUqf0F6IRuw09Vs1icUZ7bZvS8idEJu2utcRLxPeRSnp0UEO9Yk2pqI1UqeaDxThK2TNVKbIr-dUP4AAkM0UsUFJjAAAQBF";
 
     @Autowired
     MenuService menuService;

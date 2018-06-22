@@ -52,7 +52,7 @@ public class SubButton {
     private String appId;
 
     /**
-     * pminiprogram类型必须<br/>
+     * pminiprogram类型必传<br/>
      * 小程序的页面路径
      */
     @JSONField(name = "pagepath")
