@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * 扫描信息
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ScanCodeInfo {

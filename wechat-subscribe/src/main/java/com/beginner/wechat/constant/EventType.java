@@ -95,7 +95,12 @@ public enum EventType {
     /**
      * 年审通知
      */
-    ANNUAL_RENEW("annual_renew");
+    ANNUAL_RENEW("annual_renew"),
+
+    /**
+     * 认证过期失效通知审通知
+     */
+    VERIFY_EXPIRED("verify_expired");
 
     EventType(String name) {
         this.name = name;

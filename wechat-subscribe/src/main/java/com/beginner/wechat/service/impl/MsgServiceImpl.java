@@ -9,13 +9,8 @@ import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.message.AutoReplyInfo;
 import com.beginner.wechat.model.message.BaseMsg;
 import com.beginner.wechat.model.message.SendTemplate;
-import com.beginner.wechat.model.message.event.LocationEvent;
-import com.beginner.wechat.model.message.event.MenuClickEvent;
-import com.beginner.wechat.model.message.event.ScanEvent;
-import com.beginner.wechat.model.message.event.SubscribeEvent;
+import com.beginner.wechat.model.message.event.*;
 import com.beginner.wechat.model.message.event.model.AuthenticationEvent;
-import com.beginner.wechat.model.message.event.model.PicPhotoEvent;
-import com.beginner.wechat.model.message.event.model.TemplateEvent;
 import com.beginner.wechat.model.message.msg.*;
 import com.beginner.wechat.service.MsgHandlerService;
 import com.beginner.wechat.service.MsgService;
@@ -139,22 +134,22 @@ public class MsgServiceImpl implements MsgService {
                 response = msgHandlerService.handlerUnSubscribeEvent((SubscribeEvent) XmlUtil.stringToXml(xmlStr, SubscribeEvent.class));
             } else if(EventType.SCAN.getName().equals(baseMsg.getEventType())) {
                 // 扫描带参数二维码事件
-                response = msgHandlerService.handlerScanEvent((ScanEvent) XmlUtil.stringToXml(xmlStr, ScanEvent.class));
+                response = msgHandlerService.handlerScanEvent((ScanCodeEvent) XmlUtil.stringToXml(xmlStr, ScanCodeEvent.class));
             } else if(EventType.LOCATION.getName().equals(baseMsg.getEventType())) {
                 // 上报地理位置事件
                 response = msgHandlerService.handlerLocationEvent((LocationEvent) XmlUtil.stringToXml(xmlStr, LocationEvent.class));
             } else if(EventType.MENU_CLICK.getName().equals(baseMsg.getEventType())) {
                 // 点击菜单拉取消息时的事件
-                response = msgHandlerService.handlerClickEvent((MenuClickEvent) XmlUtil.stringToXml(xmlStr, MenuClickEvent.class));
+                response = msgHandlerService.handlerClickEvent((MenuEvent) XmlUtil.stringToXml(xmlStr, MenuEvent.class));
             } else if(EventType.MENU_VIEW.getName().equals(baseMsg.getEventType())) {
                 // 点击菜单跳转链接时的事件
-                response = msgHandlerService.handlerViewEvent((MenuClickEvent) XmlUtil.stringToXml(xmlStr, MenuClickEvent.class));
+                response = msgHandlerService.handlerViewEvent((MenuEvent) XmlUtil.stringToXml(xmlStr, MenuEvent.class));
             } else if(EventType.SCANCODE_PUSH.getName().equals(baseMsg.getEventType())) {
                 // 扫码推事件的事件
-                response = msgHandlerService.handlerScancodePushEvent((ScanEvent) XmlUtil.stringToXml(xmlStr, ScanEvent.class));
+                response = msgHandlerService.handlerScancodePushEvent((ScanCodeEvent) XmlUtil.stringToXml(xmlStr, ScanCodeEvent.class));
             } else if(EventType.SCANCODE_WAITMSG.getName().equals(baseMsg.getEventType())) {
                 // 扫码推事件且弹出“消息接收中”提示框的事件
-                response = msgHandlerService.handlerScancodeWaitmsgEvent((ScanEvent) XmlUtil.stringToXml(xmlStr, ScanEvent.class));
+                response = msgHandlerService.handlerScancodeWaitmsgEvent((ScanCodeEvent) XmlUtil.stringToXml(xmlStr, ScanCodeEvent.class));
             } else if(EventType.PIC_SYSPHOTO.getName().equals(baseMsg.getEventType())) {
                 // 弹出系统拍照发图的事件
                 response = msgHandlerService.handlerPicSysphotoEvent((PicPhotoEvent) XmlUtil.stringToXml(xmlStr, PicPhotoEvent.class));
@@ -172,10 +167,13 @@ public class MsgServiceImpl implements MsgService {
                 // 模板推送后的事件
                 TemplateEvent templateEvent = (TemplateEvent) XmlUtil.stringToXml(xmlStr, TemplateEvent.class);
                 if(success.equals(templateEvent.getStatus())) {
+                    //送达成功时
                     response = msgHandlerService.handlerSendTemplateSuccessEvent(templateEvent);
                 } else if(refuse.equals(templateEvent.getStatus())) {
+                    // 送达由于用户拒收（用户设置拒绝接收公众号消息）而失败时
                     response = msgHandlerService.handlerSendTemplateRefuseEvent(templateEvent);
                 } else if(failed.equals(templateEvent.getStatus())) {
+                    // 送达由于其他原因失败时
                     response = msgHandlerService.handlerSendTemplateFailedEvent(templateEvent);
                 }
             } else if(EventType.QUALIFICATION_VERIFY_SUCCESS.getName().equals(baseMsg.getEventType())) {
@@ -193,6 +191,9 @@ public class MsgServiceImpl implements MsgService {
             } else if(EventType.ANNUAL_RENEW.getName().equals(baseMsg.getEventType())) {
                 // 年审通知
                 response = msgHandlerService.handlerAnnualRenewEvent((AuthenticationEvent) XmlUtil.stringToXml(xmlStr, AuthenticationEvent.class));
+            } else if(EventType.VERIFY_EXPIRED.getName().equals(baseMsg.getEventType())) {
+                // 认证过期失效通知审通知
+                response = msgHandlerService.handlerVerifyExpiredEvent((AuthenticationEvent) XmlUtil.stringToXml(xmlStr, AuthenticationEvent.class));
             }
         }
         return response;

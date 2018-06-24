@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.beginner.wechat.constant.EventType;
 import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.message.BaseMsg;
-import com.beginner.wechat.model.message.event.model.PicPhotoEvent;
+import com.beginner.wechat.model.message.event.PicPhotoEvent;
 import com.beginner.wechat.model.message.msg.ImageMsg;
 import com.beginner.wechat.model.message.msg.TextMsg;
 import com.beginner.wechat.util.XmlUtil;

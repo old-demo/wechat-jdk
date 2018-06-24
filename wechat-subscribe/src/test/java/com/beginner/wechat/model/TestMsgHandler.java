@@ -1,7 +1,7 @@
 package com.beginner.wechat.model;
 
 import com.beginner.wechat.model.message.event.SubscribeEvent;
-import com.beginner.wechat.model.message.event.model.PicPhotoEvent;
+import com.beginner.wechat.model.message.event.PicPhotoEvent;
 import com.beginner.wechat.service.impl.MsgHandlerServiceImpl;
 import org.springframework.stereotype.Service;
 

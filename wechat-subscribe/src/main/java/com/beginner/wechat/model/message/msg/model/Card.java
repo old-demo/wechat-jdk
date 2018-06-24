@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * 卡券
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 public class Card {
 

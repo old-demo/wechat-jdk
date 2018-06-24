@@ -17,32 +17,31 @@ public interface MsgService {
 
     /**
      * 校验signature判断是否接入成功
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1434696670">微信文档--消息加解密说明</a>
      * @param token 微信基本配置中的Token
      * @param timestamp 时间戳
      * @param nonce 随机数
      * @param signature 微信加密签名
-     * @return
+     * @return 是否接入成功
      */
     boolean checkSignature(String token, String timestamp, String nonce, String signature);
 
     /**
      * 处理接收到的微信消息
-     *
      * @param request 请求对象
      * @param response 返回对象
      * @param msgHandlerService 处理类
      * @param appid 开发者ID(AppID)
      * @param token 微信基本配置中的Token
      * @param encodingAesKey 微信基本配置中的消息加密密钥
-     * @return
      */
     void handlerMsg(HttpServletRequest request, HttpServletResponse response, MsgHandlerService msgHandlerService,
                     String appid, String token, String encodingAesKey);
 
     /**
      * 解析xml并进行相应处理
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1434696670">微信文档--消息加解密说明</a>
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140543">微信文档--被动回复用户消息</a>
      * @param xmlStr 接收的消息xml
      * @param msgHandlerService 处理类
      * @return

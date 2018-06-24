@@ -86,10 +86,10 @@ public interface MsgHandlerService {
     /**
      * 处理扫描带参数二维码事件
      * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140454">微信文档--事件消息</a>
-     * @param scanEvent 扫描带参数二维码事件
+     * @param scanCodeEvent 扫描带参数二维码事件
      * @return
      */
-    String handlerScanEvent(ScanEvent scanEvent);
+    String handlerScanEvent(ScanCodeEvent scanCodeEvent);
 
     /**
      * 处理上报地理位置事件
@@ -105,7 +105,7 @@ public interface MsgHandlerService {
      * @param clickEvent 点击菜单拉取消息时的事件
      * @return
      */
-    String handlerClickEvent(MenuClickEvent clickEvent);
+    String handlerClickEvent(MenuEvent clickEvent);
 
     /**
      * 处理点击菜单跳转链接时的事件
@@ -113,27 +113,27 @@ public interface MsgHandlerService {
      * @param viewEvent 点击菜单跳转链接时的事件
      * @return
      */
-    String handlerViewEvent(MenuClickEvent viewEvent);
+    String handlerViewEvent(MenuEvent viewEvent);
 
     /**
      * 处理扫码推事件的事件
-     *
-     * @param scanEvent 扫码推事件的事件
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141016">微信文档--自定义菜单事件推送</a>
+     * @param scanCodeEvent 扫码推事件的事件
      * @return
      */
-    String handlerScancodePushEvent(ScanEvent scanEvent);
+    String handlerScancodePushEvent(ScanCodeEvent scanCodeEvent);
 
     /**
      * 处理扫码推事件且弹出“消息接收中”提示框的事件
-     *
-     * @param scanEvent 扫码推事件且弹出“消息接收中”提示框的事件
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141016">微信文档--自定义菜单事件推送</a>
+     * @param scanCodeEvent 扫码推事件且弹出“消息接收中”提示框的事件
      * @return
      */
-    String handlerScancodeWaitmsgEvent(ScanEvent scanEvent);
+    String handlerScancodeWaitmsgEvent(ScanCodeEvent scanCodeEvent);
 
     /**
      * 处理弹出系统拍照发图的事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141016">微信文档--自定义菜单事件推送</a>
      * @param picPhotoEvent 弹出系统拍照发图的事件
      * @return
      */
@@ -141,7 +141,7 @@ public interface MsgHandlerService {
 
     /**
      * 处理弹出拍照或者相册发图的事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141016">微信文档--自定义菜单事件推送</a>
      * @param picPhotoEvent 弹出拍照或者相册发图的事件
      * @return
      */
@@ -149,7 +149,7 @@ public interface MsgHandlerService {
 
     /**
      * 处理弹出微信相册发图器的事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141016">微信文档--自定义菜单事件推送</a>
      * @param picPhotoEvent 弹出微信相册发图器的事件
      * @return
      */
@@ -157,7 +157,7 @@ public interface MsgHandlerService {
 
     /**
      * 处理弹出地理位置选择器的事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141016">微信文档--自定义菜单事件推送</a>
      * @param locationEvent 弹出地理位置选择器的事件
      * @return
      */
@@ -165,7 +165,7 @@ public interface MsgHandlerService {
 
     /**
      * 在模版消息发送任务完成后，成功通知
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277">微信文档--模板消息接口</a>
      * @param templateEvent 模板事件
      * @return
      */
@@ -173,7 +173,7 @@ public interface MsgHandlerService {
 
     /**
      * 在模版消息发送任务完成后，用户拒绝通知
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277">微信文档--模板消息接口</a>
      * @param templateEvent 模板事件
      * @return
      */
@@ -181,7 +181,7 @@ public interface MsgHandlerService {
 
     /**
      * 在模版消息发送任务完成后，未知原因失败通知
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277">微信文档--模板消息接口</a>
      * @param templateEvent 模板事件
      * @return
      */
@@ -189,7 +189,7 @@ public interface MsgHandlerService {
 
     /**
      * 资质认证成功通知
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455785130">微信文档--微信认证事件推送</a>
      * @param authenticationEvent 认证事件
      * @return
      */
@@ -197,7 +197,7 @@ public interface MsgHandlerService {
 
     /**
      * 资质认证失败通知
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455785130">微信文档--微信认证事件推送</a>
      * @param authenticationEvent 认证事件
      * @return
      */
@@ -205,7 +205,7 @@ public interface MsgHandlerService {
 
     /**
      * 名称认证成功通知
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455785130">微信文档--微信认证事件推送</a>
      * @param authenticationEvent 认证事件
      * @return
      */
@@ -213,7 +213,7 @@ public interface MsgHandlerService {
 
     /**
      * 名称认证失败通知
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455785130">微信文档--微信认证事件推送</a>
      * @param authenticationEvent 认证事件
      * @return
      */
@@ -221,9 +221,17 @@ public interface MsgHandlerService {
 
     /**
      * 年审通知
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455785130">微信文档--微信认证事件推送</a>
      * @param authenticationEvent 认证事件
      * @return
      */
     String handlerAnnualRenewEvent(AuthenticationEvent authenticationEvent);
+
+    /**
+     * 认证过期失效通知审通知
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1455785130">微信文档--微信认证事件推送</a>
+     * @param authenticationEvent 认证事件
+     * @return
+     */
+    String handlerVerifyExpiredEvent(AuthenticationEvent authenticationEvent);
 }

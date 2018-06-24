@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * 图文消息中的文章
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Articles {

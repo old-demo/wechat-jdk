@@ -1,8 +1,6 @@
 package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.constant.EventType;
-import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.message.BaseMsg;
 import com.beginner.wechat.adapter.XmlDataAdapter;
 
@@ -13,32 +11,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
- * 自定义菜单点击事件
+ * 模板推送后的事件
  * @author heqing
- * @date 2018/5/30
+ * @date 2018/6/4
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
-public class MenuClickEvent extends BaseMsg {
+public class TemplateEvent extends BaseMsg {
 
     /**
-     * 事件KEY值，与自定义菜单接口中KEY值对应
+     * 事件，事件类型，参见 com.beginner.wechat.constant.EventType
      */
-    @XmlElement(name = "EventKey")
+    @XmlElement(name = "Status")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
-    private String eventKey;
+    private String status;
 
-    public String getEventKey() {
-        return eventKey;
+    public String getStatus() {
+        return status;
     }
 
-    public void setEventKey(String eventKey) {
-        this.eventKey = eventKey;
-    }
-
-    public MenuClickEvent() {
-        this.msgType = MsgType.EVENT.getName();
-        this.eventType = EventType.MENU_CLICK.getName();
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

@@ -78,7 +78,6 @@ public class LocationEvent extends BaseMsg {
 
     public LocationEvent() {
         this.msgType = MsgType.EVENT.getName();
-        this.eventType = EventType.LOCATION.getName();
     }
 
     @Override

@@ -60,7 +60,7 @@ public class MsgHandlerServiceImpl implements MsgHandlerService {
     }
 
     @Override
-    public String handlerScanEvent(ScanEvent scanEvent) {
+    public String handlerScanEvent(ScanCodeEvent scanCodeEvent) {
         return "success";
     }
 
@@ -70,22 +70,22 @@ public class MsgHandlerServiceImpl implements MsgHandlerService {
     }
 
     @Override
-    public String handlerClickEvent(MenuClickEvent clickEvent) {
+    public String handlerClickEvent(MenuEvent clickEvent) {
         return "success";
     }
 
     @Override
-    public String handlerViewEvent(MenuClickEvent viewEvent) {
+    public String handlerViewEvent(MenuEvent viewEvent) {
         return "success";
     }
 
     @Override
-    public String handlerScancodePushEvent(ScanEvent scanEvent) {
+    public String handlerScancodePushEvent(ScanCodeEvent scanCodeEvent) {
         return "success";
     }
 
     @Override
-    public String handlerScancodeWaitmsgEvent(ScanEvent scanEvent) {
+    public String handlerScancodeWaitmsgEvent(ScanCodeEvent scanCodeEvent) {
         return "success";
     }
 
@@ -146,6 +146,11 @@ public class MsgHandlerServiceImpl implements MsgHandlerService {
 
     @Override
     public String handlerAnnualRenewEvent(AuthenticationEvent authenticationEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerVerifyExpiredEvent(AuthenticationEvent authenticationEvent) {
         return "success";
     }
 }

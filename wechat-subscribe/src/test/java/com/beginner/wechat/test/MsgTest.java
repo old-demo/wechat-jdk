@@ -53,7 +53,7 @@ public class MsgTest {
                         "<FromUserName>222</FromUserName>" +
                          "<CreateTime>123456789</CreateTime>" +
                         "<MsgType>event</MsgType>" +
-                        "<Event>unsubscribe</Event>" +
+                        "<Event>subscribe</Event>" +
                 "</xml>";
         System.out.println("-->"+msgService.analysisMsg(xmlStr, testMsg));
     }

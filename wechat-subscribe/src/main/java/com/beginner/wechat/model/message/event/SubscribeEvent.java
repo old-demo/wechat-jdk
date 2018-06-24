@@ -52,7 +52,6 @@ public class SubscribeEvent extends BaseMsg {
 
     public SubscribeEvent() {
         this.msgType = MsgType.EVENT.getName();
-        this.eventType = EventType.SUBSCRIBE.getName();
     }
 
     @Override
