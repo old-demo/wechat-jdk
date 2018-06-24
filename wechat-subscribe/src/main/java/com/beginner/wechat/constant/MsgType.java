@@ -2,64 +2,72 @@ package com.beginner.wechat.constant;
 
 /**
  * 消息类型
- *
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 public enum MsgType {
 
     /**
-     * mpnews : 图文消息
-     */
-    MPNEWS("mpnews"),
-
-    /**
-     * music : 音乐
-     */
-    MUSIC("music"),
-
-    /**
-     * wxcard : 卡券消息
-     */
-    WXCARD("wxcard"),
-
-    /**
-     * text : 文本消息
+     * 文本消息
      */
     TEXT("text"),
-
     /**
-     * image : 图片消息
+     * 图片消息
      */
     IMAGE("image"),
 
     /**
-     * voice : 语音消息
+     * 语音消息
      */
     VOICE("voice"),
 
     /**
-     * video : 视频消息
+     * 视频消息
      */
     VIDEO("video"),
 
     /**
-     * shortvideo : 小视频消息
+     * 小视频消息
      */
     SHORT_VIDEO("shortvideo"),
 
     /**
-     * location : 地理位置消息
+     * 地理位置消息
      */
     LOCATION("location"),
 
     /**
-     * link : 链接消息
+     * 链接消息
      */
     LINK("link"),
 
     /**
-     * event : 事件消息
+     * 图文消息（点击跳转到外链）
+     */
+    NEWS("news"),
+
+    /**
+     * 图文消息（点击跳转到图文消息页面）
+     */
+    MPNEWS("mpnews"),
+
+    /**
+     * 音乐
+     */
+    MUSIC("music"),
+
+    /**
+     * 卡券消息
+     */
+    WXCARD("wxcard"),
+
+    /**
+     * 小程序卡片
+     */
+    MINI_PROGRAM_PAGE("miniprogrampage"),
+
+    /**
+     * 事件消息
      */
     EVENT("event");
 

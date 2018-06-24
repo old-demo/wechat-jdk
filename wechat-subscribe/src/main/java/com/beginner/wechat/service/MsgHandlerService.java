@@ -1,18 +1,19 @@
 package com.beginner.wechat.service;
 
 import com.beginner.wechat.model.message.event.*;
+import com.beginner.wechat.model.message.event.model.*;
 import com.beginner.wechat.model.message.msg.*;
 
 /**
- * 处理接收到的消息
+ * 处理接收到的消息接口
  * @author heqing
- * @date 2018/5/31.
+ * @date 2018/5/31
  */
-public interface HandlerMsgService {
+public interface MsgHandlerService {
 
     /**
      * 处理文本消息
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453">微信文档--普通消息</a>
      * @param textMsg 文本消息
      * @return 返回消息
      */
@@ -20,7 +21,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理图片消息
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453">微信文档--普通消息</a>
      * @param imageMsg 图片消息
      * @return
      */
@@ -28,7 +29,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理语音消息
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453">微信文档--普通消息</a>
      * @param voiceMsg 语音消息
      * @return
      */
@@ -36,7 +37,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理视频消息
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453">微信文档--普通消息</a>
      * @param videoMsg 视频消息
      * @return
      */
@@ -44,7 +45,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理小视频消息
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453">微信文档--普通消息</a>
      * @param videoMsg 视频消息
      * @return
      */
@@ -52,7 +53,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理地理位置消息
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453">微信文档--普通消息</a>
      * @param locationMsg 地理位置消息
      * @return
      */
@@ -60,7 +61,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理链接消息
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140453">微信文档--普通消息</a>
      * @param linkMsg 链接消息
      * @return
      */
@@ -68,7 +69,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理关注事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140454">微信文档--事件消息</a>
      * @param subscribeEvent 关注事件
      * @return
      */
@@ -76,7 +77,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理取消关注事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140454">微信文档--事件消息</a>
      * @param unsubscribeEvent 取消关注事件
      * @return
      */
@@ -84,7 +85,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理扫描带参数二维码事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140454">微信文档--事件消息</a>
      * @param scanEvent 扫描带参数二维码事件
      * @return
      */
@@ -92,7 +93,7 @@ public interface HandlerMsgService {
 
     /**
      * 处理上报地理位置事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140454">微信文档--事件消息</a>
      * @param locationEvent 上报地理位置事件
      * @return
      */
@@ -100,19 +101,19 @@ public interface HandlerMsgService {
 
     /**
      * 处理点击菜单拉取消息时的事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140454">微信文档--事件消息</a>
      * @param clickEvent 点击菜单拉取消息时的事件
      * @return
      */
-    String handlerClickEvent(MenuEvent clickEvent);
+    String handlerClickEvent(MenuClickEvent clickEvent);
 
     /**
      * 处理点击菜单跳转链接时的事件
-     *
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140454">微信文档--事件消息</a>
      * @param viewEvent 点击菜单跳转链接时的事件
      * @return
      */
-    String handlerViewEvent(MenuEvent viewEvent);
+    String handlerViewEvent(MenuClickEvent viewEvent);
 
     /**
      * 处理扫码推事件的事件

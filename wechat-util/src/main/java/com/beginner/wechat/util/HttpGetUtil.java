@@ -4,7 +4,6 @@ package com.beginner.wechat.util;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 

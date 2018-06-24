@@ -1,7 +1,10 @@
 package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
+import com.beginner.wechat.constant.EventType;
+import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.message.BaseMsg;
+import com.beginner.wechat.model.message.event.model.SendLocationInfo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,32 +14,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * 上报地理位置事件
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
 public class LocationEvent extends BaseMsg {
 
     /**
-     * latitude 地理位置纬度
+     * 地理位置纬度
      */
     @XmlElement(name = "Latitude")
     private Double latitude;
 
     /**
-     * longitude 地理位置经度
+     * 地理位置经度
      */
     @XmlElement(name = "Longitude")
     private Double longitude;
 
     /**
-     * precision 地理位置精度
+     * 地理位置精度
      */
     @XmlElement(name = "Precision")
     private Double precision;
 
     /**
-     * sendLocationInfo 发送的位置信息
+     * 发送的位置信息
      */
     @XmlElement(name = "SendLocationInfo")
     private SendLocationInfo sendLocationInfo;
@@ -71,6 +74,11 @@ public class LocationEvent extends BaseMsg {
 
     public void setSendLocationInfo(SendLocationInfo sendLocationInfo) {
         this.sendLocationInfo = sendLocationInfo;
+    }
+
+    public LocationEvent() {
+        this.msgType = MsgType.EVENT.getName();
+        this.eventType = EventType.LOCATION.getName();
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.model.message.BaseMsg;
 import com.beginner.wechat.adapter.XmlDataAdapter;
+import com.beginner.wechat.constant.EventType;
+import com.beginner.wechat.constant.MsgType;
+import com.beginner.wechat.model.message.BaseMsg;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,27 +13,32 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
- * 模板推送后的事件
+ * 自定义菜单跳转事件
  * @author heqing
- * @date 2018/6/4.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
-public class TemplateEvent extends BaseMsg {
+public class MenuViewEvent extends BaseMsg {
 
     /**
-     * event 事件，事件类型，参见EventType
+     * 事件KEY值，设置的跳转URL
      */
-    @XmlElement(name = "Status")
+    @XmlElement(name = "EventKey")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
-    private String status;
+    private String eventKey;
 
-    public String getStatus() {
-        return status;
+    public String getEventKey() {
+        return eventKey;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEventKey(String eventKey) {
+        this.eventKey = eventKey;
+    }
+
+    public MenuViewEvent() {
+        this.msgType = MsgType.EVENT.getName();
+        this.eventType = EventType.MENU_VIEW.getName();
     }
 
     @Override

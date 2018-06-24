@@ -15,10 +15,6 @@ public class BaseApi {
     /**
      * 获取微信TOKEN
      */
-    public final static String GET_TOKEN = WEIXIN + "/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+    public final static String TOKEN_GET = WEIXIN + "/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
 
-    /**
-     * 获取微信服务器IP地址
-     */
-    public final static String GET_CALLBACK_IP = WEIXIN + "/getcallbackip?access_token=ACCESS_TOKEN";
 }

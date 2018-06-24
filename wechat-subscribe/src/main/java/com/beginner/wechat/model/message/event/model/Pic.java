@@ -1,4 +1,4 @@
-package com.beginner.wechat.model.message.event;
+package com.beginner.wechat.model.message.event.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.adapter.XmlDataAdapter;
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class Pic {
 
     /**
-     * picMd5Sum 图片的MD5值
+     * 图片的MD5值
      */
     @XmlElement(name = "PicMd5Sum")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)

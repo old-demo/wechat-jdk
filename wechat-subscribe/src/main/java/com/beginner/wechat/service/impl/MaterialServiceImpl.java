@@ -28,9 +28,10 @@ public class MaterialServiceImpl implements MaterialService {
     public Result<Material> addTempMaterial(String accessToken, MediaType mediaType, File file) {
         String url = MaterialApi.ADD_TEMP_MATERIAL.replace("ACCESS_TOKEN", accessToken)
                 .replace("TYPE", mediaType.getName());
+        String thumbMediaId = "thumb_media_id";
         JSONObject jsonSendFile = WechatFileUtil.jsonSendFile(url, file, "", "");
-        if(mediaType == MediaType.THUMB && jsonSendFile.get("thumb_media_id") != null) {
-            jsonSendFile.put("media_id", jsonSendFile.get("thumb_media_id"));
+        if(mediaType == MediaType.THUMB && jsonSendFile.get(thumbMediaId) != null) {
+            jsonSendFile.put("media_id", jsonSendFile.get(thumbMediaId));
         }
         return new Result(jsonSendFile, Material.class);
     }

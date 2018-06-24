@@ -1,6 +1,8 @@
 package com.beginner.wechat.model.message.msg;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.message.BaseMsg;
 import com.beginner.wechat.adapter.XmlDataAdapter;
 
@@ -13,43 +15,46 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * 音乐消息
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
 public class MusicMsg extends BaseMsg {
 
     /**
-     * title 音乐标题 （非必传）
+     * 音乐标题 （非必传）
      */
     @XmlElement(name = "Title")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String title;
 
     /**
-     * description 音乐描述（非必传）
+     * 音乐描述（非必传）
      */
     @XmlElement(name = "Description")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String description;
 
     /**
-     * musicURL 音乐链接（非必传）
+     * 音乐链接（非必传）
      */
+    @JSONField(name = "musicurl")
     @XmlElement(name = "MusicURL")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String musicURL;
 
     /**
-     * hqMusicUrl 高质量音乐链接，WIFI环境优先使用该链接播放音乐（非必传）
+     * 高质量音乐链接，WIFI环境优先使用该链接播放音乐（非必传）
      */
+    @JSONField(name = "hqmusicurl")
     @XmlElement(name = "HQMusicUrl")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String hqMusicUrl;
 
     /**
-     * thumbMediaId 缩略图的媒体id，通过素材管理中的接口上传多媒体文件，得到的id
+     * 缩略图的媒体id，通过素材管理中的接口上传多媒体文件，得到的id
      */
+    @JSONField(name = "thumb_media_id")
     @XmlElement(name = "ThumbMediaId")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String thumbMediaId;
@@ -92,6 +97,10 @@ public class MusicMsg extends BaseMsg {
 
     public void setThumbMediaId(String thumbMediaId) {
         this.thumbMediaId = thumbMediaId;
+    }
+
+    public MusicMsg() {
+        this.msgType = MsgType.MUSIC.getName();
     }
 
     @Override

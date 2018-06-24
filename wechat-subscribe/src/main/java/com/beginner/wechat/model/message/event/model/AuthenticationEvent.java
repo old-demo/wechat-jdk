@@ -1,4 +1,4 @@
-package com.beginner.wechat.model.message.event;
+package com.beginner.wechat.model.message.event.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
@@ -11,26 +11,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * 认证事件
  * @author heqing
- * @date 2018/6/5.
+ * @date 2018/6/5
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
 public class AuthenticationEvent extends BaseMsg {
 
     /**
-     * expiredTime 有效期 (整形)，指的是时间戳，将于该时间戳认证过期
+     * 有效期 (整形)，指的是时间戳，将于该时间戳认证过期
      */
     @XmlElement(name = "ExpiredTime")
     private Long expiredTime;
 
     /**
-     * failTime 失败发生时间 (整形)，时间戳
+     * 失败发生时间 (整形)，时间戳
      */
     @XmlElement(name = "FailTime")
     private Long failTime;
 
     /**
-     * failReason 失败原因
+     * 失败原因
      */
     @XmlElement(name = "FailReason")
     private String failReason;

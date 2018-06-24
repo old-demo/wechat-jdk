@@ -1,4 +1,4 @@
-package com.beginner.wechat.model.message.event;
+package com.beginner.wechat.model.message.event.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.model.message.BaseMsg;
@@ -17,13 +17,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class PicPhotoEvent extends BaseMsg {
 
     /**
-     * sendPicsInfo 发送的图片信息
+     * 发送的图片信息
      */
     @XmlElement(name = "SendPicsInfo")
     private SendPicsInfo sendPicsInfo;
 
     /**
-     * eventKey 事件KEY值，由开发者在创建菜单时设定
+     * 事件KEY值，由开发者在创建菜单时设定
      */
     @XmlElement(name = "EventKey")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)

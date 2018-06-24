@@ -1,4 +1,4 @@
-package com.beginner.wechat.model.message.event;
+package com.beginner.wechat.model.message.event.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.adapter.XmlDataAdapter;
@@ -17,35 +17,35 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 public class SendLocationInfo {
 
     /**
-     * locationX X坐标信息
+     * X坐标信息
      */
     @XmlElement(name = "Location_X")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String locationX;
 
     /**
-     * locationY Y坐标信息
+     * Y坐标信息
      */
     @XmlElement(name = "Location_Y")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String locationY;
 
     /**
-     * scale 精度，可理解为精度或者比例尺、越精细的话 scale越高
+     * 精度，可理解为精度或者比例尺、越精细的话 scale越高
      */
     @XmlElement(name = "Scale")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String scale;
 
     /**
-     * label 地理位置的字符串信息
+     * 地理位置的字符串信息
      */
     @XmlElement(name = "Label")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String label;
 
     /**
-     * poiname 朋友圈POI的名字，可能为空
+     * 朋友圈POI的名字，可能为空
      */
     @XmlElement(name = "Poiname")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
