@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * 消息管理
+ * 消息管理 接口
  * @author heqing
- * @date 2018/5/31.
+ * @date 2018/5/31
  */
 public interface MsgService {
 
@@ -62,7 +62,7 @@ public interface MsgService {
      * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1500374289_66bvB">微信文档--一次性订阅消息</a>
      * @param accessToken 微信access_token
      * @param sendTemplate 模板消息
-     * @return
+     * @return 微信返回结果
      */
     Result subscribeTemplate(String accessToken, SendTemplate sendTemplate);
 
@@ -71,7 +71,7 @@ public interface MsgService {
      * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433744592">微信文档--接口调用频次限制说明</a>
      * @param accessToken 微信access_token
      * @param appid 公众号的APPID
-     * @return
+     * @return 微信返回结果
      */
     Result clearQuota(String accessToken, String appid);
 
@@ -79,7 +79,7 @@ public interface MsgService {
      * 获取公众号的自动回复规则
      * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751299">微信文档--获取公众号的自动回复规则</a>
      * @param accessToken 微信access_token
-     * @return
+     * @return 微信返回结果
      */
     Result<AutoReplyInfo> getAutoReplyInfo(String accessToken);
 

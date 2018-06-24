@@ -8,34 +8,34 @@ import java.util.List;
 /**
  * 素材信息
  * @author heqing
- * @date 2018/5/26.
+ * @date 2018/5/26
  */
 public class Item {
 
     /**
-     * mediaId : 素材id
+     * 素材id
      */
     @JSONField(name = "media_id")
     private String mediaId;
 
     /**
-     * name :文件名称
+     * 文件名称
      */
     private String name;
 
     /**
-     * updateime : 这篇图文消息素材的最后更新时间
+     * 这篇图文消息素材的最后更新时间
      */
     @JSONField(name = "update_time")
     private String updateime;
 
     /**
-     * url : 图文页的URL，或者，当获取的列表是图片素材列表时，该字段是图片的URL
+     * 图文页的URL，或者，当获取的列表是图片素材列表时，该字段是图片的URL
      */
     private String url;
 
     /**
-     * articleList : 图文列表
+     * 图文列表
      */
     @JSONField(name = "content")
     private List<Article> articleList;

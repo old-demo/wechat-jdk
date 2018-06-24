@@ -6,6 +6,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.util.List;
 
 /**
+ * 回复规则信息
  * @author heqing
  * @date 2018/6/4
  */

@@ -17,17 +17,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 数据统计
- *
+ * 数据统计 实现类
  * @author heqing
- * @date 2018/6/5.
+ * @date 2018/6/5
  */
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<UserAnalysis>> getUserSummary(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_USER_SUMMARY.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_USER_SUMMARY.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -38,7 +37,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<UserAnalysis>> getUserCumulate(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_USER_CUMULATE.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_USER_CUMULATE.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -49,7 +48,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<NewsAnalysis>> getArticleSummary(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_ARTICLE_SUMMARY.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_ARTICLE_SUMMARY.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -60,7 +59,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<NewsAnalysis>> getArticletotal(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_ARTICLE_TOTAL.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_ARTICLE_TOTAL.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -71,7 +70,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<NewsAnalysis>> getUserRead(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_USER_READ.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_USER_READ.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -82,7 +81,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<NewsAnalysis>> getUserReadHour(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_USER_READ_HOUR.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_USER_READ_HOUR.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -93,7 +92,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<NewsAnalysis>> getUerShare(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_USER_SHARE.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_USER_SHARE.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -104,7 +103,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<NewsAnalysis>> getUserShareHour(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_USER_SHARE_HOUR.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_USER_SHARE_HOUR.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -115,7 +114,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<MsgAnalysis>> getUpStreamMsg(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_UPSTREAM_MSG.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_UPSTREAM_MSG.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -126,7 +125,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<MsgAnalysis>> getUpStreamMsgHour(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_UPSTREAM_MSG_HOUR.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_UPSTREAM_MSG_HOUR.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -137,7 +136,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<MsgAnalysis>> getUpStreamMsgWeek(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_UPSTREAM_MSG_WEEK.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_UPSTREAM_MSG_WEEK.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -148,7 +147,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<MsgAnalysis>> getUpStreamMsgMonth(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_UPSTREAM_MSG_MONTH.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_UPSTREAM_MSG_MONTH.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -159,7 +158,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<MsgAnalysis>> getUpStreamMsgDist(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_UPSTREAM_MSG_DIST.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_UPSTREAM_MSG_DIST.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -170,7 +169,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<MsgAnalysis>> getUpStreamMsgDistWeek(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_UPSTREAM_MSG_DIST_WEEK.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_UPSTREAM_MSG_DIST_WEEK.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -181,7 +180,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<MsgAnalysis>> getUpStreamMsgDistMonth(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_UPSTREAM_MSG_DIST_MONTH.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_UPSTREAM_MSG_DIST_MONTH.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -192,7 +191,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<InterfaceAnalysis>> getinterfaceSummary(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_INTERFACES_SUMMARY.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_INTERFACES_SUMMARY.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);
@@ -203,7 +202,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public Result<List<InterfaceAnalysis>> getInterfacesSummaryHour(String accessToken, String beginDate, String endDate) {
-        String url = StatisticsApi.GET_INTERFACES_SUMMARY_HOUR.replace("ACCESS_TOKEN", accessToken);
+        String url = StatisticsApi.STATISTICS_GET_INTERFACES_SUMMARY_HOUR.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_date", beginDate);
         params.put("end_date", endDate);

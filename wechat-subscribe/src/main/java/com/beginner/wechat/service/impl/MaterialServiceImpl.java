@@ -18,27 +18,24 @@ import java.io.File;
 import java.util.List;
 
 /**
+ * 素材管理 实现类
  * @author heqing
- * @date 2018/5/24.
+ * @date 2018/5/24
  */
 @Service
 public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public Result<Material> addTempMaterial(String accessToken, MediaType mediaType, File file) {
-        String url = MaterialApi.ADD_TEMP_MATERIAL.replace("ACCESS_TOKEN", accessToken)
+        String url = MaterialApi.MATERIAL_ADD_TEMP.replace("ACCESS_TOKEN", accessToken)
                 .replace("TYPE", mediaType.getName());
-        String thumbMediaId = "thumb_media_id";
         JSONObject jsonSendFile = WechatFileUtil.jsonSendFile(url, file, "", "");
-        if(mediaType == MediaType.THUMB && jsonSendFile.get(thumbMediaId) != null) {
-            jsonSendFile.put("media_id", jsonSendFile.get(thumbMediaId));
-        }
         return new Result(jsonSendFile, Material.class);
     }
 
     @Override
     public Result<String> getTempMaterial(String accessToken, String mediaId, File file) {
-        String url = MaterialApi.GET_TEMP_MATERIAL.replace("ACCESS_TOKEN", accessToken)
+        String url = MaterialApi.MATERIAL_GET_TEMP.replace("ACCESS_TOKEN", accessToken)
                 .replace("MEDIA_ID", mediaId);
         JSONObject response = WechatFileUtil.getFile(url, file);
         return new Result(response);
@@ -46,7 +43,7 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public Result getJsJdkVoice(String accessToken, String mediaId, File file) {
-        String url = MaterialApi.GET_JSJDK_VOICE.replace("ACCESS_TOKEN", accessToken)
+        String url = MaterialApi.MATERIAL_GET_JSJDK_VOICE.replace("ACCESS_TOKEN", accessToken)
                 .replace("MEDIA_ID", mediaId);
         JSONObject response = WechatFileUtil.getFile(url, file);
         return new Result<String>(response);
@@ -54,7 +51,7 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public Result<String> uploadImg(String accessToken, File file) {
-        String url = MaterialApi.UPLOAD_IMG.replace("ACCESS_TOKEN", accessToken);
+        String url = MaterialApi.MATERIAL_UPLOAD_IMG.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = WechatFileUtil.jsonSendFile(url, file, "", "");
         String imageUrl = response.getString("url");
         response.put("data", imageUrl == null ? "" : imageUrl);
@@ -64,7 +61,7 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public Result<Material> uploadNews(String accessToken, List<Article> articles) {
-        String url = MaterialApi.UPLOAD_NEWS.replace("ACCESS_TOKEN", accessToken);
+        String url = MaterialApi.MATERIAL_UPLOAD_NEWS.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("articles", articles);
         JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
@@ -72,19 +69,8 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public Result<Material> uploadVideo(String accessToken, String mediaId, String title, String description) {
-        String url = MaterialApi.UPLOAD_VIDEO.replace("ACCESS_TOKEN", accessToken);
-        JSONObject params = new JSONObject();
-        params.put("media_id", mediaId);
-        params.put("title", title);
-        params.put("description", description);
-        JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
-        return new Result(response);
-    }
-
-    @Override
     public Result<String> addNews(String accessToken, News news) {
-        String url = MaterialApi.ADD_NEWS.replace("ACCESS_TOKEN", accessToken);
+        String url = MaterialApi.MATERIAL_ADD_NEWS.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, JSON.toJSONString(news));
         String mediaId = response.getString("media_id");
         response.put("data",mediaId == null ? "" : mediaId);
@@ -94,41 +80,21 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public Result<Material> addMaterial(String accessToken, MediaType mediaType, File file, String titile, String introduction) {
-        String url = MaterialApi.ADD_MATERIAL.replace("ACCESS_TOKEN", accessToken)
+        String url = MaterialApi.MATERIAL_ADD.replace("ACCESS_TOKEN", accessToken)
                 .replace("TYPE", mediaType.getName());
         // 文件的标题或描述是否为空
         boolean description = StringUtils.isEmpty(titile) || StringUtils.isEmpty(introduction);
         if(mediaType == MediaType.VIDEO && description) {
-                return new Result(41005, "缺少多媒体文件数据");
+            return new Result(41005, "缺少多媒体文件数据");
         }
         JSONObject response =  WechatFileUtil.jsonSendFile(url, file, titile, introduction);
         return new Result(response, Material.class);
     }
 
     @Override
-    public Result delMaterial(String accessToken, String mediaId) {
-        String url = MaterialApi.DEL_MATERIAL.replace("ACCESS_TOKEN", accessToken);
-        JSONObject params = new JSONObject();
-        params.put("media_id", mediaId);
-        JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
-        return new Result(response);
-    }
-
-    @Override
-    public Result updateNews(String accessToken, String mediaId, Integer index, Article articles) {
-        String url = MaterialApi.UPDATE_NEWS.replace("ACCESS_TOKEN", accessToken);
-        JSONObject params = new JSONObject();
-        params.put("media_id", mediaId);
-        params.put("index", index);
-        params.put("articles",  articles);
-        JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
-        return new Result(response);
-    }
-
-    @Override
     public Result getMaterial(String accessToken, String mediaId, File file) {
         Result result ;
-        String url = MaterialApi.GET_MATERIAL.replace("ACCESS_TOKEN", accessToken);
+        String url = MaterialApi.MATERIAL_GET.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("media_id", mediaId);
         String response = HttpPostUtil.sendJsonRequest(url, params.toJSONString());
@@ -159,15 +125,35 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
+    public Result delMaterial(String accessToken, String mediaId) {
+        String url = MaterialApi.MATERIAL_DEL.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("media_id", mediaId);
+        JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
+        return new Result(response);
+    }
+
+    @Override
+    public Result updateNews(String accessToken, String mediaId, Integer index, Article articles) {
+        String url = MaterialApi.MATERIAL_UPDATE_NEWS.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("media_id", mediaId);
+        params.put("index", index);
+        params.put("articles",  articles);
+        JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
+        return new Result(response);
+    }
+
+    @Override
     public Result<MaterialCount> getMaterialCount(String accessToken) {
-        String url = MaterialApi.GET_MATERIAL_COUNT.replace("ACCESS_TOKEN", accessToken);
+        String url = MaterialApi.MATERIAL_GET_COUNT.replace("ACCESS_TOKEN", accessToken);
         JSONObject response =  HttpGetUtil.getResponse(url);
         return new Result(response, MaterialCount.class);
     }
 
     @Override
     public Result<ItemList> getMaterialList(String accessToken, MediaType mediaType, Integer offset, Integer count) {
-        String url = MaterialApi.GET_MATERIAL_LIST.replace("ACCESS_TOKEN", accessToken);
+        String url = MaterialApi.MATERIAL_GET_LIST.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = new JSONObject();
         if(mediaType != MediaType.IMAGE && mediaType != MediaType.VIDEO && mediaType != MediaType.VOICE && mediaType != MediaType.NEWS) {
             response.put("errcode", 10001);
@@ -191,4 +177,14 @@ public class MaterialServiceImpl implements MaterialService {
         return new Result(response, ItemList.class);
     }
 
+    @Override
+    public Result<Material> uploadVideo(String accessToken, String mediaId, String title, String description) {
+        String url = MaterialApi.MATERIAL_UPLOAD_VIDEO.replace("ACCESS_TOKEN", accessToken);
+        JSONObject params = new JSONObject();
+        params.put("media_id", mediaId);
+        params.put("title", title);
+        params.put("description", description);
+        JSONObject response =  HttpPostUtil.getResponse(url, params.toJSONString());
+        return new Result(response);
+    }
 }

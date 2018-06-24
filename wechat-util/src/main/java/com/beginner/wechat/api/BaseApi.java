@@ -1,7 +1,7 @@
 package com.beginner.wechat.api;
 
 /**
- * 微信公共接口地址
+ * 公共微信接口地址
  * @author heqing
  * @date 2018/5/14
  */

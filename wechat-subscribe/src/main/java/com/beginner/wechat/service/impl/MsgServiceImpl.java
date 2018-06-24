@@ -30,8 +30,9 @@ import java.io.PrintWriter;
 import java.util.List;
 
 /**
+ * 消息管理 实现类
  * @author heqing
- * @date 2018/6/1.
+ * @date 2018/6/1
  */
 @Service
 public class MsgServiceImpl implements MsgService {

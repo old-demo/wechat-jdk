@@ -6,25 +6,25 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.util.List;
 
 /**
- * 标签下的粉丝
+ * 标签下的粉丝信息
  * @author heqing
- * @date 2018/5/28.
+ * @date 2018/5/28
  */
 public class Fans {
 
     /**
-     * count 获取的粉丝数量
+     * 获取的粉丝数量
      */
     private Integer count;
 
     /**
-     * openidList 粉丝列表
+     * 粉丝列表
      */
     @JSONField(name = "openid")
     private List<String> openidList;
 
     /**
-     * nextOpenid 拉取列表最后一个用户的openid
+     * 拉取列表最后一个用户的openid
      */
     @JSONField(name = "next_openid")
     private String nextOpenid;

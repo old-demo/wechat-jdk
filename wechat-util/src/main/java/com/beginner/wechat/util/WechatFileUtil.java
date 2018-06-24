@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * 微信多媒体文件帮助类
+ * 微信多媒体文件工具类
  * @author heqing
  * @date 2018/5/25
  */

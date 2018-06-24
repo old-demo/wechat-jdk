@@ -18,16 +18,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 公众号用户管理实现类
+ * 基本信息/黑名单 实现类
  * @author heqing
- * @date 2018/5/29.
+ * @date 2018/5/29
  */
 @Service
 public class UserExtServiceImpl extends UserServiceImpl implements UserExtService {
 
     @Override
     public Result<List<User>> listUserInfo(String accessToken, List<String> openidList, String lang) {
-        String url = UserExtApi.LIST_USER_INFO.replace("ACCESS_TOKEN", accessToken);
+        String url = UserExtApi.USER_LIST_INFO.replace("ACCESS_TOKEN", accessToken);
         if(StringUtils.isEmpty(lang)) {
             lang = "zh_CN";
         }
@@ -58,7 +58,7 @@ public class UserExtServiceImpl extends UserServiceImpl implements UserExtServic
         if(StringUtils.isEmpty(lang)) {
             lang = "zh_CN";
         }
-        String url = UserExtApi.GET_USER_INFO.replace("ACCESS_TOKEN", accessToken)
+        String url = UserExtApi.USER_GET_INFO.replace("ACCESS_TOKEN", accessToken)
                 .replace("OPENID", openid).replace("zh_CN", lang);
         JSONObject response = HttpGetUtil.getResponse(url);
         return new Result(response, User.class);
@@ -66,7 +66,7 @@ public class UserExtServiceImpl extends UserServiceImpl implements UserExtServic
 
     @Override
     public Result<Fans> getBlackFansList(String accessToken, String beginOpenid) {
-        String url = UserExtApi.GET_BLACK_FANS.replace("ACCESS_TOKEN", accessToken);
+        String url = UserExtApi.USER_GET_BLACK_FANS.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("begin_openid", beginOpenid);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
@@ -82,7 +82,7 @@ public class UserExtServiceImpl extends UserServiceImpl implements UserExtServic
 
     @Override
     public Result setBlackFansList(String accessToken, List<String> openidList) {
-        String url = UserExtApi.SET_BLACK_FANS.replace("ACCESS_TOKEN", accessToken);
+        String url = UserExtApi.USER_SET_BLACK_FANS.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("openid_list", openidList);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
@@ -91,7 +91,7 @@ public class UserExtServiceImpl extends UserServiceImpl implements UserExtServic
 
     @Override
     public Result setUnBlackFansList(String accessToken, List<String> openidList) {
-        String url = UserExtApi.SET_UN_BLACK_FANS.replace("ACCESS_TOKEN", accessToken);
+        String url = UserExtApi.USER_SET_UN_BLACK_FANS.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("openid_list", openidList);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());

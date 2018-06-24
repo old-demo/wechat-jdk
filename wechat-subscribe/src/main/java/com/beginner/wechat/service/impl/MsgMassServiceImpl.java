@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 群发接口和原创校验
+ * 群发接口和原创校验 实现类
  * @author heqing
  * @date 2018/5/31
  */

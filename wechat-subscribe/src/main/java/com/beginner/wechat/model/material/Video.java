@@ -6,28 +6,28 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * 永久视频素材信息
  * @author heqing
- * @date 2018/5/25.
+ * @date 2018/5/25
  */
 public class Video {
 
     /**
-     * title : 标题
+     * 标题
      */
     private String title;
 
     /**
-     * description : 描述
+     * 描述
      */
     private String description;
 
     /**
-     * downUrl : 下载链接
+     * 下载链接
      */
     @JSONField(name = "down_url")
     private String downUrl;
 
     /**
-     * filePath : 本地文件地址
+     * 本地文件地址
      */
     @JSONField(name = "file_path")
     private String filePath;

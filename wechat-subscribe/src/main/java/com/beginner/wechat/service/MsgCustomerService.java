@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.List;
 
 /**
- * 客户服务接口
+ * 客户服务 接口
  * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547">微信文档--客服消息</a>
  * @see <a href="https://mp.weixin.qq.com/cgi-bin/announce?action=getannouncement&key=1464266075&version=12&lang=zh_CN">微信公告--客服接口更新</a>
  * @author heqing

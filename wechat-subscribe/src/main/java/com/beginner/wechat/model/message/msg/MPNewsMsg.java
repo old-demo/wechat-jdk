@@ -10,7 +10,7 @@ import com.beginner.wechat.model.message.BaseMsg;
  * @author heqing
  * @date 2018/5/30
  */
-public class MpNewsMsg extends BaseMsg {
+public class MPNewsMsg extends BaseMsg {
 
     /**
      * 图文消息（点击跳转到图文消息页）的媒体ID，客服发送消息时使用
@@ -26,7 +26,7 @@ public class MpNewsMsg extends BaseMsg {
         this.mediaId = mediaId;
     }
 
-    public MpNewsMsg() {
+    public MPNewsMsg() {
         this.msgType = MsgType.MPNEWS.getName();
     }
 

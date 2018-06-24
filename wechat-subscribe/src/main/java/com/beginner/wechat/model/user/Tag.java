@@ -3,19 +3,19 @@ package com.beginner.wechat.model.user;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * 用户标签
+ * 用户标签信息
  * @author heqing
- * @date 2018/5/28.
+ * @date 2018/5/28
  */
 public class Tag {
 
     /**
-     * id 标签id，由微信分配
+     * 标签id，由微信分配
      */
     private Integer id;
 
     /**
-     * name 标签名，UTF8编码
+     * 标签名，UTF8编码
      */
     private String name;
 

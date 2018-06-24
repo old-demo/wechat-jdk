@@ -5,7 +5,7 @@ import com.beginner.wechat.model.message.event.model.*;
 import com.beginner.wechat.model.message.msg.*;
 
 /**
- * 处理接收到的消息接口
+ * 处理接收到的消息 接口
  * @author heqing
  * @date 2018/5/31
  */

@@ -6,7 +6,7 @@ import com.beginner.wechat.model.message.BaseMsg;
 import java.util.List;
 
 /**
- * 群发接口和原创校验
+ * 群发接口和原创校验 接口
  * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1481187827_i0l21">微信文档--群发接口和原创校验</a>
  * @author heqing
  * @date 2018/5/31

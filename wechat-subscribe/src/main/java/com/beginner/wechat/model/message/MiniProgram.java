@@ -3,6 +3,7 @@ package com.beginner.wechat.model.message;
 import com.alibaba.fastjson.JSONObject;
 
 /**
+ * 小程序信息
  * @author heqing
  * @date 2018/6/4
  */
