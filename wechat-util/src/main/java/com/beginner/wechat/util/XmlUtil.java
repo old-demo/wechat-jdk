@@ -1,7 +1,5 @@
 package com.beginner.wechat.util;
 
-import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -49,21 +47,20 @@ public class XmlUtil {
             marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
             // 格式化xml输出的格式
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            //去掉生成xml的默认报文头。
+            // 去掉生成xml的默认报文头。
             marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
-            marshaller.setProperty("com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler",
-                    new CharacterEscapeHandler() {
-                        @Override
-                        public void escape(char[] ch, int start,int length, boolean isAttVal,
-                                           Writer writer) throws IOException {
-                            writer.write(ch, start, length);
-                        }
-                    });
+//            // 对<>等字符进行了处理，所有使用自定义的CharacterEscapeHandler。会使构建失败（程序包com.sun.xml.internal.bind.marshaller不存在）
+//            marshaller.setProperty(CharacterEscapeHandler.class.getName(),
+//                    (CharacterEscapeHandler) (ch, start, length, isAttVal, writer) -> {
+//                        writer.write(ch, start, length);
+//                    });
+
             // 将对象转换成输出流形式的xml
             marshaller.marshal(obj, sw);
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        return sw.toString();
+        // 使用CharacterEscapeHandler打包失败，不得已这样做
+        return sw.toString().replaceAll("&lt;", "<").replaceAll("&gt;", ">");
     }
 }
