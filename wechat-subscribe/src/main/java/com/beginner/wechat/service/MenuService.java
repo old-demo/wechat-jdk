@@ -7,7 +7,7 @@ import com.beginner.wechat.model.menu.Menu;
 import com.beginner.wechat.model.menu.MenuConfig;
 
 /**
- * 自定义菜单接口
+ * 自定义菜单 接口
  * @author heqing
  * @date 2018/5/21
  */

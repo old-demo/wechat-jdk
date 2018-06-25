@@ -15,7 +15,7 @@ import com.beginner.wechat.service.MenuService;
 import org.springframework.stereotype.Service;
 
 /**
- * 自定义菜单实现类
+ * 自定义菜单 实现类
  * @author heqing
  * @date 2018/5/21
  */
