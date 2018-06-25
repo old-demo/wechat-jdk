@@ -6,42 +6,42 @@ import com.alibaba.fastjson.annotation.JSONField;
 /**
  * 接口分析数据
  * @author heqing
- * @date 2018/6/5.
+ * @date 2018/6/5
  */
 public class InterfaceAnalysis {
 
     /**
-     * refDate 数据的日期，需在begin_date和end_date之间
+     * 数据的日期，需在begin_date和end_date之间
      */
     @JSONField(name = "ref_date")
     private String refDate;
 
     /**
-     * refHour 数据的小时
+     * 数据的小时
      */
     @JSONField(name = "ref_hour")
     private String refHour;
 
     /**
-     * callbackCount 通过服务器配置地址获得消息后，被动回复用户消息的次数
+     * 通过服务器配置地址获得消息后，被动回复用户消息的次数
      */
     @JSONField(name = "callback_count")
     private String callbackCount;
 
     /**
-     * failCount 上述动作的失败次数
+     * 上述动作的失败次数
      */
     @JSONField(name = "fail_count")
     private String failCount;
 
     /**
-     * totalTimeCost 总耗时，除以callback_count即为平均耗时
+     * 总耗时，除以callback_count即为平均耗时
      */
     @JSONField(name = "total_time_cost")
     private String totalTimeCost;
 
     /**
-     * maxTimeCost 最大耗时
+     * 最大耗时
      */
     @JSONField(name = "max_time_cost")
     private String maxTimeCost;

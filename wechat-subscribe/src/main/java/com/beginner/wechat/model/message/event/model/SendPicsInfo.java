@@ -1,4 +1,4 @@
-package com.beginner.wechat.model.message.event;
+package com.beginner.wechat.model.message.event.model;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -12,19 +12,19 @@ import java.util.List;
  * /**
  * 扫描信息
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SendPicsInfo {
 
     /**
-     * count 发送的图片数量
+     * 发送的图片数量
      */
     @XmlElement(name = "Count")
     private Integer count;
 
     /**
-     * picList 图片列表
+     * 图片列表
      */
     @XmlElementWrapper(name = "PicList")
     @XmlElement(name = "item")

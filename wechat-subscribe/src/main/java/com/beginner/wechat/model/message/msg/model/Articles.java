@@ -1,6 +1,7 @@
-package com.beginner.wechat.model.message.msg;
+package com.beginner.wechat.model.message.msg.model;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.beginner.wechat.adapter.XmlDataAdapter;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -11,34 +12,35 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * 图文消息中的文章
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Articles {
 
     /**
-     * title 图文消息标题
+     * 图文消息标题
      */
     @XmlElement(name = "Title")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String title;
 
     /**
-     * description 图文消息描述
+     * 图文消息描述
      */
     @XmlElement(name = "Description")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String description;
 
     /**
-     * picUrl 图片链接，支持JPG、PNG格式，较好的效果为大图360*200，小图200*200
+     * 图片链接，支持JPG、PNG格式，较好的效果为大图360*200，小图200*200
      */
+    @JSONField(name = "picurl")
     @XmlElement(name = "PicUrl")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String picUrl;
 
     /**
-     * url 点击图文消息跳转链接
+     * 点击图文消息跳转链接
      */
     @XmlElement(name = "Url")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)

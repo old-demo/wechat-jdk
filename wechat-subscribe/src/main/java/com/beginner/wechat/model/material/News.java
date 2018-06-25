@@ -6,13 +6,14 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.util.List;
 
 /**
+ * 图文信息
  * @author heqing
- * @date 2018/5/24.
+ * @date 2018/5/24
  */
 public class News {
 
     /**
-     * articles : 图文列表
+     * 图文列表
      */
     private List<Article> articles;
 

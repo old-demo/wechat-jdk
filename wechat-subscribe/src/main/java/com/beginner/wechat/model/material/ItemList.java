@@ -8,24 +8,24 @@ import java.util.List;
 /**
  * 素材列表
  * @author heqing
- * @date 2018/5/26.
+ * @date 2018/5/26
  */
 public class ItemList {
 
     /**
-     * totalCount : 该类型的素材的总数
+     * 该类型的素材的总数
      */
     @JSONField(name = "total_count")
     private Integer totalCount;
 
     /**
-     * totalCount : 该类型的素材的总数
+     * 该类型的素材的总数
      */
     @JSONField(name = "item_count")
     private Integer itemCount;
 
     /**
-     * item : 素材信息列表
+     * 素材信息列表
      */
     @JSONField(name = "item")
     private List<Item> itemList;

@@ -1,16 +1,18 @@
 package com.beginner.wechat.service.impl;
 
 import com.beginner.wechat.model.message.event.*;
+import com.beginner.wechat.model.message.event.model.*;
 import com.beginner.wechat.model.message.msg.*;
-import com.beginner.wechat.service.HandlerMsgService;
+import com.beginner.wechat.service.MsgHandlerService;
 import org.springframework.stereotype.Service;
 
 /**
+ * 处理接收到的消息实现类。开发者重写此类即可
  * @author heqing
- * @date 2018/5/31.
+ * @date 2018/5/31
  */
 @Service
-public class HandlerMsgServiceImpl implements HandlerMsgService {
+public class MsgHandlerServiceImpl implements MsgHandlerService {
 
     @Override
     public String handlerTextMsg(TextMsg textMsg) {
@@ -58,7 +60,7 @@ public class HandlerMsgServiceImpl implements HandlerMsgService {
     }
 
     @Override
-    public String handlerScanEvent(ScanEvent scanEvent) {
+    public String handlerScanEvent(ScanCodeEvent scanCodeEvent) {
         return "success";
     }
 
@@ -78,12 +80,12 @@ public class HandlerMsgServiceImpl implements HandlerMsgService {
     }
 
     @Override
-    public String handlerScancodePushEvent(ScanEvent scanEvent) {
+    public String handlerScancodePushEvent(ScanCodeEvent scanCodeEvent) {
         return "success";
     }
 
     @Override
-    public String handlerScancodeWaitmsgEvent(ScanEvent scanEvent) {
+    public String handlerScancodeWaitmsgEvent(ScanCodeEvent scanCodeEvent) {
         return "success";
     }
 
@@ -144,6 +146,11 @@ public class HandlerMsgServiceImpl implements HandlerMsgService {
 
     @Override
     public String handlerAnnualRenewEvent(AuthenticationEvent authenticationEvent) {
+        return "success";
+    }
+
+    @Override
+    public String handlerVerifyExpiredEvent(AuthenticationEvent authenticationEvent) {
         return "success";
     }
 }

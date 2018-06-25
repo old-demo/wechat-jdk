@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * http/https post访问
+ * http/https post访问工具类
  * @author heqing
  * @date 2018/5/21
  */

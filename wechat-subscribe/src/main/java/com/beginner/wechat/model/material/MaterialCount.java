@@ -4,32 +4,32 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- * 素材数量
+ * 素材数量信息
  * @author heqing
- * @date 2018/5/25.
+ * @date 2018/5/25
  */
 public class MaterialCount {
 
     /**
-     * voiceCount : 语音总数量
+     * 语音总数量
      */
     @JSONField(name = "voice_count")
     private Integer voiceCount;
 
     /**
-     * voiceCount : 视频总数量
+     * 视频总数量
      */
     @JSONField(name = "video_count")
     private Integer videoCount;
 
     /**
-     * voiceCount : 图片总数量
+     * 图片总数量
      */
     @JSONField(name = "image_count")
     private Integer imageCount;
 
     /**
-     * voiceCount : 图文总数量
+     * 图文总数量
      */
     @JSONField(name = "news_count")
     private Integer newsCount;

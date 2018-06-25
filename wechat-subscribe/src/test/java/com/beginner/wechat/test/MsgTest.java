@@ -2,7 +2,8 @@ package com.beginner.wechat.test;
 
 import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.Result;
-import com.beginner.wechat.model.TestMsg;
+import com.beginner.wechat.model.TestMsgHandler;
+import com.beginner.wechat.service.MsgMassService;
 import com.beginner.wechat.service.MsgService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,28 +26,35 @@ public class MsgTest {
     MsgService msgService;
 
     @Autowired
-    TestMsg testMsg;
+    TestMsgHandler testMsg;
 
     private final static String TOKEN = "10_UehY89RRcgZmo2tKMZbBR41AntfGpFCEw8Ve-irSRQYczC4zjC89ubudYFeWfkMasXCapjMU087ZGnrSp6ZVtymSqUeCT35GpGUNSN7E9JYwUXPwHlxrdQg3VaS93K56vAaiWBPHmZnOCtYLQCViADAEQJ";
 
     @Test
     public void handlerMsgTest() {
-        String xmlStr =
-                "<xml>" +
+//        String xmlStr =
+//                "<xml>" +
+//                        "<ToUserName>111</ToUserName>" +
+//                        "<FromUserName>222</FromUserName>" +
+//                        "<CreateTime>1408090816</CreateTime>" +
+//                        "<MsgType>event</MsgType>" +
+//                        "<Event>pic_weixin</Event>" +
+//                        "<EventKey>6</EventKey>" +
+//                        "<SendPicsInfo>" +
+//                        "<Count>1</Count>" +
+//                        "<PicList>" +
+//                        "<item><PicMd5Sum>1111111</PicMd5Sum></item>" +
+//                        "<item><PicMd5Sum>2222222</PicMd5Sum></item>" +
+//                        "</PicList>" +
+//                        "</SendPicsInfo>" +
+//                        "</xml>";
+        String  xmlStr = "<xml>" +
                         "<ToUserName>111</ToUserName>" +
                         "<FromUserName>222</FromUserName>" +
-                        "<CreateTime>1408090816</CreateTime>" +
+                         "<CreateTime>123456789</CreateTime>" +
                         "<MsgType>event</MsgType>" +
-                        "<Event>pic_weixin</Event>" +
-                        "<EventKey>6</EventKey>" +
-                        "<SendPicsInfo>" +
-                        "<Count>1</Count>" +
-                        "<PicList>" +
-                        "<item><PicMd5Sum>1111111</PicMd5Sum></item>" +
-                        "<item><PicMd5Sum>2222222</PicMd5Sum></item>" +
-                        "</PicList>" +
-                        "</SendPicsInfo>" +
-                        "</xml>";
+                        "<Event>subscribe</Event>" +
+                "</xml>";
         System.out.println("-->"+msgService.analysisMsg(xmlStr, testMsg));
     }
 
@@ -58,16 +66,9 @@ public class MsgTest {
     }
 
     @Test
-    public void testSendMassAllByTag() {
-        Result result = msgService.sendMassAllByTag(TOKEN, false, 2, MsgType.WXCARD, "123dsdajkasd231jhksad", 0);
+    public void listCallBackIP() {
+        // 获取微信服务器IP地址
+        Result result = msgService.listCallBackIP(TOKEN);
         System.out.println("-->"+result);
     }
-
-    @Test
-    public void testSendMassAllByOpenId() {
-        List<String> openIdList = new ArrayList();
-        Result result = msgService.sendMassAllByOpenId(TOKEN, openIdList, MsgType.WXCARD, "123dsdajkasd231jhksad", 0);
-        System.out.println("-->"+result);
-    }
-
 }

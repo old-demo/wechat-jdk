@@ -103,21 +103,18 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 状态码配置文件
-     */
-    private static final ResourceBundle ERROR = ResourceBundle.getBundle("error");
-
-    /**
      * 根据状态码获取配置信息
      *
      * @param code 状态码
      * @param msg 默认消息
      * @return error配置文件中，状态码对应的消息
      */
-    private static String getMsgbyCode(Integer code, String msg) {
+    private String getMsgbyCode(Integer code, String msg) {
         if(!StringUtils.isEmpty(code)) {
+            //状态码配置文件
+            ResourceBundle error = ResourceBundle.getBundle("error");
             try {
-                msg = ERROR.getString(code + "");
+                msg = error.getString(code + "");
             } catch(Exception e) {
             }
         }

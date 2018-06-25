@@ -13,14 +13,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * 模板推送后的事件
  * @author heqing
- * @date 2018/6/4.
+ * @date 2018/6/4
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
 public class TemplateEvent extends BaseMsg {
 
     /**
-     * event 事件，事件类型，参见EventType
+     * 事件，事件类型，参见 com.beginner.wechat.constant.EventType
      */
     @XmlElement(name = "Status")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)

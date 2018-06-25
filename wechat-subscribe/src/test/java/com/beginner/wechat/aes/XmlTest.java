@@ -50,7 +50,7 @@ public class XmlTest {
             System.out.println("--------------------------------------");
             System.out.println(XmlUtil.objToString(JSON.parseObject(textMsg.toString(), ImageMsg.class)));
         }
-        if(EventType.PIC_WEIXIN.getName().equals(baseMsg.getEvent())) {
+        if(EventType.PIC_WEIXIN.getName().equals(baseMsg.getEventType())) {
             System.out.println("------------------------>"+222);
             PicPhotoEvent textMsg = (PicPhotoEvent) XmlUtil.stringToXml(xmlStr, PicPhotoEvent.class);
             System.out.println(textMsg.toString());

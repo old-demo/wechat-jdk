@@ -11,7 +11,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-public class Program {
+public class ProgramTest {
 
 	public static void main(String[] args) throws Exception {
 

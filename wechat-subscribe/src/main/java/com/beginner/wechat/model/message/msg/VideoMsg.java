@@ -1,6 +1,8 @@
 package com.beginner.wechat.model.message.msg;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.message.BaseMsg;
 import com.beginner.wechat.adapter.XmlDataAdapter;
 
@@ -13,35 +15,37 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * 视频消息
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
 public class VideoMsg extends BaseMsg {
 
     /**
-     * mediaId 视频消息媒体id，可以调用多媒体文件下载接口拉取数据。
+     * 视频消息媒体id，可以调用多媒体文件下载接口拉取数据。
      */
+    @JSONField(name = "media_id")
     @XmlElement(name = "MediaId")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String mediaId;
 
     /**
-     * thumbMediaId 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
+     * 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
      */
+    @JSONField(name = "thumb_media_id")
     @XmlElement(name = "ThumbMediaId")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String thumbMediaId;
 
     /**
-     * title 视频消息的标题 （回复才有此参数，非必传）
+     * 视频消息的标题 （回复才有此参数，非必传）
      */
     @XmlElement(name = "Title")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String title;
 
     /**
-     * description 视频消息的描述（回复才有此参数，非必传）
+     * 视频消息的描述（回复才有此参数，非必传）
      */
     @XmlElement(name = "Description")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
@@ -77,6 +81,10 @@ public class VideoMsg extends BaseMsg {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public VideoMsg() {
+        this.msgType = MsgType.VIDEO.getName();
     }
 
     @Override

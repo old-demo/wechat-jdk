@@ -1,4 +1,4 @@
-package com.beginner.wechat.model.message.event;
+package com.beginner.wechat.model.message.event.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.beginner.wechat.adapter.XmlDataAdapter;
@@ -11,20 +11,20 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 /**
  * 扫描信息
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ScanCodeInfo {
 
     /**
-     * event 扫描类型，一般是qrcode
+     * 扫描类型，一般是qrcode
      */
     @XmlElement(name = "ScanType")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)
     private String scanType;
 
     /**
-     * scanResult 扫描结果，即二维码对应的字符串信息
+     * 扫描结果，即二维码对应的字符串信息
      */
     @XmlElement(name = "ScanResult")
     @XmlJavaTypeAdapter(XmlDataAdapter.class)

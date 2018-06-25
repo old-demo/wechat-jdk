@@ -1,35 +1,34 @@
 package com.beginner.wechat.api;
 
-import com.beginner.wechat.api.UserApi;
-
 /**
+ * 基本信息/黑名单 微信接口地址
  * @author heqing
- * @date 2018/5/29.
+ * @date 2018/5/29
  */
 public class UserExtApi extends UserApi {
 
     /**
-     * GET_USER_INFO  获取用户基本信息
+     * 获取用户基本信息
      */
-    public final static String GET_USER_INFO = WEIXIN + "/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+    public final static String USER_GET_INFO = WEIXIN + "/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
 
     /**
-     * LIST_USER_INFO  获取多个用户基本信息
+     * 获取多个用户基本信息
      */
-    public final static String LIST_USER_INFO = WEIXIN + "/user/info/batchget?access_token=ACCESS_TOKEN";
+    public final static String USER_LIST_INFO = WEIXIN + "/user/info/batchget?access_token=ACCESS_TOKEN";
 
     /**
-     * GET_BLACK_FANS  获取公众号的黑名单列表
+     * 获取公众号的黑名单列表
      */
-    public final static String GET_BLACK_FANS = WEIXIN + "/tags/members/getblacklist?access_token=ACCESS_TOKEN";
+    public final static String USER_GET_BLACK_FANS = WEIXIN + "/tags/members/getblacklist?access_token=ACCESS_TOKEN";
 
     /**
-     * SET_BLACK_FANS  拉黑用户
+     * 拉黑用户
      */
-    public final static String SET_BLACK_FANS = WEIXIN + "/tags/members/batchblacklist?access_token=ACCESS_TOKEN";
+    public final static String USER_SET_BLACK_FANS = WEIXIN + "/tags/members/batchblacklist?access_token=ACCESS_TOKEN";
 
     /**
-     * SET_UN_BLACK_FANS  取消拉黑用户
+     * 取消拉黑用户
      */
-    public final static String SET_UN_BLACK_FANS = WEIXIN + "/tags/members/batchblacklist?access_token=ACCESS_TOKEN";
+    public final static String USER_SET_UN_BLACK_FANS = WEIXIN + "/tags/members/batchblacklist?access_token=ACCESS_TOKEN";
 }

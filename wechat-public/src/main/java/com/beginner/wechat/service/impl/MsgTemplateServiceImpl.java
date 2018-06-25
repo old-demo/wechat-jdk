@@ -3,11 +3,11 @@ package com.beginner.wechat.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.api.TemplateApi;
+import com.beginner.wechat.api.MsgExtApi;
 import com.beginner.wechat.model.Result;
 import com.beginner.wechat.model.message.SendTemplate;
 import com.beginner.wechat.model.template.Template;
-import com.beginner.wechat.service.TemplateService;
+import com.beginner.wechat.service.MsgTemplateService;
 import com.beginner.wechat.util.HttpGetUtil;
 import com.beginner.wechat.util.HttpPostUtil;
 import org.springframework.stereotype.Service;
@@ -16,16 +16,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 模板消息
+ * 消息模 板实现类
  * @author heqing
- * @date 2018/6/4.
+ * @date 2018/6/4
  */
 @Service
-public class TemplateServiceImpl implements TemplateService {
+public class MsgTemplateServiceImpl implements MsgTemplateService {
 
     @Override
     public Result setIndustry(String accessToken, String industryId1, String industryId2) {
-        String url = TemplateApi.SET_INDUSTRY.replace("ACCESS_TOKEN", accessToken);
+        String url = MsgExtApi.MSG_TEMPLATE_SET_INDUSTRY.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("industry_id1", industryId1);
         params.put("industry_id2", industryId2);
@@ -35,20 +35,18 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Result getIndustry(String accessToken) {
-        String url = TemplateApi.GET_INDUSTRY.replace("ACCESS_TOKEN", accessToken);
+        String url = MsgExtApi.MSG_TEMPLATE_GET_INDUSTRY.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
         Integer errcode = response.getInteger("errcode");
         if(errcode == null) {
             response.put("data", response.toJSONString());
-            response.remove("primary_industry");
-            response.remove("secondary_industry");
         }
         return new Result(response);
     }
 
     @Override
-    public Result addTemplate(String accessToken, String templateIdShort) {
-        String url = TemplateApi.ADD_TEMPLATE.replace("ACCESS_TOKEN", accessToken);
+    public Result getTemplateId(String accessToken, String templateIdShort) {
+        String url = MsgExtApi.MSG_TEMPLATE_ADD.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("template_id_short", templateIdShort);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
@@ -61,14 +59,13 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Result<List<Template>> getAllTemplate(String accessToken) {
-        String url = TemplateApi.GET_ALL_TEMPLATE.replace("ACCESS_TOKEN", accessToken);
+        String url = MsgExtApi.MSG_TEMPLATE_GET_ALL.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
-        Integer errcode = response.getInteger("errcode");
-        if(errcode == null) {
+        JSONArray templateArray = response.getJSONArray("template_list");
+        if(templateArray != null) {
             List<Template> templateList = new ArrayList<>();
-            JSONArray templates = response.getJSONArray("template_list");
-            for(int i=0; i<templates.size(); i++) {
-                Template template = JSON.parseObject(templates.get(i).toString(), Template.class);
+            for(int i=0; i<templateArray.size(); i++) {
+                Template template = JSON.parseObject(templateArray.get(i).toString(), Template.class);
                 templateList.add(template);
             }
             response.put("data", templateList);
@@ -78,7 +75,7 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Result delTemplate(String accessToken, String templateId) {
-        String url = TemplateApi.DEL_TEMPLATE.replace("ACCESS_TOKEN", accessToken);
+        String url = MsgExtApi.MSG_TEMPLATE_DEL.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("template_id", templateId);
         JSONObject response = HttpPostUtil.getResponse(url, params.toJSONString());
@@ -87,7 +84,7 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Result sendTemplate(String accessToken, SendTemplate sendTemplate) {
-        String url = TemplateApi.SEND_TEMPLATE.replace("ACCESS_TOKEN", accessToken);
+        String url = MsgExtApi.MSG_TEMPLATE_SEND.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, sendTemplate);
         String msgId = response.getString("msgid");
         if(msgId != null) {

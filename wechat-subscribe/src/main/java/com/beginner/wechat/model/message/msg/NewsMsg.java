@@ -1,28 +1,33 @@
 package com.beginner.wechat.model.message.msg;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.beginner.wechat.adapter.XmlDataAdapter;
+import com.beginner.wechat.constant.MsgType;
 import com.beginner.wechat.model.message.BaseMsg;
+import com.beginner.wechat.model.message.msg.model.Articles;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.List;
 
 /**
- * 图文消息
+ * 图文消息（点击跳转到外链）
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
 public class NewsMsg extends BaseMsg {
 
     /**
-     * articleCount 图文消息个数，限制为8条以内
+     * 图文消息个数，限制为8条以内
      */
     @XmlElement(name = "ArticleCount")
     private String articleCount;
 
     /**
-     * articles 多条图文消息信息，默认第一个item为大图,注意，如果图文数超过8，则将会无响应
+     * 多条图文消息信息，默认第一个item为大图,注意，如果图文数超过8，则将会无响应
      */
     @XmlElementWrapper(name = "Articles")
     @XmlElement(name = "item")
@@ -42,6 +47,10 @@ public class NewsMsg extends BaseMsg {
 
     public void setArticles(List<Articles> articles) {
         this.articles = articles;
+    }
+
+    public NewsMsg() {
+        this.msgType = MsgType.NEWS.getName();
     }
 
     @Override

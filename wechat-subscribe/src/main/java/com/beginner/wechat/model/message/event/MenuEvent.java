@@ -1,8 +1,10 @@
 package com.beginner.wechat.model.message.event;
 
 import com.alibaba.fastjson.JSONObject;
-import com.beginner.wechat.model.message.BaseMsg;
 import com.beginner.wechat.adapter.XmlDataAdapter;
+import com.beginner.wechat.constant.EventType;
+import com.beginner.wechat.constant.MsgType;
+import com.beginner.wechat.model.message.BaseMsg;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,9 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
- * 自定义菜单事件
+ * 自定义菜单跳转事件
  * @author heqing
- * @date 2018/5/30.
+ * @date 2018/5/30
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "xml")
@@ -34,6 +36,10 @@ public class MenuEvent extends BaseMsg {
 
     public void setEventKey(String eventKey) {
         this.eventKey = eventKey;
+    }
+
+    public MenuEvent() {
+        this.msgType = MsgType.EVENT.getName();
     }
 
     @Override

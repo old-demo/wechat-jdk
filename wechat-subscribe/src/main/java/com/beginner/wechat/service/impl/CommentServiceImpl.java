@@ -8,16 +8,16 @@ import com.beginner.wechat.util.HttpPostUtil;
 import org.springframework.stereotype.Service;
 
 /**
- * 图文消息留言管理
+ * 图文消息留言管理 实现类
  * @author heqing
- * @date 2018/6/4.
+ * @date 2018/6/4
  */
 @Service
 public class CommentServiceImpl implements CommentService {
 
     @Override
     public Result openComment(String accessToken, String msgDataId, String index) {
-        String url = CommentApi.OPEN_COMMENT.replace("ACCESS_TOKEN", accessToken);
+        String url = CommentApi.COMMENT_OPEN.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("msg_data_id", msgDataId);
         params.put("index", index);
@@ -27,7 +27,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Result closeComment(String accessToken, String msgDataId, String index) {
-        String url = CommentApi.CLOSE_COMMENT.replace("ACCESS_TOKEN", accessToken);
+        String url = CommentApi.COMMENT_CLOSE.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("msg_data_id", msgDataId);
         params.put("index", index);
@@ -72,7 +72,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Result deleteComment(String accessToken, String msgDataId, String index, String userCommentId) {
-        String url = CommentApi.DELETE_COMMENT.replace("ACCESS_TOKEN", accessToken);
+        String url = CommentApi.COMMENT_DELETE.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("msg_data_id", msgDataId);
         params.put("index", index);
@@ -83,7 +83,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Result commentAddReply(String accessToken, String msgDataId, String index, String userCommentId, String content) {
-        String url = CommentApi.ADD_REPLY.replace("ACCESS_TOKEN", accessToken);
+        String url = CommentApi.COMMENT_ADD_REPLY.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("msg_data_id", msgDataId);
         params.put("index", index);
@@ -95,7 +95,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Result commentDeleteReply(String accessToken, String msgDataId, String index, String userCommentId) {
-        String url = CommentApi.DELETE_REPLY.replace("ACCESS_TOKEN", accessToken);
+        String url = CommentApi.COMMENT_DELETE_REPLY.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("msg_data_id", msgDataId);
         params.put("index", index);

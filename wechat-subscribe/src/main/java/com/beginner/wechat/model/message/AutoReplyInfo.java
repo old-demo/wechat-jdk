@@ -6,38 +6,38 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.util.List;
 
 /**
- * 自动回复规则
+ * 自动回复规则信息
  * @author heqing
- * @date 2018/6/4.
+ * @date 2018/6/4
  */
 public class AutoReplyInfo {
 
     /**
-     * isAddFriendReplyOpen : 关注后自动回复是否开启，0代表未开启，1代表开启
+     * 关注后自动回复是否开启，0代表未开启，1代表开启
      */
     @JSONField(name = "is_add_friend_reply_open")
     private Integer isAddFriendReplyOpen;
 
     /**
-     * isAutoreplyOpen :消息自动回复是否开启，0代表未开启，1代表开启
+     * 消息自动回复是否开启，0代表未开启，1代表开启
      */
     @JSONField(name = "is_autoreply_open")
     private Integer isAutoreplyOpen;
 
     /**
-     * addFriendAutoreplyInfo :关注后自动回复的信息
+     * 关注后自动回复的信息
      */
     @JSONField(name = "add_friend_autoreply_info")
     private Info addFriendAutoreplyInfo;
 
     /**
-     * messageDefaultAutoreplyInfo :消息自动回复的信息
+     * 消息自动回复的信息
      */
     @JSONField(name = "message_default_autoreply_info")
     private Info messageDefaultAutoreplyInfo;
 
     /**
-     * keywordAutoreplyInfo :关键词自动回复的信息
+     * 关键词自动回复的信息
      */
     @JSONField(name = "keyword_autoreply_info")
     private List<ReplyInfo> keywordAutoreplyInfo;

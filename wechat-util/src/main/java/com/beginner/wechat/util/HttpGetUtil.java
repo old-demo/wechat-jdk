@@ -4,12 +4,11 @@ package com.beginner.wechat.util;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * http/https get访问
+ * http/https get访问工具类
  * @author heqing
  * @date 2018/5/14
  */

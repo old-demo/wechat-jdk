@@ -33,11 +33,4 @@ public class BaseTest {
         Result result = baseService.getAccessToken(appid, secret);
         System.out.println("---->"+result);
     }
-
-    @Test
-    public void listCallBackIP() {
-        // 获取微信服务器IP地址
-        Result result = baseService.listCallBackIP(TOKEN);
-        System.out.println("-->"+result);
-    }
 }

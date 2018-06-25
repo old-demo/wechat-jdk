@@ -1,18 +1,19 @@
 package com.beginner.wechat.constant;
 
 /**
- * 性别
+ * 性别类型
  * @author heqing
- * @date 2018/5/22.
+ * @date 2018/5/22
  */
 public enum SexType {
 
     /**
-     * MAN :  男
+     * 男
      */
     MAN("1"),
+
     /**
-     * FEMALE :  女
+     * 女
      */
     FEMALE("2");
 
