@@ -16,7 +16,7 @@ public class TemplateModel {
         name.setValue("贺小白");
         SendTemplate.Keyword num = new SendTemplate.Keyword();
         num.setValue("一");
-        Map<String, SendTemplate.Keyword> data = new HashMap<>();
+        Map<String, SendTemplate.Keyword> data = new HashMap<>(16);
         data.put("name", name);
         data.put("num", num);
 

@@ -25,7 +25,7 @@ public class MsgMassServiceImpl implements MsgMassService {
     @Override
     public Result sendMassAllByTag(String accessToken, boolean isToAll, int tagId, BaseMsg baseMsg, int sendIgnoreReprint, String clientMsgId) {
         JSONObject params = new JSONObject();
-        Map filter = new HashMap<>(2);
+        Map filter = new HashMap<>(16);
         filter.put("is_to_all", isToAll);
         filter.put("tag_id", tagId);
         params.put("filter", filter);
@@ -39,7 +39,7 @@ public class MsgMassServiceImpl implements MsgMassService {
         }
         String url = MsgApi.SEND_MASS_ALL_BY_TAG.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, params);
-        Map result = new HashMap(2);
+        Map result = new HashMap<>(16);
         Integer msgId = response.getInteger("msg_id");
         if(msgId != null) {
             result.put("msgId", msgId);
@@ -55,7 +55,7 @@ public class MsgMassServiceImpl implements MsgMassService {
     @Override
     public Result sendMassAllByOpenId(String accessToken, List<String> openIdList, BaseMsg baseMsg, int sendIgnoreReprint, String clientMsgId) {
         JSONObject params = new JSONObject();
-        Map filter = new HashMap<>(1);
+        Map filter = new HashMap<>(16);
         filter.put("touser", openIdList);
         params.put("filter", filter);
         params.put("clientmsgid", clientMsgId);
@@ -69,7 +69,7 @@ public class MsgMassServiceImpl implements MsgMassService {
         }
         String url = MsgApi.SEND_MASS_ALL_BY_OPENID.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, params);
-        Map result = new HashMap(2);
+        Map result = new HashMap<>(16);
         Integer msgId = response.getInteger("msg_id");
         if(msgId != null) {
             result.put("msgId", msgId);
@@ -104,7 +104,7 @@ public class MsgMassServiceImpl implements MsgMassService {
 
     private Result previewMass(String accessToken, String user, BaseMsg baseMsg, Integer type) {
         JSONObject params = new JSONObject();
-        Map filter = new HashMap<>(1);
+        Map filter = new HashMap<>(16);
         if(type == 1) {
             filter.put("touser", user);
         } else {
@@ -130,7 +130,7 @@ public class MsgMassServiceImpl implements MsgMassService {
         JSONObject response = HttpPostUtil.getResponse(url, params);
         String msgStatus = response.getString("msg_status");
         if(msgStatus != null) {
-            Map result = new HashMap(2);
+            Map result = new HashMap<>(16);
             result.put("msgId", msgId);
             result.put("msg_status", msgStatus);
             response.put("data", result);
@@ -142,7 +142,7 @@ public class MsgMassServiceImpl implements MsgMassService {
     public Result getMassSpeed(String accessToken) {
         String url = MsgApi.GET_MASS_SPEED.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpPostUtil.getResponse(url, "");
-        Map result = new HashMap(2);
+        Map result = new HashMap<>(16);
         Integer speed = response.getInteger("speed");
         if(speed != null) {
             result.put("speed", speed);

@@ -25,14 +25,14 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Result<QRCode> createQRCodeTicket(String accessToken, Integer expireSeconds, QRType qrType, Integer sceneId, String sceneStr) {
         String url = AccountApi.ACCOUNT_CREATE_QRCODE.replace("TOKEN", accessToken);
-        Map scene = new HashMap(16);
+        Map scene = new HashMap<>(16);
         if(sceneId != null) {
             scene.put("scene_id", sceneId);
         }
         if(sceneStr != null) {
             scene.put("scene_str", sceneStr);
         }
-        Map actionInfo = new HashMap(16);
+        Map actionInfo = new HashMap<>(16);
         actionInfo.put("scene", scene);
         JSONObject params = new JSONObject();
         if(expireSeconds != null) {

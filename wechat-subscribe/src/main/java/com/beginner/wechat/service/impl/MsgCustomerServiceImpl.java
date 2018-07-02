@@ -95,7 +95,7 @@ public class MsgCustomerServiceImpl implements MsgCustomerService {
         params.put("msgtype", msgType);
         params.put(msgType, baseMsg.toString());
         if(!StringUtils.isEmpty(account)) {
-            Map customservice = new HashMap<>(1);
+            Map customservice = new HashMap<>(16);
             customservice.put("kf_account", account);
             params.put("customservice", customservice);
         }
