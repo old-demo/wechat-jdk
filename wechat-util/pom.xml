@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.beginner.wechat</groupId>
+	<groupId>com.heqing.wechat</groupId>
 	<artifactId>wechat-util</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -12,7 +12,7 @@
 	<description>WeChat Tool based package</description>
 
 	<parent>
-		<groupId>com.beginner.wechat</groupId>
+		<groupId>com.heqing.wechat</groupId>
 		<artifactId>wechat-jdk</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
