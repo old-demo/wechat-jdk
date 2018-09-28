@@ -1,6 +1,5 @@
 package com.heqing.wechat.service;
 
-import com.heqing.wechat.constant.QRType;
 import com.heqing.wechat.model.Result;
 import com.heqing.wechat.model.account.QRCode;
 
@@ -23,8 +22,8 @@ public interface AccountService {
      * @param sceneStr 场景值ID（字符串形式的ID），字符串类型，长度限制为1到64
      * @return 临时二维码
      */
-    Result<QRCode> createQRCodeTicket(String accessToken, Integer expireSeconds, QRType qrType,
-                                          Integer sceneId, String sceneStr);
+    Result<QRCode> createQRCodeTicket(String accessToken, Integer expireSeconds, String qrType,
+                                      Integer sceneId, String sceneStr);
 
     /**
      * 通过ticket换取二维码<br/>

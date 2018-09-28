@@ -37,10 +37,10 @@ public class TemplateTest {
     }
 
     @Test
-    public void testAddTemplate() {
+    public void testGetTemplateId() {
         // 获得模板ID
         // 6UAN38z6Lx4KbXNi2Lo4IRfpHHrlfrmirC6uPZ0J8Bc
-        Result result = msgTemplateService.addTemplate(TOKEN, "TM00015");
+        Result result = msgTemplateService.getTemplateId(TOKEN, "TM00015");
         System.out.println("--->"+result);
     }
 

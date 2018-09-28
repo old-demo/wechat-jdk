@@ -2,7 +2,6 @@ package com.heqing.wechat.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.heqing.wechat.api.AccountApi;
-import com.heqing.wechat.constant.QRType;
 import com.heqing.wechat.model.Result;
 import com.heqing.wechat.model.account.QRCode;
 import com.heqing.wechat.service.AccountService;
@@ -23,7 +22,7 @@ import java.util.Map;
 public class AccountServiceImpl implements AccountService {
 
     @Override
-    public Result<QRCode> createQRCodeTicket(String accessToken, Integer expireSeconds, QRType qrType, Integer sceneId, String sceneStr) {
+    public Result<QRCode> createQRCodeTicket(String accessToken, Integer expireSeconds, String qrType, Integer sceneId, String sceneStr) {
         String url = AccountApi.ACCOUNT_CREATE_QRCODE.replace("TOKEN", accessToken);
         Map scene = new HashMap<>(16);
         if(sceneId != null) {

@@ -17,32 +17,32 @@ public class Result<T> implements Serializable {
     /**
      * 返回状态码
      */
-    private Integer errcode;
+    private Integer errCode;
 
     /**
      * 返回说明
      */
-    private String errmsg;
+    private String errMsg;
 
     /**
      * 返回数据
      */
     private T data;
 
-    public Integer getErrcode() {
-        return errcode;
+    public Integer getErrCode() {
+        return errCode;
     }
 
-    public void setErrcode(Integer errcode) {
-        this.errcode = errcode;
+    public void setErrCode(Integer errCode) {
+        this.errCode = errCode;
     }
 
-    public String getErrmsg() {
-        return errmsg;
+    public String getErrMsg() {
+        return errMsg;
     }
 
-    public void setErrmsg(String errmsg) {
-        this.errmsg = errmsg;
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
     }
 
     public T getData() {
@@ -54,38 +54,38 @@ public class Result<T> implements Serializable {
     }
 
     public Result() {
-        this.errcode = 0;
-        this.errmsg = getMsgbyCode(this.errcode, "");
+        this.errCode = 0;
+        this.errMsg = getMsgbyCode(this.errCode, "");
     }
 
-    public Result(Integer errcode, String errmsg) {
-        this.errcode = errcode;
-        this.errmsg = getMsgbyCode(this.errcode, errmsg);
+    public Result(Integer errCode, String errmsg) {
+        this.errCode = errCode;
+        this.errMsg = getMsgbyCode(this.errCode, errmsg);
     }
 
     public Result(JSONObject jsonObject) {
         Integer errcode = jsonObject.getInteger("errcode");
         String errmsg = jsonObject.getString("errmsg");
-        this.errcode = errcode == null ? 0 : errcode;
-        this.errmsg = getMsgbyCode(this.errcode, errmsg);
+        this.errCode = errcode == null ? 0 : errcode;
+        this.errMsg = getMsgbyCode(this.errCode, errmsg);
         this.data = (T)jsonObject.get("data");
     }
 
     public Result(JSONObject jsonObject, Class<T> c) {
-        this.errcode = jsonObject.getInteger("errcode");
+        this.errCode = jsonObject.getInteger("errcode");
         String errmsg = jsonObject.getString("errmsg");
-        if(this.errcode == null || this.errcode == 0){
-            this.errcode = 0;
+        if(this.errCode == null || this.errCode == 0){
+            this.errCode = 0;
             this.data = JSON.parseObject(jsonObject.toJSONString(), c);
         }
-        this.errmsg = getMsgbyCode(this.errcode, errmsg);
+        this.errMsg = getMsgbyCode(this.errCode, errmsg);
     }
 
     public Result(JSONObject jsonObject, String key, Class<T> c) {
-        this.errcode = jsonObject.getInteger("errcode");
+        this.errCode = jsonObject.getInteger("errcode");
         String errmsg = jsonObject.getString("errmsg");
-        if(this.errcode == null || this.errcode == 0){
-            this.errcode = 0;
+        if(this.errCode == null || this.errCode == 0){
+            this.errCode = 0;
             String json = "";
             if(StringUtils.isEmpty(key)) {
                 json = jsonObject.toJSONString();
@@ -94,7 +94,7 @@ public class Result<T> implements Serializable {
             }
             this.data = JSON.parseObject(json, c);
         }
-        this.errmsg = getMsgbyCode(this.errcode, errmsg);
+        this.errMsg = getMsgbyCode(this.errCode, errmsg);
     }
 
     @Override

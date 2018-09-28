@@ -75,8 +75,8 @@ public class MenuServiceImpl implements MenuService {
         String url = MenuApi.MENU_GET_CURRENT_INFO.replace("ACCESS_TOKEN", accessToken);
         JSONObject response = HttpGetUtil.getResponse(url);
         Result result = new Result();
-        result.setErrcode(response.getInteger("errcode"));
-        if(result.getErrcode() == null || result.getErrcode()== 0){
+        result.setErrCode(response.getInteger("errcode"));
+        if(result.getErrCode() == null || result.getErrCode()== 0){
             JSONObject selfmenuInfo = response.getJSONObject("selfmenu_info");
             JSONArray buttonList = selfmenuInfo.getJSONArray("button");
             for(int i=0; i<buttonList.size(); i++) {
@@ -95,7 +95,7 @@ public class MenuServiceImpl implements MenuService {
             }
             result.setData(JSON.parseObject(response.toJSONString(), MenuConfig.class));
         } else {
-            result.setErrmsg(response.getString("errmsg"));
+            result.setErrMsg(response.getString("errmsg"));
         }
         return result;
     }
