@@ -70,7 +70,7 @@ public class MsgServiceImpl implements MsgService {
                 // 微信加密签名
                 String signature = request.getParameter("signature");
                 // 通过检验signature对请求进行校验，若校验成功则原样返回echostr，表示接入成功，否则接入失败
-                if (checkSignature(token, signature, timeStamp, nonce)) {
+                if (checkSignature(token, timeStamp, nonce, signature)) {
                     out.print(echoStr);
                 }
             } else if(post.equals(method)) {
