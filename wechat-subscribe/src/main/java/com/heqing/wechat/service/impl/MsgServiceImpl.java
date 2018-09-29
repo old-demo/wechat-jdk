@@ -93,7 +93,7 @@ public class MsgServiceImpl implements MsgService {
                 String respMessage = analysisMsg(requestXml, msgHandlerService);
 
                 // 返回微信加密信息
-                respMessage = msgCrypt.encryptMsg(respMessage, System.currentTimeMillis()+"", echoStr);
+                respMessage = msgCrypt.encryptMsg(respMessage, System.currentTimeMillis()+"", nonce);
                 out.print(respMessage);
             }
             out.close();
