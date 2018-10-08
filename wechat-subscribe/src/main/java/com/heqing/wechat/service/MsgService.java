@@ -17,7 +17,7 @@ public interface MsgService {
 
     /**
      * 校验signature判断是否接入成功
-     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1434696670">微信文档--消息加解密说明</a>
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319">微信文档--接入指南</a>
      * @param token 微信基本配置中的Token
      * @param timestamp 时间戳
      * @param nonce 随机数
@@ -29,6 +29,7 @@ public interface MsgService {
     /**
      * 处理接收到的微信消息
      * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319">微信文档--接入指南</a>
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1434696670">微信文档--消息加解密说明</a>
      * @param request 请求对象
      * @param response 返回对象
      * @param msgHandlerService 处理类
