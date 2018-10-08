@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ResourceBundle;
+
 /**
  * 微信公共方法测试类
  *
@@ -22,13 +24,13 @@ public class BaseTest {
     @Autowired
     BaseService baseService;
 
-    private final static String appid = "wx2081831e3e9f99fb";
-    private final static String secret = "400977b6a6a1a79d74098ed36c0fad31";
-
-    private final static String TOKEN = "10_HrMuD_zcqe34PhZ1VSgw4xlFm0JOOBYmcip9I4aOYG7NChWYW3nA7YYaTufAfX58IZbut2eWRrvixJbcYllzyXrSq-qR3YiPAkzJXQ0Fql_EMrcwtxlvsPNvB9E6Jy1YwV_ThV9P-abc4xTPPLGeAJAJFA";
-
     @Test
     public void testToken() {
+        ResourceBundle budleEnv = ResourceBundle.getBundle("wechat_config");
+        // 获取微信access_token
+        String appid = budleEnv.getString("test.appid");
+        String secret = budleEnv.getString("test.appsecret");
+
         // 获取微信access_token
         Result result = baseService.getAccessToken(appid, secret);
         System.out.println("---->"+result);

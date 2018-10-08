@@ -30,4 +30,31 @@ public class StringUtil {
         }
         return str;
     }
+
+    /**
+     * 判断字符串是否不为null
+     * @param str 字符串
+     * @return 结果
+     */
+    public static boolean isNotBlank(String str) {
+        return !StringUtil.isBlank(str);
+    }
+
+    /**
+     * 判断字符串是否为null
+     * @param str 字符串
+     * @return 结果
+     */
+    public static boolean isBlank(String str) {
+        int strLen;
+        if (str == null || (strLen = str.length()) == 0) {
+            return true;
+        }
+        for (int i = 0; i < strLen; i++) {
+            if ((Character.isWhitespace(str.charAt(i)) == false)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

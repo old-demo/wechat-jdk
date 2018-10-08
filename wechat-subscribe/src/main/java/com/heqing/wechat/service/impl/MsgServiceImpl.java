@@ -66,6 +66,7 @@ public class MsgServiceImpl implements MsgService {
             String get = "GET", post = "POST", encrypt = "raw";
             PrintWriter out = response.getWriter();
             String method = request.getMethod();
+            // 启动服务器配置时，微信会使用get请求验证token。其他时候都是使用post请求，如转发用户消息等
             if(get.equals(method)) {
                 // 微信加密签名
                 String signature = request.getParameter("signature");
@@ -75,11 +76,15 @@ public class MsgServiceImpl implements MsgService {
                 }
             } else if(post.equals(method)) {
                 String requestXml = "";
-                WXBizMsgCrypt msgCrypt = new WXBizMsgCrypt(token, encodingAesKey, appid);
+                WXBizMsgCrypt msgCrypt = null;
+                // 公众平台测试号无法配置encodingAesKey，所以此处可能为null
+                if(StringUtil.isNotBlank(encodingAesKey)) {
+                    msgCrypt = new WXBizMsgCrypt(token, encodingAesKey, appid);
+                }
                 // 安全模式
                 String encryptType =request.getParameter("encrypt_type");
                 // 非明文模式，对消息解密
-                if (encryptType != null && !encrypt.equals(encryptType)) {
+                if (msgCrypt != null && encryptType != null && !encrypt.equals(encryptType)) {
                     // 微信加密签名
                     String msgSignature = request.getParameter("msg_signature");
                     // 解密
@@ -93,7 +98,9 @@ public class MsgServiceImpl implements MsgService {
                 String respMessage = analysisMsg(requestXml, msgHandlerService);
 
                 // 返回微信加密信息
-                respMessage = msgCrypt.encryptMsg(respMessage, System.currentTimeMillis()+"", nonce);
+                if (msgCrypt != null) {
+                    respMessage = msgCrypt.encryptMsg(respMessage, System.currentTimeMillis() + "", nonce);
+                }
                 out.print(respMessage);
             }
             out.close();
