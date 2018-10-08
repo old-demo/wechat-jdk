@@ -28,6 +28,7 @@ public interface MsgService {
 
     /**
      * 处理接收到的微信消息
+     * @see <a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421135319">微信文档--接入指南</a>
      * @param request 请求对象
      * @param response 返回对象
      * @param msgHandlerService 处理类
