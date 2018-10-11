@@ -22,6 +22,12 @@ public class Material {
     private String mediaId;
 
     /**
+     * 临时媒体文件上传后，获取标识
+     */
+    @JSONField(name = "thumb_media_id")
+    private String thumbMediaId;
+
+    /**
      * 媒体文件上传时间戳
      */
     @JSONField(name = "created_at")
@@ -41,6 +47,14 @@ public class Material {
 
     public void setMediaId(String mediaId) {
         this.mediaId = mediaId;
+    }
+
+    public String getThumbMediaId() {
+        return thumbMediaId;
+    }
+
+    public void setThumbMediaId(String thumbMediaId) {
+        this.thumbMediaId = thumbMediaId;
     }
 
     public String getCreatedAt() {
