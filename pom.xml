@@ -29,6 +29,9 @@
 		<java.version>1.8</java.version>
 		<fastjson.version>1.2.45</fastjson.version>
 		<servlet.version>2.5</servlet.version>
+		<httpclient.version>4.5</httpclient.version>
+		<httpcore.version>4.4.4</httpcore.version>
+		<httpmime.version>4.5</httpmime.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +58,24 @@
 			<artifactId>servlet-api</artifactId>
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>${httpcore.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>${httpmime.version}</version>
 		</dependency>
 	</dependencies>
 
