@@ -15,11 +15,55 @@ import java.net.URLConnection;
 public class WechatFileUtil {
 
     /**
+     * 判断文件所在路径是否存在，如果不存在则新建
+     * @param file 文件
+     */
+    public static void isExists(File file) {
+        File fileParent = new File(file.getParent());
+        if(!fileParent .exists()) {
+            fileParent.mkdirs();
+        }
+    }
+
+    /**
+     * 将流存入文件
+     * @param is 流
+     * @param fileName 文件名
+     */
+    public static void getFile(InputStream is, String fileName) {
+        BufferedInputStream in = null;
+        BufferedOutputStream out = null;
+        try {
+            in = new BufferedInputStream(is);
+            out = new BufferedOutputStream(new FileOutputStream(fileName));
+            int len = -1;
+            byte[] b = new byte[1024];
+            while ((len = in.read(b)) != -1) {
+                out.write(b, 0, len);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
      * 将字符串存入对应的文件
      * @param content 文件内容
      * @param file 本地文件
      */
     public static void stringToFile(String content, File file) {
+        isExists(file);
         ByteArrayInputStream bis = null;
         OutputStream os = null;
         try {
@@ -60,6 +104,7 @@ public class WechatFileUtil {
      * @param file 本地文件
      */
     public static void downLoadFromUrl(String urlStr, File file){
+        isExists(file);
         InputStream inputStream = null;
         FileOutputStream fos = null;
         try {
@@ -110,6 +155,7 @@ public class WechatFileUtil {
      * @param file 本地文件
      */
     public static JSONObject getFile(String url, File file){
+        isExists(file);
         JSONObject response = new JSONObject();
         boolean isFile = true;
 

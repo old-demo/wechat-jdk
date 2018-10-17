@@ -5,7 +5,7 @@ package com.heqing.wechat.api;
  * @author heqing
  * @date 2018/6/5
  */
-public class AccountApi extends BaseApi {
+public class AccountExtApi extends AccountApi {
 
     /**
      * 生成二维码ticket

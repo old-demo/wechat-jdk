@@ -9,6 +9,8 @@ import java.io.*;
  */
 public class StringUtil {
 
+    private final static String ENCODE = "utf-8";
+
     /**
      * 将流中的数据转换为字符串
      * @param in 数据流
@@ -56,5 +58,41 @@ public class StringUtil {
             }
         }
         return true;
+    }
+
+    /**
+     * URL 解码
+     * @param str 转码后的url
+     * @return 解码后url
+     */
+    public static String getURLDecoder(String str) {
+        String result = "";
+        if (null == str) {
+            return "";
+        }
+        try {
+            result = java.net.URLDecoder.decode(str, ENCODE);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
+     * URL 转码
+     * @param str 需要转码的url
+     * @return 解码后
+     */
+    public static String getURLEncoder(String str) {
+        String result = "";
+        if (null == str) {
+            return "";
+        }
+        try {
+            result = java.net.URLEncoder.encode(str, ENCODE);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
