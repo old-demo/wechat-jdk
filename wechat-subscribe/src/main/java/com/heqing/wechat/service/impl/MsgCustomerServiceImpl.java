@@ -87,13 +87,12 @@ public class MsgCustomerServiceImpl implements MsgCustomerService {
     }
 
     @Override
-    public Result sendCustomerMsg(String accessToken, String touser, BaseMsg baseMsg, String account) {
+    public Result sendCustomerMsg(String accessToken, String touser, String msgType, Object content, String account) {
         String url = MsgApi.MSG_KF_SEND_MSG.replace("ACCESS_TOKEN", accessToken);
         JSONObject params = new JSONObject();
         params.put("touser", touser);
-        String msgType = baseMsg.getMsgType();
         params.put("msgtype", msgType);
-        params.put(msgType, baseMsg.toString());
+        params.put(msgType, content);
         if(!StringUtils.isEmpty(account)) {
             Map customservice = new HashMap<>(16);
             customservice.put("kf_account", account);

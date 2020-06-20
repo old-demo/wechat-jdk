@@ -66,11 +66,12 @@ public interface MsgCustomerService {
      * 客服发消息
      * @param accessToken 微信access_token
      * @param touser 普通用户openid
-     * @param baseMsg 发送的消息
+     * @param msgType 消息类型
+     * @param content 发送的消息内容
      * @param account （非必传，可为空）完整客服账号，格式为：账号前缀@公众号微信号
      * @return 微信返回结果
      */
-    Result sendCustomerMsg(String accessToken, String touser, BaseMsg baseMsg, String account);
+    Result sendCustomerMsg(String accessToken, String touser, String msgType, Object content, String account);
 
     /**
      * 客服发消息
