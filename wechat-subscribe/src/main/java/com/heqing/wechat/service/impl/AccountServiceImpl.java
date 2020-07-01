@@ -19,6 +19,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Result<WebAccessToken> getWebAccessToken(String appid, String secret, String code) {
         String url = AccountApi.GET_AUTHORIZATION_TIKEN.replace("APPID", appid).replace("SECRET", secret).replace("CODE", code);
+        System.out.println(url);
         JSONObject response = HttpGetUtil.getResponse(url);
         return new Result(response, WebAccessToken.class);
     }

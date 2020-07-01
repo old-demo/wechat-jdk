@@ -21,13 +21,13 @@ public class WebAccessToken extends AccessToken {
      * 用户唯一标识，请注意，在未关注公众号时，用户访问公众号的网页，也会产生一个用户和公众号唯一的OpenID
      */
     @JSONField(name = "openid")
-    private Integer openId;
+    private String openId;
 
     /**
      * 用户授权的作用域，使用逗号（,）分隔
      */
     @JSONField(name = "scope")
-    private Integer scope;
+    private String scope;
 
     public String getRefreshToken() {
         return refreshToken;
@@ -37,19 +37,19 @@ public class WebAccessToken extends AccessToken {
         this.refreshToken = refreshToken;
     }
 
-    public Integer getOpenId() {
+    public String getOpenId() {
         return openId;
     }
 
-    public void setOpenId(Integer openId) {
+    public void setOpenId(String openId) {
         this.openId = openId;
     }
 
-    public Integer getScope() {
+    public String getScope() {
         return scope;
     }
 
-    public void setScope(Integer scope) {
+    public void setScope(String scope) {
         this.scope = scope;
     }
 
